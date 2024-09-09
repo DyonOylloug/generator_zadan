@@ -8,8 +8,22 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+babel = "^2.16.0"
+jupyter = "^1.0.0"
+matplotlib = "<=3.7"
+numpy = "^1.26.1"
+pandas = "^2.1.1"
+scipy = "^1.11.3"
+sympy = "^1.12"
+sympy-plot-backends = "^3.0.1"
+tqdm = "^4.65.0"
 
 [tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
+myst-nb = {version = "^1.1.1", python = "^3.11"}
+sphinx-autoapi = "^3.3.1"
+sphinx-rtd-theme = "^2.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
