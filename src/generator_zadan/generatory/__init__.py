@@ -1,3 +1,6 @@
+from importlib.metadata import version
+__version__ = version("generator_zadan")
+
 from .zespolone import rownanie_liniowe
 from .zespolone import rownanie_kwadratowe
 from .zespolone import pierwiastek_zespolony
