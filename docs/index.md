@@ -5,7 +5,8 @@
 :maxdepth: 1
 :hidden:
 
-example.ipynb
+liczby_zespolone.ipynb
+macierze.ipynb
 changelog.md
 contributing.md
 conduct.md
