@@ -1,6 +1,24 @@
 # generator_zadan
 
-Generuje losowo roznego typu zadania
+Na użytek własny. 
+
+Generuje losowo różnego typu zadania (z rozwiązaniami) dla pierwszego roku studiów na uczelni technicznej.
+Zadania mają mieć ***przyjazne*** dane i wyniki.
+Powoli pewnie będzie typów zadań przybywać. 
+
+Przy każdym generowaniu są inne zadania.
+
+Generator był przygotowany do pliku TeX-owego i funkcje generujące nie są przystosowane do formatu Markdown.
+Dlatego pliki ipynb w dokumentacji mają taką dziwną strukturę w sekcji prezentującej przykładowe zadania.
+Na razie nie zamierzam tego zmieniać.  
+
+Głównym celem jest format pdf tworzony z plików TeX.
+Do tego są pliki: *generuj_analiza.py* i *generuj_algebra.py*. 
+
+Funkcje na chwilę obecną nie są w żaden sposób udokumentowane. 
+To było tworzone na użytek własny.
+Jak ktoś chce korzystać to proszę bardzo.
+Licencja poniżej. 
 
 ## Installation
 
