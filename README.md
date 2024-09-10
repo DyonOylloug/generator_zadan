@@ -5,7 +5,7 @@ Generuje losowo roznego typu zadania
 ## Installation
 
 ```bash
-$ pip install generator_zadan
+$ pip install generator_zadan  - Jeszcze nie działa - Cierpliwośći :)
 ```
 
 ## Usage
