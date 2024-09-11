@@ -50,7 +50,7 @@ $ cd wygenerowane
 $ pdflatex Algebra.tex
 $ pdflatex Algebra.tex
 $ pdflatex Analiza.tex
-$ pdflatex Algebra.tex
+$ pdflatex Analiza.tex
 Tak - to ma być po dwa razy
 Pliki Algebra.pdf i Analiza.pdf są gotowe
 Oczywiście muszą być zainstalowane odpowiednie pakiety TeX-a
