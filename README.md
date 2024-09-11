@@ -59,7 +59,7 @@ U mnie działa
 
 ## Usage
 
--  Dokumentacja na stronie [readthedocs.](https://generator_zadan.readthedocs.io/en/latest/index.html)
+-  Dokumentacja na stronie [readthedocs.](https://generator-zadan.readthedocs.io/en/latest/index.html)
 
 ## Contributing
 
