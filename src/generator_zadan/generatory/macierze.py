@@ -1,13 +1,15 @@
-import random
-import time  # dla testów wydajności
-
-import numpy as np
 import os  # by sprawdzić istnienie pliku gotowców
 import pickle
-import sympy as sp
+import random
 import sys  # do czerwonych komunikatów: print('jakis tekst', file=sys.stderr )
+import time  # dla testów wydajności
+from pathlib import Path
 
-random.seed()
+import numpy as np
+import sympy as sp
+
+sciezka = str(Path(__file__).parent)
+
 
 # Todo: dołożyć macierze zespolone jako osobne funkcje?
 
@@ -92,17 +94,16 @@ def rownanie_macierzowe():  # na 2000 losowań żadnego powtórzenia
 
 def wyznacznik_parametr(wymiar: int = 3, gotowiec: bool = False):  # na 1000 losowań nie było żadnej powtórki
 
-
     if gotowiec is True:
         if wymiar == 4:
-            if os.path.isfile('generatory//gotowe//wyznacznik_parametr_wymiar_4.pickle'):  # 10000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//wyznacznik_parametr_wymiar_4.pickle', 'rb'))
+            if os.path.isfile(sciezka + '//gotowe//wyznacznik_parametr_wymiar_4.pickle'):  # 10000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//wyznacznik_parametr_wymiar_4.pickle', 'rb'))
                 return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
         if wymiar == 3:
-            if os.path.isfile('generatory//gotowe//wyznacznik_parametr_wymiar_3.pickle'):  # 10000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//wyznacznik_parametr_wymiar_3.pickle', 'rb'))
+            if os.path.isfile(sciezka + '//gotowe//wyznacznik_parametr_wymiar_3.pickle'):  # 10000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//wyznacznik_parametr_wymiar_3.pickle', 'rb'))
                 return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
@@ -142,18 +143,18 @@ def wyznacznik_parametr(wymiar: int = 3, gotowiec: bool = False):  # na 1000 los
 
 
 def macierz_odwrotna_parametr(wymiar: int = 3, gotowiec: bool = False):
-
     if gotowiec is True:
         if wymiar == 3:
-            if os.path.isfile('generatory//gotowe//macierz_odwrotna_parametr_wymiar_3.pickle'):  # 10000/10000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//macierz_odwrotna_parametr_wymiar_4.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(
+                    sciezka + '//gotowe//macierz_odwrotna_parametr_wymiar_3.pickle'):  # 10000/10000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//macierz_odwrotna_parametr_wymiar_4.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
         if wymiar == 4:
-            if os.path.isfile('generatory//gotowe//macierz_odwrotna_parametr_wymiar_4.pickle'):  # 1000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//macierz_odwrotna_parametr_wymiar_4.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(sciezka + '//gotowe//macierz_odwrotna_parametr_wymiar_4.pickle'):  # 1000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//macierz_odwrotna_parametr_wymiar_4.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
     # to nie musi być w else, bo wcześniejsze warunku w przypadku sukcesu konczą funkcje returnem
