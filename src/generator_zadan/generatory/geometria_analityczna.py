@@ -1,9 +1,12 @@
 import os  # by sprawdzić istnienie pliku gotowców
 import pickle  # by pobierać z plików gotowców
 import random
+from pathlib import Path
 
 import numpy as np
 import sympy as sp
+
+sciezka = str(Path(__file__).parent)
 
 # from sympy.abc import x, y, z
 x = sp.Symbol('x', real=True)
@@ -102,8 +105,8 @@ def odleglosc_prostych_skosnych(gotowiec: bool = False):
     """
 
     if (gotowiec is True
-            and os.path.isfile('generatory//gotowe//odleglosc_prostych_skosnych.pickle')):  # 10000 różnych gotowych
-        gotowe = pickle.load(open('generatory//gotowe//odleglosc_prostych_skosnych.pickle', 'rb'))
+            and os.path.isfile(sciezka + '//gotowe//odleglosc_prostych_skosnych.pickle')):  # 10000 różnych gotowych
+        gotowe = pickle.load(open(sciezka + '//gotowe//odleglosc_prostych_skosnych.pickle', 'rb'))
         return gotowe[random.randint(0, len(gotowe)) - 1]
     else:
         while True:
@@ -398,8 +401,8 @@ def plaszczyzna_styczna():
         except:
             pass
     return (
-    f'Wyznaczyć płaszczyznę styczną do powierzchni $$f(x,y)={sp.latex(z)}$$ w punkcie $P=({P[0]},{P[1]},f({P[0]},{P[1]})).$',
-    f'$z = {sp.latex(z_x * (x - P[0]) + z_y * (y - P[1]) + z.subs({x: P[0], y: P[1]}))}$')
+        f'Wyznaczyć płaszczyznę styczną do powierzchni $$f(x,y)={sp.latex(z)}$$ w punkcie $P=({P[0]},{P[1]},f({P[0]},{P[1]})).$',
+        f'$z = {sp.latex(z_x * (x - P[0]) + z_y * (y - P[1]) + z.subs({x: P[0], y: P[1]}))}$')
 
 
 if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany jako program, a nie ładowany jako moduł

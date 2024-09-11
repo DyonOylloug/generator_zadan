@@ -1,24 +1,26 @@
 import os
 import pickle
 import random
+import time
+from pathlib import Path
 
 import sympy as sp
-import time
-random.seed()
+
+sciezka = str(Path(__file__).parent)
+
 
 def uklad_Cramera(wymiar: int = 3, gotowiec: bool = False):
-
     if gotowiec is True:
         if wymiar == 7:
-            if os.path.isfile('generatory//gotowe//uklad_Cramera_wymiar_7.pickle'):  # 10000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//uklad_Cramera_wymiar_7.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(sciezka + '//gotowe//uklad_Cramera_wymiar_7.pickle'):  # 10000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//uklad_Cramera_wymiar_7.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
         if wymiar == 6:
-            if os.path.isfile('generatory//gotowe//uklad_Cramera_wymiar_6.pickle'):  # 10000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//uklad_Cramera_wymiar_6.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(sciezka + '//gotowe//uklad_Cramera_wymiar_6.pickle'):  # 10000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//uklad_Cramera_wymiar_6.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
     # to nie musi być w else, bo wcześniejsze warunku w przypadku sukcesu konczą funkcje returnem
@@ -44,8 +46,8 @@ def uklad_Cramera(wymiar: int = 3, gotowiec: bool = False):
     # Przestawienie alfabetyczne niewiadomych w tworzeniu zadania powoduje zmiany znaków wyznaczników
     # w przypadku t,x,y,z oraz t,u,v,x,y,z.
     if wymiar == 4 or wymiar == 6:
-        det_A = -1*det_A
-        det_A_temp = -1*det_A_temp
+        det_A = -1 * det_A
+        det_A_temp = -1 * det_A_temp
     # print(A,'\n',X,'\n', A_temp,'\n',B,'\n', det_A_temp/det_A,'\n',sp.latex(sp.Matrix.multiply(A.transpose(), X) - B.transpose()))
     lewa_strona = sp.Matrix.multiply(A.transpose(), X)
     uklad = ('\t\[\n'
@@ -58,7 +60,8 @@ def uklad_Cramera(wymiar: int = 3, gotowiec: bool = False):
 
     return (f'Z układu równań wyznaczyć niewiadomą ${X[niewiadoma]}$\n' + uklad,
             f'$\\det(A) = {det_A},\\ \\det(A_{X[niewiadoma]})={det_A_temp},\\ '
-            f'{X[niewiadoma]} = {sp.latex(det_A_temp/det_A)}$')
+            f'{X[niewiadoma]} = {sp.latex(det_A_temp / det_A)}$')
+
 
 def uklad_rownan_nieoznaczony():  # na 10000 losowań żaden się nie powtórzył
     # random.seed()

@@ -1,26 +1,31 @@
 import os  # by sprawdzić istnienie pliku gotowców
 import pickle  # do ładowania gotowca
 import random
-import sympy as sp
 import sys  # do czerwonych komunikatów: print('jakis tekst', file=sys.stderr )
 import time
+from pathlib import Path
+
+import sympy as sp
+
+sciezka = str(Path(__file__).parent)
 
 x = sp.Symbol('x', real=True)
 
-#Todo: Dołożyć rysunki przy polach
+
+# Todo: Dołożyć rysunki przy polach
 
 def calka_oznaczona(typ: int = 1, gotowiec: bool = False):
     if gotowiec is True:
         if typ == 3:  # 2760/10000 różnych gotowych
-            if os.path.isfile('generatory//gotowe//calka_oznaczona_typ_3.pickle'):
-                gotowe = pickle.load(open('generatory//gotowe//calka_oznaczona_typ_3.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(sciezka + '//gotowe//calka_oznaczona_typ_3.pickle'):
+                gotowe = pickle.load(open(sciezka + '//gotowe//calka_oznaczona_typ_3.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
         if typ == 4:
-            if os.path.isfile('generatory//gotowe//calka_oznaczona_typ_4.pickle'):  # 160/1000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//calka_oznaczona_typ_4.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(sciezka + '//gotowe//calka_oznaczona_typ_4.pickle'):  # 160/1000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//calka_oznaczona_typ_4.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
     # to nie musi być w else, bo wcześniejsze warunku w przypadku sukcesu konczą funkcje returnem
@@ -141,34 +146,38 @@ def calka_oznaczona(typ: int = 1, gotowiec: bool = False):
             #                    -sp.Rational(-1 / 3), sp.Rational(1 / 3), sp.Rational(3 / 4), sp.Rational(5 / 4),
             #                    sp.Rational(7 / 3),
             #                    sp.Rational(9 / 4), sp.Rational(11 / 3))) for _ in range(4)]
-            a, b, c, d = random.choice(((-3, sp.Rational(1/2), 3, sp.Rational(11/2)),
-                                       (-3, -sp.Rational(1/2), 3, -sp.Rational(11/2)),
-                                       (-2, -sp.Rational(3/2), sp.Rational(11/2), -6),
-                                       (-sp.Rational(3/2), -1, sp.Rational(9/2), -5),
-                                       (-sp.Rational(3/2), 1, sp.Rational(9/2), 5),
-                                       (-1, -sp.Rational(3/2), 5, -sp.Rational(9/2)),
-                                       (-1, -1, sp.Rational(7/2), -sp.Rational(7/2)),
-                                       (-1, 1, sp.Rational(7/2), sp.Rational(7/2)),
-                                       (-1, sp.Rational(3/2), 5, sp.Rational(9/2)),
-                                       (-sp.Rational(1/2), -3, sp.Rational(11/2), -3),
-                                       (-sp.Rational(1/2), 3, sp.Rational(11/2), 3),
-                                       (-sp.Rational(1/2), sp.Rational(3/4), sp.Rational(5/2), sp.Rational(9/4)),
-                                       (sp.Rational(1/2), -3, -sp.Rational(11/2), -3),
-                                       (sp.Rational(1/2), 3, -sp.Rational(11/2), 3),
-                                       (sp.Rational(1/2), sp.Rational(3/4), -sp.Rational(5/2), sp.Rational(9/4)),
-                                       (1, -sp.Rational(3/2), -5, -sp.Rational(9/2)),
-                                       (1, -1, -sp.Rational(7/2), -sp.Rational(7/2)),
-                                       (1, 1, -sp.Rational(7/2), sp.Rational(7/2)),
-                                       (1, sp.Rational(3/2), -5, sp.Rational(9/2)),
-                                       (sp.Rational(3/2), -2, -6, -sp.Rational(11/2)),
-                                       (sp.Rational(3/2), -1, -sp.Rational(9/2), -5),
-                                       (sp.Rational(3/2), 1, -sp.Rational(9/2), 5),
-                                       (sp.Rational(3/2), 2, -6, sp.Rational(11/2)),
-                                       (2, -sp.Rational(3/2), -sp.Rational(11/2), -6),
-                                       (3, -sp.Rational(1/2), -3, -sp.Rational(11/2)),
-                                       (3, sp.Rational(1/2), -3, sp.Rational(11/2)),
-                                       (-sp.Rational(3/4), -sp.Rational(1/2), sp.Rational(9/4), -sp.Rational(5/2)),
-                                       (-sp.Rational(3/4), sp.Rational(1/2), sp.Rational(9/4), sp.Rational(5/2))))
+            a, b, c, d = random.choice(((-3, sp.Rational(1 / 2), 3, sp.Rational(11 / 2)),
+                                        (-3, -sp.Rational(1 / 2), 3, -sp.Rational(11 / 2)),
+                                        (-2, -sp.Rational(3 / 2), sp.Rational(11 / 2), -6),
+                                        (-sp.Rational(3 / 2), -1, sp.Rational(9 / 2), -5),
+                                        (-sp.Rational(3 / 2), 1, sp.Rational(9 / 2), 5),
+                                        (-1, -sp.Rational(3 / 2), 5, -sp.Rational(9 / 2)),
+                                        (-1, -1, sp.Rational(7 / 2), -sp.Rational(7 / 2)),
+                                        (-1, 1, sp.Rational(7 / 2), sp.Rational(7 / 2)),
+                                        (-1, sp.Rational(3 / 2), 5, sp.Rational(9 / 2)),
+                                        (-sp.Rational(1 / 2), -3, sp.Rational(11 / 2), -3),
+                                        (-sp.Rational(1 / 2), 3, sp.Rational(11 / 2), 3),
+                                        (-sp.Rational(1 / 2), sp.Rational(3 / 4), sp.Rational(5 / 2),
+                                         sp.Rational(9 / 4)),
+                                        (sp.Rational(1 / 2), -3, -sp.Rational(11 / 2), -3),
+                                        (sp.Rational(1 / 2), 3, -sp.Rational(11 / 2), 3),
+                                        (sp.Rational(1 / 2), sp.Rational(3 / 4), -sp.Rational(5 / 2),
+                                         sp.Rational(9 / 4)),
+                                        (1, -sp.Rational(3 / 2), -5, -sp.Rational(9 / 2)),
+                                        (1, -1, -sp.Rational(7 / 2), -sp.Rational(7 / 2)),
+                                        (1, 1, -sp.Rational(7 / 2), sp.Rational(7 / 2)),
+                                        (1, sp.Rational(3 / 2), -5, sp.Rational(9 / 2)),
+                                        (sp.Rational(3 / 2), -2, -6, -sp.Rational(11 / 2)),
+                                        (sp.Rational(3 / 2), -1, -sp.Rational(9 / 2), -5),
+                                        (sp.Rational(3 / 2), 1, -sp.Rational(9 / 2), 5),
+                                        (sp.Rational(3 / 2), 2, -6, sp.Rational(11 / 2)),
+                                        (2, -sp.Rational(3 / 2), -sp.Rational(11 / 2), -6),
+                                        (3, -sp.Rational(1 / 2), -3, -sp.Rational(11 / 2)),
+                                        (3, sp.Rational(1 / 2), -3, sp.Rational(11 / 2)),
+                                        (-sp.Rational(3 / 4), -sp.Rational(1 / 2), sp.Rational(9 / 4),
+                                         -sp.Rational(5 / 2)),
+                                        (-sp.Rational(3 / 4), sp.Rational(1 / 2), sp.Rational(9 / 4),
+                                         sp.Rational(5 / 2))))
             F = a / x
             G = b * x ** 2 + c * x + d
             przeciecia = sp.solve(F - G, x)

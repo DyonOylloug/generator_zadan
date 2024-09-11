@@ -4,6 +4,10 @@ import random
 import sys  # do czerwonych komunikatów: print('jakis tekst', file=sys.stderr )
 import time
 
+from pathlib import Path
+
+sciezka = str(Path(__file__).parent)
+
 import sympy as sp
 
 x = sp.Symbol('x', complex=False)
@@ -26,8 +30,8 @@ def calka_nieoznaczona(typ: int = 1, gotowiec: bool = False):
     """
     if gotowiec is True:
         if typ == 3:  # 1462/10000 różnych gotowych
-            if os.path.isfile('generatory//gotowe//calka_nieoznaczona_typ_3.pickle'):  # 1000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//calka_nieoznaczona_typ_3.pickle', 'rb'))
+            if os.path.isfile(sciezka + '//gotowe//calka_nieoznaczona_typ_3.pickle'):  # 1000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//calka_nieoznaczona_typ_3.pickle', 'rb'))
                 return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
@@ -147,7 +151,7 @@ if __name__ == "__main__":
     # polecenie, rozwiazanie = calka_(typ=3, gotowiec=gotowce)
 
     for _ in range(10):
-        polecenie, rozwiazanie = calka_nieoznaczona(typ=3,gotowiec=gotowce)
+        polecenie, rozwiazanie = calka_nieoznaczona(typ=3, gotowiec=gotowce)
         print(polecenie, '\n', rozwiazanie)
     # for _ in range(3):
     #     polecenie, rozwiazanie = calka_nieoznaczona(typ=3)

@@ -1,9 +1,13 @@
 import os  # by sprawdzić istnienie pliku gotowców
 import pickle  # do ładowania gotowca
 import random
-import sympy as sp
 import sys  # do czerwonych komunikatów: print('jakis tekst', file=sys.stderr )
 import time
+from pathlib import Path
+
+import sympy as sp
+
+sciezka = str(Path(__file__).parent)
 
 
 # Todo: Maksymalne przedziały monotoniczności domknięte
@@ -47,7 +51,8 @@ def styczna_normalna(typ: int = 1):
             x = sp.Symbol('x', real=True)
             a, c, d, e = [random.choice((-2, -1, 1, 2, 3, 4)) for _ in range(4)]
             b = random.choice((-2, -1, 0, 1, 2, 3, 4))
-            f = (sp.sqrt(a*x**2 + b*x + c) if wykladnicza==0 else sp.E**(a*x**2 + b*x + c))/(d*x+e)**(potega)
+            f = (sp.sqrt(a * x ** 2 + b * x + c) if wykladnicza == 0 else sp.E ** (a * x ** 2 + b * x + c)) / (
+                        d * x + e) ** (potega)
             # print(a,b,c,d)
             f_prim = f.diff(x)
             try:
@@ -88,17 +93,17 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
     """
     if gotowiec is True:
         if typ == 2:
-            if os.path.isfile('generatory//gotowe//monotonicznosc_typ_2.pickle'):  # 1000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//monotonicznosc_typ_2.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(sciezka + '//gotowe//monotonicznosc_typ_2.pickle'):  # 1000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//monotonicznosc_typ_2.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
-                print('Brak gotowca do tego typu', file=sys.stderr )
+                print('Brak gotowca do tego typu', file=sys.stderr)
         if typ == 3:
-            if os.path.isfile('generatory//gotowe//monotonicznosc_typ_3.pickle'):  # 356/1000 różnych gotowych
-                gotowe = pickle.load(open('generatory//gotowe//monotonicznosc_typ_3.pickle', 'rb'))
-                return gotowe[random.randint(0,len(gotowe))-1]
+            if os.path.isfile(sciezka + '//gotowe//monotonicznosc_typ_3.pickle'):  # 356/1000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//monotonicznosc_typ_3.pickle', 'rb'))
+                return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
-                print('Brak gotowca do tego typu', file=sys.stderr )
+                print('Brak gotowca do tego typu', file=sys.stderr)
     # to nie musi być w else, bo wcześniejsze warunku w przypadku sukcesu konczą funkcje returnem
     if typ == 1:  # parabola przez prostą
         while True:

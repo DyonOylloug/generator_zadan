@@ -48,7 +48,7 @@ if zapisz_gotowca:
         os.makedirs('generatory/gotowe')
         print(" ! Tworzę katalog generatory/gotowe ", file=sys.stderr)
     plik = Path(
-        'generatory//gotowe//' + zapisz_gotowca_jako)
+        sciezka +  '//gotowe//' + zapisz_gotowca_jako)
     zestaw = list(zestaw)
     # plik = 'test.pkl'
     with open(plik, "wb") as file:
