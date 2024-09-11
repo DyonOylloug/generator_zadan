@@ -5,8 +5,8 @@ Na użytek własny.
 Generuje losowo różnego typu zadania (z rozwiązaniami) dla pierwszego roku studiów na uczelni technicznej.
 Zadania mają mieć ***przyjazne*** dane i wyniki.
 Powoli pewnie będzie typów zadań przybywać. 
-W pliku modułach generatorów jest więcej niż w plikach dokumentacji.
-Prace trwają. 
+W plikach modułów generatorów jest więcej typów zadań niż w plikach dokumentacji.
+Prace dokumentacyjne trwają. 
 
 Przy każdym generowaniu są inne zadania.
 
@@ -26,7 +26,35 @@ Licencja poniżej.
 ## Installation
 
 ```bash
-$ pip install generator_zadan  - Jeszcze nie działa - Cierpliwośći :)
+$ pip install generator_zadan
+```
+lub (nawet lepsze, bo od razu można generować zestawy)
+
+```bash
+Tworzymy niezależne środowisko pythona
+$  python -m venv venv_generator_zadan
+Aktywujemy środowisko
+$ source venv_generator_zadan/Scripts/activate
+Klonujemy pakiet
+$ git clone https://github.com/DyonOylloug/generator_zadan
+Instalujemy pakiet
+$ cd generator_zadan
+$ pip install .
+```
+```bash
+Teraz możemy generować duże zestawy
+$ cd src/generator_zadan
+$ python generuj_algebra
+$ python generuj_analiza
+$ cd wygenerowane
+$ pdflatex Algebra.tex
+$ pdflatex Algebra.tex
+$ pdflatex Analiza.tex
+$ pdflatex Algebra.tex
+Tak - to ma być po dwa razy
+Pliki Algebra.pdf i Analiza.pdf są gotowe
+Oczywiście muszą być zainstalowane odpowiednie pakiety TeX-a
+U mnie działa
 ```
 
 ## Usage

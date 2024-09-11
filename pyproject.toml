@@ -9,7 +9,11 @@ readme = "README.md"
 exclude = [
     "requirements.txt",
     "runtime.txt",
-    "apt.txt"
+    "apt.txt",
+    "src/generator_zadan/generuj_algebra.py",
+    "src/generator_zadan/generuj_analiza.py",
+    "src/generator_zadan/generuj_test_nowego_zadania.py",
+    "src/generator_zadan/sprawdz_roznorodnosc.py",
 ]
 
 
