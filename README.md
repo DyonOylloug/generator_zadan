@@ -5,6 +5,8 @@ Na użytek własny.
 Generuje losowo różnego typu zadania (z rozwiązaniami) dla pierwszego roku studiów na uczelni technicznej.
 Zadania mają mieć ***przyjazne*** dane i wyniki.
 Powoli pewnie będzie typów zadań przybywać. 
+W pliku modułach generatorów jest więcej niż w plikach dokumentacji.
+Prace trwają. 
 
 Przy każdym generowaniu są inne zadania.
 
@@ -13,7 +15,8 @@ Dlatego pliki ipynb w dokumentacji mają taką dziwną strukturę w sekcji preze
 Na razie nie zamierzam tego zmieniać.  
 
 Głównym celem jest format pdf tworzony z plików TeX.
-Do tego są pliki: *generuj_analiza.py* i *generuj_algebra.py*. 
+Do tego są pliki: *generuj_analiza.py* i *generuj_algebra.py*.
+Tam jest więcej zadań.
 
 Funkcje na chwilę obecną nie są w żaden sposób udokumentowane. 
 To było tworzone na użytek własny.
@@ -28,7 +31,7 @@ $ pip install generator_zadan  - Jeszcze nie działa - Cierpliwośći :)
 
 ## Usage
 
-- TODO
+-  Dokumentacja na stronie [readthedocs.](https://generator_zadan.readthedocs.io/en/latest/index.html)
 
 ## Contributing
 
