@@ -27,6 +27,10 @@ extensions = [
 #          "example.ipynb",
 # ]
 
+nb_execution_mode = "cache"
+
+
+nb_execution_timeout = 600
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
