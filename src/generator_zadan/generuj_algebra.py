@@ -370,9 +370,9 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
 
                 '\\begin{document}\n'
                 '    \\author{\\tcbox[colframe=blue!50!black,colback=blue!2!white,colbacktitle=blue!40!black]\n'
-                '        {\\Large Adam Bohonos}}\n'
+                '        {\\Large Adam Bohonos \\thanks{\href{https://github.com/DyonOylloug/generator_zadan}{GitHub}}}}\n'
                 '    \\title{\\tcbox[colframe=green!50!black,colback=green!2!white,colbacktitle=green!40!black]\n'
-                '        {\\Huge Analiza - zadania uzupełniające}}\n'
+                '        {\\Huge Algebra - zadania uzupełniające}}\n'
                 '    \\date{\\tcbox[colframe=green!50!black,colback=green!2!white,colbacktitle=green!40!black]\n'
                 '        {\\small ' +
                 babel.dates.format_datetime(datetime.datetime.now(), "d MMMM yyyy", locale='pl_PL') + '}}\n'

@@ -95,7 +95,7 @@ plik.write(('% !TeX spellcheck = pl_PL-Polish\n'
             '\\graphicspath{{../pics}}\n'
             '\\begin{document}\n'
             '    \\author{\\tcbox[colframe=blue!50!black,colback=blue!2!white,colbacktitle=blue!40!black]\n'
-            '        {\\Large Adam Bohonos}}\n'
+            '        {\\Large Adam Bohonos \\thanks{\href{https://github.com/DyonOylloug/generator_zadan}{GitHub}}}}\n'
             '    \\title{\\tcbox[colframe=green!50!black,colback=green!2!white,colbacktitle=green!40!black]\n'
             '        {\\Huge Analiza - zadania uzupełniające}}\n'
             '    \\date{\\tcbox[colframe=green!50!black,colback=green!2!white,colbacktitle=green!40!black]\n'
@@ -110,7 +110,7 @@ plik.write(('% !TeX spellcheck = pl_PL-Polish\n'
             '    \\tableofcontents'
             ))
 
-ile_zadan = 20
+ile_zadan = 2
 nr_warstwy = 0  # do ukrywania odpowiedzi - w każdej funkcji musi być o jeden większy
 Fourier_bez_wykresu = True
 
