@@ -287,7 +287,7 @@ def diagonalizacja_macierzy(wymiar: int = 3):  # na 10000 losowań 50 powtórze�
         # print(n, end = ',')
         if rzeczywiste_ww is True:
             break
-    try:
+    if M.is_diagonalizable():
         P, D = M.diagonalize()
         return (f'Przeprowadzić diagonalizację macierzy (jeśli możliwa) \n'
                 f'\t\\[\n'
@@ -298,7 +298,7 @@ def diagonalizacja_macierzy(wymiar: int = 3):  # na 10000 losowań 50 powtórze�
                 f'\\parbox{{4em}}{{Wektory\\\\własne:}} ${sp.latex(M.eigenvects())}$,\\\\\n'
                 f'$A = P\\,D\\,P^{{-1}}: \\quad P={sp.latex(P)},$ \\quad \n'
                 f'$D={sp.latex(D)}$')
-    except sp.matrices.common.MatrixError:
+    else:
         return (f'Przeprowadzić diagonalizację macierzy (jeśli możliwa) \n'
                 f'\t\\[\n'
                 f'\t\t\\textnormal{{A=}} {sp.latex(M)}\n'
