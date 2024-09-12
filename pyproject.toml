@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "generator_zadan"
-version = "0.1.1"
+version = "0.1.2"
 description = "Generuje losowo roznego typu zadania"
 authors = ["Adam Bohonos"]
 license = "MIT"
@@ -40,6 +40,10 @@ python-semantic-release = "^9.8.8"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = "pyproject.toml:version"
+version_source = "commit"
 
 version_toml = [
     "pyproject.toml:tool.poetry.version",
