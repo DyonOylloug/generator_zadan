@@ -318,7 +318,7 @@ def diagonalizacja_macierzy_z_wielokrotnym_wartosciami_wlasnymi(wymiar: int = 3)
         if max(values) > 1:
             try:
                 P, D = M.diagonalize()
-            except sp.matrices.common.MatrixError:
+            except Exception:
                 pass
             else:
                 break
