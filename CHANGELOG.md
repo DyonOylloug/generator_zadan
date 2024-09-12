@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.1.3 (2024-09-12)
+
+### Documentation
+
+* docs: dodaj przykłady diagonalizacji ([`bd90eb6`](https://github.com/DyonOylloug/generator_zadan/commit/bd90eb699611f71f14c65daee4ab0e0f9c43e517))
+
+* docs: podnieś wersję dla mybinder ([`d01d192`](https://github.com/DyonOylloug/generator_zadan/commit/d01d1923343fba5d8d1b5aa4a99a0ba70d0e5bb1))
+
+* docs: dodaj parametry semantic-release i podnieś wersję ręcznie ([`cbc4559`](https://github.com/DyonOylloug/generator_zadan/commit/cbc45592d50929b2e2c22f612cd72d29bac5f911))
+
+### Fix
+
+* fix: change exception value  - maybe sympy version is a problem ([`9505dd4`](https://github.com/DyonOylloug/generator_zadan/commit/9505dd44a7e6baefc76e80616872efd892fc7434))
+
+### Unknown
+
+* popraw changelog.md by pobierał zawartość CHANGELOG.md ([`4d98256`](https://github.com/DyonOylloug/generator_zadan/commit/4d98256a093d79068cc24edf7860a15b53542e27))
+
 ## v0.1.2 (2024-09-12)
 
 ### Documentation
