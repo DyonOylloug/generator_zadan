@@ -1,8 +1,36 @@
 # CHANGELOG
 
-## Unreleased
+## v0.1.2 (2024-09-12)
 
 ### Documentation
+
+* docs: dodaj link do GitHub w wygenerowanym pliku pdf ([`fed4b34`](https://github.com/DyonOylloug/generator_zadan/commit/fed4b3447c1dd8a455367e8b56504b22b385253c))
+
+* docs: dodaj przykłady na wartości własne i rząd macierzy ([`fe514cd`](https://github.com/DyonOylloug/generator_zadan/commit/fe514cd21646d8cf80c68519e24455205bc72404))
+
+* docs: losowe rozmiary macierzy w przykładach ([`c38b933`](https://github.com/DyonOylloug/generator_zadan/commit/c38b933cc31276cb6e96d394aa5089ef5e7e129f))
+
+* docs: literówka w adresie dokumentacji ([`cf95c97`](https://github.com/DyonOylloug/generator_zadan/commit/cf95c971c6806b0d3f3df1d3983faa89a9b3baf7))
+
+* docs: popraw nazwę pliku ([`271a5d6`](https://github.com/DyonOylloug/generator_zadan/commit/271a5d6b4bd04d9472e42247682b61f53b0d3bcd))
+
+* docs: podnieś wersję dla pypi ([`b5cd76e`](https://github.com/DyonOylloug/generator_zadan/commit/b5cd76e18adcdc7cfcab852e391ad73608f62452))
+
+### Fix
+
+* fix: change try to if - maybe sympy version is a problem ([`e7043ad`](https://github.com/DyonOylloug/generator_zadan/commit/e7043ad5fb533e594c2b20ebca62bac12cc31d06))
+
+### Performance
+
+* perf: dodaj sciezke do gotowcow ([`fb87015`](https://github.com/DyonOylloug/generator_zadan/commit/fb870159b0614efa93da61875acef17e05ec5a68))
+
+* perf: dodaj sciezke do gotowcow ([`a65222e`](https://github.com/DyonOylloug/generator_zadan/commit/a65222e4dcd66548f1c613f4b2864785afad0367))
+
+## v0.1.1 (2024-09-11)
+
+### Documentation
+
+* docs: aktualizacja CHANGELOG.md ([`298326b`](https://github.com/DyonOylloug/generator_zadan/commit/298326b384d927285158869751d3f8869152b470))
 
 * docs: instrukcja instalacji ([`28ab4e6`](https://github.com/DyonOylloug/generator_zadan/commit/28ab4e660f3cb3d66abcbed8eef1d16b6b2b344a))
 
