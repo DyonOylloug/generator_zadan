@@ -32,3 +32,5 @@ from .calki_nieoznaczone import calka_wymierna
 from .calki_oznaczone import calka_oznaczona
 from .szeregi_Fouriera import szereg_Fouriera
 from .calki_podwojne import calka_podwojna
+from .generuj_zestaw import generuj_LaTeX
+from .generuj_zestaw import dodaj_zadanie
