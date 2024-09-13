@@ -26,7 +26,7 @@ Licencja poniżej.
 ## Installation
 
 ```bash
-$ pip install generator_zadan
+pip install generator_zadan
 ```
 lub (nawet lepsze, bo od razu można generować zestawy)
 
