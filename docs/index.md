@@ -8,6 +8,7 @@
 liczby_zespolone.ipynb
 macierze.ipynb
 geometria_analityczna.ipynb
+generuj_zestaw.ipynb
 changelog.md
 contributing.md
 conduct.md
