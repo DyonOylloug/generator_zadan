@@ -94,8 +94,8 @@ def rownanie_kwadratowe(nr_warstwy: int = 0):  # na 2000 losowań było 194 ró�
             f'\t\t{poprawiony_trojmian}=0\n'
             f'\t\\]',
             f'$\\Delta = {delta}, \\quad '
-            f'\\sqrt{{\\Delta}}=\\pm( {sp.latex(sqrt_delta)}) \\quad '
-            f'z_{{1}}={rozwiazanie[0]} \\quad '
+            f'\\sqrt{{\\Delta}}=\\pm( {sp.latex(sqrt_delta)}), \\quad '
+            f'z_{{1}}={rozwiazanie[0]}, \\quad '
             f'z_{{2}}={rozwiazanie[1]}$')
 
 
