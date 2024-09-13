@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## v0.2.0 (2024-09-13)
+
+### Documentation
+
+* docs: wyświetl wygenerowany plik TeX ([`ca0fdb4`](https://github.com/DyonOylloug/generator_zadan/commit/ca0fdb46d32a810c06e68b61940c0fb7368269d7))
+
+* docs: dodaj generator zestawów na mybinder ([`055b79e`](https://github.com/DyonOylloug/generator_zadan/commit/055b79eabf81d10bc04e756a847dd3652e228e32))
+
+* docs: uprość wyświetlanie ([`1ac4479`](https://github.com/DyonOylloug/generator_zadan/commit/1ac4479afe691a3295e2fe9031f94bf7f45905e8))
+
+* docs: popraw instrukcję instalacji ([`2c39df6`](https://github.com/DyonOylloug/generator_zadan/commit/2c39df61609a261cc1cf392ad42aae14c23d9062))
+
+* docs: popraw instrukcję instalacji ([`3614aa2`](https://github.com/DyonOylloug/generator_zadan/commit/3614aa20e81e1ebb3dcd5d2e02567734e206b2c1))
+
+* docs: popraw nazwe zmiennej ([`9e7eddc`](https://github.com/DyonOylloug/generator_zadan/commit/9e7eddcd1e8733b946f13d63a29ffc9e376626c8))
+
+* docs: dodaj równanie prostej ([`8bae6da`](https://github.com/DyonOylloug/generator_zadan/commit/8bae6dad253d242a0fdeecb4b4d8485357660c7b))
+
+* docs: podnieś wersję dla mybinder ([`5d28fe3`](https://github.com/DyonOylloug/generator_zadan/commit/5d28fe32b7fc65a1d23af806e847c43d3c3105b3))
+
+* docs: semantic-version ma być uruchamiany z katalogu głównego ([`a6ae541`](https://github.com/DyonOylloug/generator_zadan/commit/a6ae541f0ea752b96465717fce1c509e956a5b66))
+
+### Feature
+
+* feat: generuj zestawy lokalnie lub przez mybinder ([`73d0685`](https://github.com/DyonOylloug/generator_zadan/commit/73d068512394fe59065b1488b8736c6a6960df9d))
+
+### Style
+
+* style: ignoruj wygenerowane ([`845122e`](https://github.com/DyonOylloug/generator_zadan/commit/845122ea30651ca139d0e1c0910097b3f19da9ca))
+
+* style: dodaj przecinki ([`05ddb9a`](https://github.com/DyonOylloug/generator_zadan/commit/05ddb9a6bdc66a60bab2a49ce1e1bbffb83dda1c))
+
 ## v0.1.3 (2024-09-12)
 
 ### Documentation
