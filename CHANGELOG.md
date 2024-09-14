@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## v0.2.1 (2024-09-14)
+
+### Documentation
+
+* docs: podbij wersje dla mybinder ([`84775a4`](https://github.com/DyonOylloug/generator_zadan/commit/84775a4817715e7fa3770fb2a7c8ed22660ebc5f))
+
+* docs: działa tworzenie pdf przez mybinder ([`28bc06e`](https://github.com/DyonOylloug/generator_zadan/commit/28bc06e4a55517684f00a84a56cbd5ff8e777623))
+
+* docs: dodaj brakujący pakieto do apt - dla mybinder ([`172e02b`](https://github.com/DyonOylloug/generator_zadan/commit/172e02bbe55d17c3c10ec638b0c05a04b8dc0af7))
+
+* docs: podnieś wersję dla mybinder ([`3ada530`](https://github.com/DyonOylloug/generator_zadan/commit/3ada530e0b9e6d7ac1a30cd98adb4b6444ec5620))
+
+### Performance
+
+* perf: dodaj obszar zespolony z obrazami ([`0475dfb`](https://github.com/DyonOylloug/generator_zadan/commit/0475dfb1b30527a04948e2283221e1288cf1b63f))
+
+### Unknown
+
+* próba generowania pdf poprzez mybinder - pewnie będą brakujące pakiety ([`f2beb31`](https://github.com/DyonOylloug/generator_zadan/commit/f2beb31fa650d0222320a9e5f255129d5436acd0))
+
 ## v0.2.0 (2024-09-13)
 
 ### Documentation
