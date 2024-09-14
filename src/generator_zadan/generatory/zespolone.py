@@ -641,6 +641,7 @@ def obszar_zespolony(typ: int = 1, nr_zadania: int = 1):
     p1.xlabel = None
     p1.ylabel = None
     p1.save(f'./pics/obszar{nr_zadania}.pdf')
+    p1.save(f'./pics/obszar{nr_zadania}.png')
     # p1.save(f'./pics/obszar{nr_zadania}.pgf')  # importujemy pdf-y bo pgf są jakieś ogromne przy obszarach zespolonych
     # print(sp.latex(warunek1), sp.latex(warunek2))
     p1.close()

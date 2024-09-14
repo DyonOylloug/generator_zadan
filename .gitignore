@@ -151,3 +151,5 @@ rozne_testy.ipynb
 src/generator_zadan/pics/*
 src/generator_zadan/wygenerowane/*
 docs/wygenerowane/*
+
+docs/pics/*
