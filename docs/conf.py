@@ -29,6 +29,9 @@ nb_execution_excludepatterns = [
 
 nb_execution_mode = "cache"
 
+html_theme_options = {
+    'collapse_navigation': False,
+}
 
 nb_execution_timeout = 600
 
