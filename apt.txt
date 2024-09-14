@@ -2,6 +2,7 @@ dvipng
 ghostscript
 texlive-fonts-recommended
 texlive-plain-generic
+texlive-lang-polish
 texlive-latex-base
 texlive-latex-extra
 texlive-latex-recommended
