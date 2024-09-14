@@ -66,6 +66,8 @@ def generuj_LaTeX(kierunek,
                 '\t\t\t\t\\begin{ocg}{Warstwa odpowiedzi}{#2}{\\ukryte}\n'
                 '\t\t\t\t\t\\textcolor{\kolorodpowiedzi}{#3}\n'
                 '\t\t\t\t\\end{ocg}}}}\n\n'
+    
+                '\\pdfinfo{/Author (https://generator-zadan.readthedocs.io)}\n\n'
 
                 '\\begin{document}\n'
                 '    \\pagestyle{fancy}\n'
