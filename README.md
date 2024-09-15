@@ -68,21 +68,21 @@ print(zadanie[1])  # drugi element to rozwiązanie
 
 Docelowa forma wygląda następująco
 
-___
-
+```{admonition} Zadanie
 Wyznaczyć równanie prostej przechodzącej przez punkty
-
 $$	P_1 = (5, 5, 3), \quad P_2 = (2, -1, 5).$$
-
 Obliczyć odległość wyznaczonej prostej od punktu
-
 $$	P_3 = (5, 2, 1).$$
+```
 
-___
 
+```{admonition} Rozwiązanie
+:class: tip
 $$l\colon  \frac{x - 5}{-3}= \frac{y - 5}{-6}= \frac{z - 3}{2}; \qquad d(P_3,l) = 3$$
+```
 
-___
+
+
 
 
 I to w zasadzie tyle. 
