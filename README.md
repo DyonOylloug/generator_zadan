@@ -26,7 +26,7 @@ pip install .
 
 ## Jak to działa?
 
-Funkcje zwracają zadanie w formacie krotki składającej się z dwóch część:
+Funkcje zwracają zadanie w formacie krotki składającej się z dwóch części:
 
 - Polecenie w formacie __`LaTeX`__ 
 - Rozwiązanie w formacie __`LaTeX`__  (może zawierać obrazy)
@@ -68,25 +68,28 @@ print(zadanie[1])  # drugi element to rozwiązanie
 
 Docelowa forma wygląda następująco
 
-```{admonition} Zadanie
-Wyznaczyć równanie prostej przechodzącej przez punkty
-$$	P_1 = (5, 5, 3), \quad P_2 = (2, -1, 5).$$
-Obliczyć odległość wyznaczonej prostej od punktu
-$$	P_3 = (5, 2, 1).$$
-```
+> **Zadanie**
+> 
+> Wyznaczyć równanie prostej przechodzącej przez punkty
+> 
+> $$	P_1 = (5, 5, 3), \quad P_2 = (2, -1, 5).$$
+> 
+> Obliczyć odległość wyznaczonej prostej od punktu
+> 
+> $$	P_3 = (5, 2, 1).$$
 
 
-```{admonition} Rozwiązanie
-:class: tip
-$$l\colon  \frac{x - 5}{-3}= \frac{y - 5}{-6}= \frac{z - 3}{2}; \qquad d(P_3,l) = 3$$
-```
+> **Rozwiązanie**
+> 
+> $$l\colon  \frac{x - 5}{-3}= \frac{y - 5}{-6}= \frac{z - 3}{2}; \qquad d(P_3,l) = 3$$
+ 
 
 
 
 
 
 I to w zasadzie tyle. 
-Więcej przykładów w odpowiednich sekcjach [dokumentacji](https://generator-zadan.readthedocs.io/en/latest/index.html). 
+Więcej przykładów w odpowiednich sekcjach tematyczynych [dokumentacji](https://generator-zadan.readthedocs.io/en/latest/index.html). 
 
 W sekcji [Generuj zestaw zadań](https://generator-zadan.readthedocs.io/en/latest/generuj_zestaw.html) 
 po uruchomieniu interaktywnej sesji notebooka można wygenerować swój zestaw.
