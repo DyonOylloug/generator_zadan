@@ -24,7 +24,7 @@ extensions = [
 # autoapi_dirs = ["../src"]
 
 nb_execution_excludepatterns = [
-         "generuj_zestaw.ipynb",
+#          "generuj_zestaw.ipynb",
 ]
 
 nb_execution_mode = "cache"
