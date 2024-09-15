@@ -1,63 +1,98 @@
 # generator_zadan
 
-Na użytek własny. 
+Utworzone na użytek własny. Licencja poniżej. 
 
-Generuje losowo różnego typu zadania (z rozwiązaniami) dla pierwszego roku studiów na uczelni technicznej.
-Zadania mają mieć ***przyjazne*** dane i wyniki.
-Powoli pewnie będzie typów zadań przybywać. 
-W plikach modułów generatorów jest więcej typów zadań niż w plikach dokumentacji.
-Prace dokumentacyjne trwają. 
+Pakiet __`generator_zadan`__ zawiera zdefiniowane funkcje generujące różnego typu zadania dla studentów pierwszego roku uczelnie
 
-Przy każdym generowaniu są inne zadania.
+Wszystkie funkcje generujące oparte są na losowo generowanych danych, by uzyskać maksymalną różnorodność w zakresie danego typu zadania.
 
-Generator był przygotowany do pliku TeX-owego i funkcje generujące nie są przystosowane do formatu Markdown.
-Dlatego pliki ipynb w dokumentacji mają taką dziwną strukturę w sekcji prezentującej przykładowe zadania.
-Na razie nie zamierzam tego zmieniać.  
+Zadania mają mieć __eleganckie__ parametry i wyniki mają być __przyjazne__ dla człowieka.
 
-Głównym celem jest format pdf tworzony z plików TeX.
-Do tego są pliki: *generuj_analiza.py* i *generuj_algebra.py*.
-Tam jest więcej zadań.
+Gotowych jest więcej typów. Prace dokumentacyjne trwają.
 
-Funkcje na chwilę obecną nie są w żaden sposób udokumentowane. 
-To było tworzone na użytek własny.
-Jak ktoś chce korzystać to proszę bardzo.
-Licencja poniżej. 
 
-## Installation
+## Instalacja
 
-```bash
+```
 pip install generator_zadan
 ```
 lub (nawet lepsze, bo od razu można generować zestawy)
 
-```bash
-# Tworzymy niezależne środowisko pythona
-python -m venv venv_generator_zadan
-# Aktywujemy środowisko
-source venv_generator_zadan/Scripts/activate
-# Klonujemy pakiet
+```
 git clone https://github.com/DyonOylloug/generator_zadan
-# Instalujemy pakiet
 cd generator_zadan
 pip install .
 ```
-```bash
-# Teraz możemy generować duże zestawy
-cd src/generator_zadan
-python generuj_algebra
-python generuj_analiza
-cd wygenerowane
-pdflatex Algebra.tex
-pdflatex Algebra.tex
-pdflatex Analiza.tex
-pdflatex Analiza.tex
-# Tak - to ma być po dwa razy
-# Pliki Algebra.pdf i Analiza.pdf są gotowe
-# Oczywiście muszą być zainstalowane odpowiednie pakiety TeX-a
-# U mnie działa
+
+## Jak to działa?
+
+Funkcje zwracają zadanie w formacie krotki składającej się z dwóch część:
+
+- Polecenie w formacie __`LaTeX`__ 
+- Rozwiązanie w formacie __`LaTeX`__  (może zawierać obrazy)
+
+Np.
+
+```
+import generator_zadan.generatory as gz
+
+zadanie = gz.rownanie_prostej()
+zadanie
 ```
 
-## Usage
+    ('Wyznaczyć równanie prostej przechodzącej przez punkty\n\t\\[\n\t\tP_1 = (5, 5, 3), \\quad P_2 = (2, -1, 5).\n\t\\]\n\tObliczyć odległość wyznaczonej prostej od punktu\n\t\\[\n\t\tP_3 = (5, 2, 1).\n\t\\]',
+     '$l\\colon  \\frac{x - 5}{-3}= \\frac{y - 5}{-6}= \\frac{z - 3}{2}; \\qquad d(P_3,l) = 3$')
+
+
+
+W bardziej czytelnej postaci wygląda to następująco
+
+
+```
+print(zadanie[0])  # pierwszy element to polecenie
+print('-'*80)      # oddzielenie części
+print(zadanie[1])  # drugi element to rozwiązanie
+```
+
+    Wyznaczyć równanie prostej przechodzącej przez punkty
+    	\[
+    		P_1 = (5, 5, 3), \quad P_2 = (2, -1, 5).
+    	\]
+    	Obliczyć odległość wyznaczonej prostej od punktu
+    	\[
+    		P_3 = (5, 2, 1).
+    	\]
+    --------------------------------------------------------------------------------
+    $l\colon  \frac{x - 5}{-3}= \frac{y - 5}{-6}= \frac{z - 3}{2}; \qquad d(P_3,l) = 3$
+    
+
+Docelowa forma wygląda następująco
+
+___
+
+Wyznaczyć równanie prostej przechodzącej przez punkty
+
+$$	P_1 = (5, 5, 3), \quad P_2 = (2, -1, 5).$$
+
+Obliczyć odległość wyznaczonej prostej od punktu
+
+$$	P_3 = (5, 2, 1).$$
+
+___
+
+$$l\colon  \frac{x - 5}{-3}= \frac{y - 5}{-6}= \frac{z - 3}{2}; \qquad d(P_3,l) = 3$$
+
+___
+
+
+I to w zasadzie tyle. 
+Więcej przykładów w odpowiednich sekcjach [dokumentacji](https://generator-zadan.readthedocs.io/en/latest/index.html). 
+
+W sekcji [Generuj zestaw zadań](https://generator-zadan.readthedocs.io/en/latest/generuj_zestaw.html) 
+po uruchomieniu interaktywnej sesji notebooka można wygenerować swój zestaw.
+
+
+## Dokumentacja
 
 -  Dokumentacja na stronie [readthedocs.](https://generator-zadan.readthedocs.io/en/latest/index.html)
 
