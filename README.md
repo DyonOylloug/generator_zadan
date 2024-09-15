@@ -2,7 +2,7 @@
 
 Utworzone na użytek własny. Licencja poniżej. 
 
-Pakiet __`generator_zadan`__ zawiera zdefiniowane funkcje generujące różnego typu zadania dla studentów pierwszego roku uczelnie
+Pakiet __`generator_zadan`__ zawiera zdefiniowane funkcje generujące różnego typu zadania dla studentów pierwszego roku uczelni technicznej.
 
 Wszystkie funkcje generujące oparte są na losowo generowanych danych, by uzyskać maksymalną różnorodność w zakresie danego typu zadania.
 
