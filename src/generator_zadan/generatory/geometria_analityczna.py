@@ -318,13 +318,13 @@ def katy_w_trojkacie(prosty: bool = True, calkowite: bool = True):
             f'\t\\]\n'
             f'\tSprawdzić, czy sumują się do $180^{{\\circ}}.$\\\\',
             f'$\\alpha ' +
-            str('= ' if round(alpha) == alpha else '\\approx ') +
+            str('= ' if round(alpha, 1) == round(alpha, 5) else '\\approx ') +
             f'{alpha:.2f}^{{\\circ}},\\  '
             f'\\beta ' +
-            str('= ' if round(beta) == beta else '\\approx ') +
+            str('= ' if round(beta, 1) == round(beta, 5) else '\\approx ') +
             f'{beta:.2f}^{{\\circ}},\\  '
             f'\\gamma ' +
-            str('= ' if round(gamma) == gamma else '\\approx ') +
+            str('= ' if round(gamma, 1) == round(gamma, 5) else '\\approx ') +
             f'{gamma:.2f}^{{\\circ}}.$')
 
 
