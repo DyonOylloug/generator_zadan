@@ -1,5 +1,57 @@
 # CHANGELOG
 
+## v0.2.2 (2024-09-17)
+
+### Documentation
+
+* docs: dodaj tag hide-input ([`ae2820e`](https://github.com/DyonOylloug/generator_zadan/commit/ae2820e3cacf607d1bcd68703720fe0117192129))
+
+* docs: dodaj całki podwójne ([`1f6a82b`](https://github.com/DyonOylloug/generator_zadan/commit/1f6a82b8d755427f1d50f55303fd3eea1e338ff1))
+
+* docs: pdftocairo dla  program dla pdf2image w mybinder ([`2e30ad9`](https://github.com/DyonOylloug/generator_zadan/commit/2e30ad974900ec205a86af1aaa382cee10b886a8))
+
+* docs: dodaj podgląd wygenerowanego pdf-a ([`683a648`](https://github.com/DyonOylloug/generator_zadan/commit/683a6482086a69c4a8df42881358ac5b947bc3ac))
+
+* docs: popraw wyświetlanie i literówki ([`0daff0c`](https://github.com/DyonOylloug/generator_zadan/commit/0daff0c0dcfdf2ecd31014c32cbd7c74b4f9cc28))
+
+* docs: generator musi się uruchamiać przy tworzeniu dokumentacji ([`b300146`](https://github.com/DyonOylloug/generator_zadan/commit/b300146df1041bef74ed5cf7dcb013838f404733))
+
+* docs: Update README.md ([`653e3f4`](https://github.com/DyonOylloug/generator_zadan/commit/653e3f4391a662fdf6202013f1f29e28cc379233))
+
+* docs: popraw wygląd przykładu ([`31ba626`](https://github.com/DyonOylloug/generator_zadan/commit/31ba6263d08027d9ff0cb3ffceb5379b1d9d7feb))
+
+* docs: dodaj przykład użycia ([`df6e2e3`](https://github.com/DyonOylloug/generator_zadan/commit/df6e2e3f75c2ec214ba69a6cb02a4a5eec58bd4e))
+
+* docs: osobny numer obszaru w generatorze bo byl konfilkt ([`36f807c`](https://github.com/DyonOylloug/generator_zadan/commit/36f807c2ad6edfb8303de952e8e5476bca71aa33))
+
+* docs: drobne zmiany wyglądu ([`558e54b`](https://github.com/DyonOylloug/generator_zadan/commit/558e54bf3e1a2f4dfc1dd01f06226ad47f1ad47b))
+
+* docs: dodaj w pliku pdf stronę generatora jako autora ([`7ff97e4`](https://github.com/DyonOylloug/generator_zadan/commit/7ff97e4e8d2d4e71806132fe040129c9f40be330))
+
+* docs: pełny rozwijany spis treści ([`f165939`](https://github.com/DyonOylloug/generator_zadan/commit/f1659394570744454e396bc49c5a5cde4f8dcd04))
+
+### Fix
+
+* fix: popraw złe obrazy i dodaj zapis jako png ([`1b0870a`](https://github.com/DyonOylloug/generator_zadan/commit/1b0870a0cb8709d529dc2dc1b0c2eaba5e410f3b))
+
+### Style
+
+* style: dodaj nazwę argumentu funckji generującej ([`f3741e2`](https://github.com/DyonOylloug/generator_zadan/commit/f3741e23dd3b8cb8cab7f4b0441960619ee9c320))
+
+* style: popraw przybliżenie w kątach ([`5b31ee4`](https://github.com/DyonOylloug/generator_zadan/commit/5b31ee41252ee566a0e5636947debeea0b02722c))
+
+### Unknown
+
+* poppler-utils dla konwersji pdf2image ([`21d6771`](https://github.com/DyonOylloug/generator_zadan/commit/21d677127d57051650ec488d03f84df9d576f5da))
+
+* dodaj układy równań ([`7d947d2`](https://github.com/DyonOylloug/generator_zadan/commit/7d947d292458818cb9def4330e937102de85db73))
+
+* zadania z geometrii analitycznej ([`c5d40b9`](https://github.com/DyonOylloug/generator_zadan/commit/c5d40b9f48f16a5107c6c72b37da25f4f4dab3b7))
+
+* dodaj nazwy typów zadań do spisu treści ([`b92a476`](https://github.com/DyonOylloug/generator_zadan/commit/b92a476fb440fe75bf14e5c47b3f32fdd3fe3a42))
+
+* dodaj nowe przykłady ([`0cbf6ab`](https://github.com/DyonOylloug/generator_zadan/commit/0cbf6abef1a4a16a1729f9cd02cf10ec611a7ac2))
+
 ## v0.2.1 (2024-09-14)
 
 ### Documentation
