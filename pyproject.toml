@@ -28,6 +28,7 @@ scipy = "^1.11.3"
 sympy = "^1.12"
 sympy-plot-backends = "^3.0.1"
 tqdm = "^4.65.0"
+pdf2image = "^1.17.0"
 
 [tool.poetry.dev-dependencies]
 
