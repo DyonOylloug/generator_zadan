@@ -9,6 +9,7 @@ liczby_zespolone.ipynb
 macierze.ipynb
 uklady_rownan.ipynb
 geometria_analityczna.ipynb
+calki_podwojne.ipynb
 generuj_zestaw.ipynb
 changelog.md
 contributing.md
