@@ -138,6 +138,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                 p1.append(p2[4])
                 # p1.show()
                 p1.save(f'./pics/calka_podwojna{nr_zadania}x.pdf')
+                p1.save(f'./pics/calka_podwojna{nr_zadania}x.png')
                 p1.close()
                 p2.close()
 
@@ -218,6 +219,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                 p1.append(p2[4])
                 # p1.show()
                 p1.save(f'./pics/calka_podwojna{nr_zadania}x.pdf')
+                p1.save(f'./pics/calka_podwojna{nr_zadania}x.png')
                 p1.close()
                 p2.close()
 
@@ -317,6 +319,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
             p1.append(p3[3])
             # p1.show()
             p1.save(f'./pics/calka_podwojna{nr_zadania}x.pdf')
+            p1.save(f'./pics/calka_podwojna{nr_zadania}x.png')
             p1.close()
             p2.close()
             p3.close()
@@ -404,6 +407,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                 p1.append(p2[4])
                 # p1.show()
                 p1.save(f'./pics/calka_podwojna{nr_zadania}y.pdf')
+                p1.save(f'./pics/calka_podwojna{nr_zadania}y.png')
                 p1.close()
                 p2.close()
 
@@ -484,6 +488,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                 p1.append(p2[4])
                 # p1.show()
                 p1.save(f'./pics/calka_podwojna{nr_zadania}y.pdf')
+                p1.save(f'./pics/calka_podwojna{nr_zadania}y.png')
                 p1.close()
                 p2.close()
             # if wynik_y == pol_int:
@@ -581,6 +586,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
             p1.append(p3[3])
             # p1.show()
             p1.save(f'./pics/calka_podwojna{nr_zadania}y.pdf')
+            p1.save(f'./pics/calka_podwojna{nr_zadania}y.png')
             p1.close()
             p2.close()
             p3.close()
@@ -672,6 +678,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                      )
 
             p.save(f'./pics/calka_podwojna{nr_zadania}x.pdf')
+            p.save(f'./pics/calka_podwojna{nr_zadania}x.png')
             p.close()
 
             f_i = sp.solve(y - f, x)
@@ -707,6 +714,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                  size=(4.5, 4.5),
                  )
             p.save(f'./pics/calka_podwojna{nr_zadania}y.pdf')
+            p.save(f'./pics/calka_podwojna{nr_zadania}y.png')
             p.close()
             # print(sp.Rational(-b, (2 * a)), (f.subs(x, -b / (2 * a))))
 
@@ -789,60 +797,72 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
             wysokosc = max(roz) - min(roz)
             # print(x_min, x_max)
             # print(szerokosc, wysokosc)
-            p = plot_parametric((f, y), (g, y),
-                            (y, -100, 100),
+            f_i = sp.solve(x - f, y)
+            g_i = sp.solve(x - g, y)
+            p = plot_parametric((f_i[0], x), (f_i[1], x), (g_i, x),
+                            (x, -100, 100),
                             n=50000,
                             xlabel="x",
                             ylabel="y",
                             use_cm=False,
-                            label=(f'x=${sp.latex(f)}$', f'x=${sp.latex(g)}$'),
+                            label=(f'y=${sp.latex(f_i[0])}$', f'y=${sp.latex(f_i[1])}$', f'y=${sp.latex(g_i[0])}$'),
+                            markers=[
+                                {"args": [roz[0], f.subs(y, roz[0])], "marker": "o",
+                                 "linestyle": "None", 'markersize': '10',
+                                 'label': f'A={f.subs(y, roz[0]), roz[0]}'},
+                                {"args": [roz[1], f.subs(y, roz[1])], "marker": "o",
+                                 "linestyle": "None", 'markersize': '10',
+                                 'label': f'B={f.subs(y, roz[1]), roz[1]}'},
+                                {"args": [-b / (2 * a), f.subs(y, -b / (2 * a))], "marker": "o",
+                                 "linestyle": "None", 'markersize': '10',
+                                 'label': f'W={(f.subs(y, sp.Rational(-b, 2 * a))), sp.Rational(-b, 2 * a)}'},
+                            ],
+                            xlim=(
+                                max(roz) + 1 if szerokosc > wysokosc else (min(roz) + max(
+                                    roz)) / 2 + wysokosc / 2 + 1,
+                                min(roz) - 1 if szerokosc > wysokosc else (min(roz) + max(
+                                    roz)) / 2 - wysokosc / 2 - 1),
+                            ylim=((x_min + x_max) / 2 - szerokosc / 2 - 1 if szerokosc > wysokosc else x_min - 1,
+                                  (x_min + x_max) / 2 + szerokosc / 2 + 1 if szerokosc > wysokosc else x_max + 1),
+
+                            # aspect=(1, 1),
+                            title=f'Obszar całkowania względem osi Ox',
+                            show=False,
+                            # use_latex=True,
+                            size=(4.5, 4.5),
+                            )
+            p.save(f'./pics/calka_podwojna{nr_zadania}x.pdf')
+            p.save(f'./pics/calka_podwojna{nr_zadania}x.png')
+            p.close()
+
+
+            y_min = x_min
+            y_max = x_max
+            # print((y_min + y_max) / 2 - szerokosc / 2 + 1 if szerokosc > wysokosc else y_min - 1,
+            #       (y_min + y_max) / 2 + szerokosc / 2 - 1 if szerokosc > wysokosc else y_max + 1)
+            p = plot_parametric((f, y), (g, y),
+                            (y, -100, 100),  # inaczej obcina dziedzinę funkcji do -10,10
+                            use_cm=False,
                             markers=[
                                 {"args": [f.subs(y, roz[0]), roz[0]], "marker": "o",
-                                 "linestyle": "None", 'markersize': '10', 'label': f'A={f.subs(y, roz[0]), roz[0]}'},
+                                 "linestyle": "None", 'markersize': '10',
+                                 'label': f'A={f.subs(y, roz[0]), roz[0]}'},
                                 {"args": [f.subs(y, roz[1]), roz[1]], "marker": "o",
-                                 "linestyle": "None", 'markersize': '10', 'label': f'B={f.subs(y, roz[1]), roz[1]}'},
-                                {"args": [f.subs(y, -b / (2 * a)), -b / (2 * a) ], "marker": "o",
+                                 "linestyle": "None", 'markersize': '10',
+                                 'label': f'B={f.subs(y, roz[1]), roz[1]}'},
+                                {"args": [f.subs(y, -b / (2 * a)), -b / (2 * a)], "marker": "o",
                                  "linestyle": "None", 'markersize': '10',
                                  'label': f'W={(f.subs(y, sp.Rational(-b, 2 * a))), sp.Rational(-b, 2 * a)}'},
                             ],
                             xlim=((x_min + x_max) / 2 - szerokosc / 2 - 1 if szerokosc > wysokosc else x_min - 1,
                                   (x_min + x_max) / 2 + szerokosc / 2 + 1 if szerokosc > wysokosc else x_max + 1),
                             ylim=(
-                            min(roz) - 1 if szerokosc > wysokosc else (min(roz) + max(roz)) / 2 - wysokosc / 2 - 1,
-                            max(roz) + 1 if szerokosc > wysokosc else (min(roz) + max(roz)) / 2 + wysokosc / 2 + 1),
-                            # aspect=(1, 1),
-                            show=False,
-                            # use_latex=True,
-                            size=(4.5, 4.5),
-                            )
-            p.save(f'./pics/calka_podwojna{nr_zadania}y.pdf')
-            p.close()
+                                min(roz) - 1 if szerokosc > wysokosc else (min(roz) + max(
+                                    roz)) / 2 - wysokosc / 2 - 1,
+                                max(roz) + 1 if szerokosc > wysokosc else (min(roz) + max(
+                                    roz)) / 2 + wysokosc / 2 + 1),
+                            label=(f'x=${sp.latex(f)}$', f'x=${sp.latex(g)}$'),
 
-            f_i = sp.solve(x - f, y)
-            g_i = sp.solve(x - g, y)
-            y_min = x_min
-            y_max = x_max
-            # print((y_min + y_max) / 2 - szerokosc / 2 + 1 if szerokosc > wysokosc else y_min - 1,
-            #       (y_min + y_max) / 2 + szerokosc / 2 - 1 if szerokosc > wysokosc else y_max + 1)
-            p = plot_parametric((f_i[0], x), (f_i[1], x), (g_i, x),
-                            (x, -100, 100),  # inaczej obcina dziedzinę funkcji do -10,10
-                            use_cm=False,
-                            markers=[
-                                {"args": [roz[0], f.subs(y, roz[0])], "marker": "o",
-                                 "linestyle": "None", 'markersize': '10', 'label': f'A={f.subs(y, roz[0]), roz[0]}'},
-                                {"args": [roz[1], f.subs(y, roz[1])], "marker": "o",
-                                 "linestyle": "None", 'markersize': '10', 'label': f'B={f.subs(y, roz[1]), roz[1]}'},
-                                {"args": [-b / (2 * a), f.subs(y, -b / (2 * a))], "marker": "o",
-                                 "linestyle": "None", 'markersize': '10',
-                                 'label': f'W={(f.subs(y, sp.Rational(-b, 2 * a))), sp.Rational(-b, 2 * a)}'},
-                            ],
-                            xlim=(
-                            max(roz) + 1 if szerokosc > wysokosc else (min(roz) + max(roz)) / 2 + wysokosc / 2 + 1,
-                            min(roz) - 1 if szerokosc > wysokosc else (min(roz) + max(roz)) / 2 - wysokosc / 2 - 1),
-                            ylim=((x_min + x_max) / 2 - szerokosc / 2 - 1 if szerokosc > wysokosc else x_min - 1,
-                                  (x_min + x_max) / 2 + szerokosc / 2 + 1 if szerokosc > wysokosc else x_max + 1),
-
-                            label=(f'y=${sp.latex(f_i[0])}$', f'y=${sp.latex(f_i[1])}$', f'y=${sp.latex(g_i[0])}$'),
                             n=100000,  # dużo by nie było przerwy przy wierzchołku
                             title=f'Obszar całkowania względem osi Oy',
                             xlabel="y",
@@ -853,7 +873,8 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                             size=(4.5, 4.5),
                             )
             # print(sp.Rational(-b, 2 * a),f.subs(y, sp.Rational(-b, 2 * a)))
-            p.save(f'./pics/calka_podwojna{nr_zadania}x.pdf')
+            p.save(f'./pics/calka_podwojna{nr_zadania}y.pdf')
+            p.save(f'./pics/calka_podwojna{nr_zadania}y.png')
             p.close()
 
             wynik_y = sp.integrate(z, (x, f, g), (y, min(roz), max(roz))) * (1 if a > 0 else -1)
