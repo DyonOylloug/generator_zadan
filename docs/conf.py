@@ -33,6 +33,8 @@ html_theme_options = {
     'collapse_navigation': False,
 }
 
+language = 'en'
+
 nb_execution_timeout = 600
 
 # List of patterns, relative to source directory, that match files and
