@@ -12,6 +12,7 @@ uklady_rownan.ipynb
 geometria_analityczna.ipynb
 granice.ipynb
 monotonicznosc.ipynb
+calki_nieoznaczone.ipynb
 calki_podwojne.ipynb
 ```
 
