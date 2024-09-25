@@ -11,9 +11,12 @@ macierze.ipynb
 uklady_rownan.ipynb
 geometria_analityczna.ipynb
 granice.ipynb
+styczna_normalna.ipynb
 monotonicznosc.ipynb
 calki_nieoznaczone.ipynb
+calki_oznaczone.ipynb
 calki_podwojne.ipynb
+
 ```
 
 ```{toctree}
