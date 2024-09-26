@@ -16,6 +16,7 @@ monotonicznosc.ipynb
 calki_nieoznaczone.ipynb
 calki_oznaczone.ipynb
 calki_podwojne.ipynb
+szeregi_Fouriera.ipynb
 
 ```
 
