@@ -113,6 +113,9 @@ def szereg_Fouriera(
             [an.subs(n, i) * sp.cos(i * sp.pi * x / T) + bn.subs(n, i) * sp.sin(i * sp.pi * x / T) for i in
              range(1, ile_wyrazow + 1)])
     if bez_wykresu is not True or tylko_koncowy is True:
+        if not os.path.exists('pics'):
+            os.makedirs('pics')
+            print(" ! Tworzę katalog pics ", file=sys.stderr)
         with PdfPages(f'./pics/szereg_Fouriera_{nr_zadania}.pdf') as pdf:
             if tylko_koncowy is not True:
                 wykres = plot_piecewise(f, {"alpha": 0},  # niewidzialny dla pierwszej strony w odpowiedziach
@@ -161,7 +164,7 @@ def szereg_Fouriera(
                                    "$-\\frac{1}{2}\pi$",
                                    "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
                                    '$3\pi$']);
-                # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_funkcja.pdf', dpi=300, bbox_inches="tight")
+                # wykres.save(f'./pics/szereg_Fouriera_{nr_zadania}_funkcja.pdf', dpi=300, bbox_inches="tight")
                 pdf.savefig(bbox_inches="tight")
                 wykres.close()
 
@@ -292,6 +295,31 @@ def szereg_Fouriera(
                                        '$3\pi$']);
                    # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
                     pdf.savefig(bbox_inches="tight")
+            if tylko_koncowy is True:
+                wykres = plot_piecewise(f,
+                                        xlim=(
+                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                        size=(10, 2.5),
+                                        adaptive=False,
+                                        nb_of_points=1000,
+                                        dots=True,
+                                        legend=True,
+                                        label=[f"$f(x)$"],
+                                        ylabel='',
+                                        title=f'Funkcja $f(x)$',
+                                        show=False)
+                ax = wykres.ax
+                plt.legend(loc='center right')
+                if okres_z_pi:
+                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                    ax.set_xticks(list(ax.get_xticks()),
+                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                   "$-\\frac{1}{2}\pi$",
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   '$3\pi$']);
+                wykres.save(f'./pics/szereg_Fouriera_{nr_zadania}_funkcja.png', dpi=300, bbox_inches="tight")
+                wykres.close()
 
             srednia_T = sp.Rational(1, 2) * (sp.limit(f_left, x, -T, '+') + sp.limit(f_right, x, T, '-'))
             srednia_0 = sp.Rational(1, 2) * (sp.limit(f_left, x, 0, '-') + sp.limit(f_right, x, 0, '+'))
