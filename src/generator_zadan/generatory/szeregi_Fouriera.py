@@ -354,36 +354,51 @@ def szereg_Fouriera(
             wykres.close()
 
     if lewostronnie_0 and lewostronnie_T:
-        funkcja = (f'\t\t\t{sp.latex(f_left)} \\textnormal{{ dla }}x\\in\\left[{sp.latex(-T)},0\\right)\\\\\n'
-                   f'\t\t\t{sp.latex(f_right)} \\textnormal{{ dla }}x\\in\\left[0,{sp.latex(T)}\\right)\n')
+        funkcja = (f'\t\t\t{sp.latex(f_left)} & \\textnormal{{ dla }} & x\\in\\left[{sp.latex(-T)},0\\right)\\\\\n'
+                   f'\t\t\t{sp.latex(f_right)} & \\textnormal{{ dla }} & x\\in\\left[0,{sp.latex(T)}\\right)\n')
     if lewostronnie_0 and not lewostronnie_T:
-        funkcja = (f'\t\t\t{sp.latex(f_left)} \\textnormal{{ dla }}x\\in\\left({sp.latex(-T)},0\\right)\\\\\n'
-                   f'\t\t\t{sp.latex(f_right)} \\textnormal{{ dla }}x\\in\\left[0,{sp.latex(T)}\\right]\n')
+        funkcja = (f'\t\t\t{sp.latex(f_left)} & \\textnormal{{ dla }} & x\\in\\left({sp.latex(-T)},0\\right)\\\\\n'
+                   f'\t\t\t{sp.latex(f_right)} & \\textnormal{{ dla }} & x\\in\\left[0,{sp.latex(T)}\\right]\n')
     if not lewostronnie_0 and lewostronnie_T:
-        funkcja = (f'\t\t\t{sp.latex(f_left)} \\textnormal{{ dla }}x\\in\\left[{sp.latex(-T)},0\\right]\\\\\n'
-                   f'\t\t\t{sp.latex(f_right)} \\textnormal{{ dla }}x\\in\\left(0,{sp.latex(T)}\\right)\n')
+        funkcja = (f'\t\t\t{sp.latex(f_left)} & \\textnormal{{ dla }} & x\\in\\left[{sp.latex(-T)},0\\right]\\\\\n'
+                   f'\t\t\t{sp.latex(f_right)} & \\textnormal{{ dla }} & x\\in\\left(0,{sp.latex(T)}\\right)\n')
     if not lewostronnie_0 and not lewostronnie_T:
-        funkcja = (f'\t\t\t{sp.latex(f_left)} \\textnormal{{ dla }}x\\in\\left({sp.latex(-T)},0\\right]\\\\\n'
-                   f'\t\t\t{sp.latex(f_right)} \\textnormal{{ dla }}x\\in\\left(0,{sp.latex(T)}\\right]\n')
+        funkcja = (f'\t\t\t{sp.latex(f_left)} & \\textnormal{{ dla }} & x\\in\\left({sp.latex(-T)},0\\right]\\\\\n'
+                   f'\t\t\t{sp.latex(f_right)} & \\textnormal{{ dla }} & x\\in\\left(0,{sp.latex(T)}\\right]\n')
 
-    if bez_wykresu is True:
-        return (f'Rozwinąć w szereg Fouriera funkcję o okresie zasadniczym $2T={sp.latex(2*T)}$ \n'
+    if tylko_koncowy is True:
+        return (f'Rozwinąć w szereg Fouriera funkcję \n'
                 f'\t\\[\n'
-                f'\t\tf(x)=\\begin{{cases}}\n' +
+                f'\t\tf(x)=\\left\\{{\\begin{{matrix}}\n' +
                 funkcja +
-                f'\t\t\\end{{cases}}\n'
+                f'\t\t\\end{{matrix}}\\right.\n'
                 f'\t\\]\n'
-                ' Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
+                f'o okresie zasadniczym $2T={sp.latex(2*T)}.$'
+                f' Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
+                f'$a_0={sp.latex(a0)},\\quad a_n={sp.latex(an)},\\quad b_n={sp.latex(bn)},$\\\\\n'
+                f'\t$S(x) = {sp.latex(F_n(5)) if an == 0 or bn == 0 else sp.latex(F_n(3))} + \\dots $\\\\\n'
+                f'\t\\includegraphics[width = 224pt]{{szereg_Fouriera_{nr_zadania}_funkcja}}\n'
+                f'\t\\includegraphics[width = 224pt]{{szereg_Fouriera_{nr_zadania}_inf}}\n')
+    elif bez_wykresu is True:
+        return (f'Rozwinąć w szereg Fouriera funkcję \n'
+                f'\t\\[\n'
+                f'\t\tf(x)=\\left\\{{\\begin{{matrix}}\n' +
+                funkcja +
+                f'\t\t\\end{{matrix}}\\right.\n'
+                f'\t\\]\n'
+                f'o okresie zasadniczym $2T={sp.latex(2*T)}.$\n'
+                f'Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
                 f'$a_0={sp.latex(a0)},\\quad a_n={sp.latex(an)},\\quad b_n={sp.latex(bn)},$\\\\\n'
                 f'\t$S(x) = {sp.latex(F_n(5)) if an == 0 or bn == 0 else sp.latex(F_n(3))} + \\dots $')
     else:
-        return (f'Rozwinąć w szereg Fouriera funkcję o okresie zasadniczym $2T={sp.latex(2*T)}$ \n'
+        return (f'Rozwinąć w szereg Fouriera funkcję \n'
                 f'\t\\[\n'
-                f'\t\tf(x)=\\begin{{cases}}\n' +
+                f'\t\tf(x)=\\left\\{{\\begin{{matrix}}\n' +
                 funkcja +
-                f'\t\t\\end{{cases}}\n'
+                f'\t\t\\end{{matrix}}\\right.\n'
                 f'\t\\]\n'
-                ' Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
+                f'o okresie zasadniczym $2T={sp.latex(2*T)}.$'
+                f' Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
                 f'$a_0={sp.latex(a0)},\\quad a_n={sp.latex(an)},\\quad b_n={sp.latex(bn)},$\\\\\n'
                 f'\t$S(x) = {sp.latex(F_n(5)) if an == 0 or bn == 0 else sp.latex(F_n(3))} + \\dots $\\\\\n'
                 f'\t\\animategraphics[height=5.3cm,controls=true]{{0.5}}\n'
