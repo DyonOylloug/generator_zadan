@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## v0.2.3 (2024-09-26)
+
+### Documentation
+
+* docs: popraw link do mybinder ([`d22b6b6`](https://github.com/DyonOylloug/generator_zadan/commit/d22b6b616fe3c44f42705ff09547bb6200ea1d71))
+
+* docs: dodaj numer zadania ([`7f4675d`](https://github.com/DyonOylloug/generator_zadan/commit/7f4675d36adaa92ca3052b7c10e7f3a53fb92bfa))
+
+* docs: dodaj szeregi Fouriera ([`3d8fffc`](https://github.com/DyonOylloug/generator_zadan/commit/3d8fffc9ac4c2a12f04ee2fa34e89b9f1612eb0e))
+
+* docs: update version for mybinder ([`0202b28`](https://github.com/DyonOylloug/generator_zadan/commit/0202b284b4e5adb9f7d8bbb8d039f35911782573))
+
+* docs: dodaj styczną i pola obszarów ([`ff8485f`](https://github.com/DyonOylloug/generator_zadan/commit/ff8485f97392bc4ce3d089130d141c5cecbe5f01))
+
+* docs: usuń {i} ([`eea7a3f`](https://github.com/DyonOylloug/generator_zadan/commit/eea7a3f90875d06cfee9c3b99bab5db18be7e89d))
+
+* docs: dodaj całki nieoznaczone ([`977eea9`](https://github.com/DyonOylloug/generator_zadan/commit/977eea9e38e264f2a602c48b81a26eb11d74d78e))
+
+* docs: dodaj granice ([`42d309c`](https://github.com/DyonOylloug/generator_zadan/commit/42d309cda67c851ebe39abb914be9e8738af1a79))
+
+* docs: popraw spis treści ([`7f89bd5`](https://github.com/DyonOylloug/generator_zadan/commit/7f89bd5a03b25707698e1186841afc957fd39f38))
+
+* docs: dodaj monotoniczność ([`dde963f`](https://github.com/DyonOylloug/generator_zadan/commit/dde963f0a48b5781577846080aee029459f19318))
+
+* docs: podnieś numer dla mybinder ([`fe1314a`](https://github.com/DyonOylloug/generator_zadan/commit/fe1314a48c09a4a8fedf5018cdec0c41282f361f))
+
+### Fix
+
+* fix: popraw wykresy - ponownie ([`afd087c`](https://github.com/DyonOylloug/generator_zadan/commit/afd087c7b8b8836ce024cdc792ed07d8d2dbf3fe))
+
+### Refactor
+
+* refactor: nazwa pliku z małej litery ([`bedc955`](https://github.com/DyonOylloug/generator_zadan/commit/bedc95591164e7cf136929ef4cca9803e9dd4577))
+
+* refactor: zmień calka_oznaczona() na pole_obszaru() ([`51bc7b9`](https://github.com/DyonOylloug/generator_zadan/commit/51bc7b9a404f38cb419b1308c257788ce46a112a))
+
 ## v0.2.2 (2024-09-17)
 
 ### Documentation
