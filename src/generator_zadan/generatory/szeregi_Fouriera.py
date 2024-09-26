@@ -18,7 +18,12 @@ from spb import plot_piecewise
 
 
 
-def szereg_Fouriera(typ_l: int = 1, typ_p: int = 1, bez_wykresu: bool = False, nr_zadania: int = 1):
+def szereg_Fouriera(
+        typ_l: int = 1,
+        typ_p: int = 1,
+        bez_wykresu: bool = False,
+        tylko_koncowy: bool = False,
+        nr_zadania: int = 1):
     ''' Następne linijki likwidują konflikt z innymi modułami
     Strasznie to głupie - powiązane z plt.rc('text', usetex=False)
     Chodzi o konfikt generowania wykresów używających TeX - matplotlib i problematycznych Sympy Plot'''
@@ -107,183 +112,186 @@ def szereg_Fouriera(typ_l: int = 1, typ_p: int = 1, bez_wykresu: bool = False, n
         return a0 / 2 + sum(
             [an.subs(n, i) * sp.cos(i * sp.pi * x / T) + bn.subs(n, i) * sp.sin(i * sp.pi * x / T) for i in
              range(1, ile_wyrazow + 1)])
-    if bez_wykresu is not True:
+    if bez_wykresu is not True or tylko_koncowy is True:
         with PdfPages(f'./pics/szereg_Fouriera_{nr_zadania}.pdf') as pdf:
-            wykres = plot_piecewise(f, {"alpha": 0},  # niewidzialny dla pierwszej strony w odpowiedziach
-                                    xlim=(
-                                        (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
-                                            -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
-                                    size=(10, 2.5),
-                                    adaptive=False,
-                                    nb_of_points=1000,
-                                    dots=True,
-                                    legend=True,
-                                    label=[f"$f(x)$"],
-                                    ylabel='',
-                                    title=f'Funkcja $f(x)$',
-                                    show=False)
-            ax = wykres.ax
-            plt.legend(loc='center right')
-            if okres_z_pi:
-                ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
-                ax.set_xticks(list(ax.get_xticks()),
-                              ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
-                               "$-\\frac{1}{2}\pi$",
-                               "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
-                               '$3\pi$']);
-            pdf.savefig(bbox_inches="tight")
-            wykres.close()
-            wykres = plot_piecewise(f,
-                                    xlim=(
-                                        (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
-                                            -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
-                                    size=(10, 2.5),
-                                    adaptive=False,
-                                    nb_of_points=1000,
-                                    dots=True,
-                                    legend=True,
-                                    label=[f"$f(x)$"],
-                                    ylabel='',
-                                    title=f'Funkcja $f(x)$',
-                                    show=False)
-            ax = wykres.ax
-            plt.legend(loc='center right')
-            if okres_z_pi:
-                ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
-                ax.set_xticks(list(ax.get_xticks()),
-                              ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
-                               "$-\\frac{1}{2}\pi$",
-                               "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
-                               '$3\pi$']);
-            # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_funkcja.pdf', dpi=300, bbox_inches="tight")
-            pdf.savefig(bbox_inches="tight")
-            wykres.close()
+            if tylko_koncowy is not True:
+                wykres = plot_piecewise(f, {"alpha": 0},  # niewidzialny dla pierwszej strony w odpowiedziach
+                                        xlim=(
+                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                        size=(10, 2.5),
+                                        adaptive=False,
+                                        nb_of_points=1000,
+                                        dots=True,
+                                        legend=True,
+                                        label=[f"$f(x)$"],
+                                        ylabel='',
+                                        title=f'Funkcja $f(x)$',
+                                        show=False)
+                ax = wykres.ax
+                plt.legend(loc='center right')
+                if okres_z_pi:
+                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                    ax.set_xticks(list(ax.get_xticks()),
+                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                   "$-\\frac{1}{2}\pi$",
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   '$3\pi$']);
+                pdf.savefig(bbox_inches="tight")
+                wykres.close()
+                wykres = plot_piecewise(f,
+                                        xlim=(
+                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                        size=(10, 2.5),
+                                        adaptive=False,
+                                        nb_of_points=1000,
+                                        dots=True,
+                                        legend=True,
+                                        label=[f"$f(x)$"],
+                                        ylabel='',
+                                        title=f'Funkcja $f(x)$',
+                                        show=False)
+                ax = wykres.ax
+                plt.legend(loc='center right')
+                if okres_z_pi:
+                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                    ax.set_xticks(list(ax.get_xticks()),
+                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                   "$-\\frac{1}{2}\pi$",
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   '$3\pi$']);
+                # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_funkcja.pdf', dpi=300, bbox_inches="tight")
+                pdf.savefig(bbox_inches="tight")
+                wykres.close()
 
-            # if a0 != 0:
-            wykres = plot_piecewise(f, a0 / 2,
-                                    xlim=(
-                                        (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
-                                            -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
-                                    size=(10, 2.5),
-                                    nb_of_points=1000,
-                                    dots=True,
-                                    legend=True,
-                                    label=["$f(x)$", "$\\frac{a_0}{2}$"],
-                                    ylabel='',
-                                    title=f'Funkcja $f(x)$ i zerowy element jej szeregu Fouriera',
-                                    show=False)
-            ax = wykres.ax
-            plt.legend(loc='center right')
-            if okres_z_pi:
-                ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
-                ax.set_xticks(list(ax.get_xticks()),
-                              ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
-                               "$-\\frac{1}{2}\pi$",
-                               "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
-                               '$3\pi$']);
-            # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_0.png', dpi=300, bbox_inches="tight")
-            pdf.savefig(bbox_inches="tight")
-            wykres.close()
+                # if a0 != 0:
+                wykres = plot_piecewise(f, a0 / 2,
+                                        xlim=(
+                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                        size=(10, 2.5),
+                                        nb_of_points=1000,
+                                        dots=True,
+                                        legend=True,
+                                        label=["$f(x)$", "$\\frac{a_0}{2}$"],
+                                        ylabel='',
+                                        title=f'Funkcja $f(x)$ i zerowy element jej szeregu Fouriera',
+                                        show=False)
+                ax = wykres.ax
+                plt.legend(loc='center right')
+                if okres_z_pi:
+                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                    ax.set_xticks(list(ax.get_xticks()),
+                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                   "$-\\frac{1}{2}\pi$",
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   '$3\pi$']);
+                # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_0.png', dpi=300, bbox_inches="tight")
+                pdf.savefig(bbox_inches="tight")
+                wykres.close()
 
-            wykres = plot_piecewise(f, F_n(1),
-                                    xlim=(
-                                        (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
-                                            -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
-                                    size=(10, 2.5),
-                                    nb_of_points=1000,
-                                    dots=True,
-                                    legend=True,
-                                    label=["$f(x)$", f"$S_1(x)$"],
-                                    ylabel='',
-                                    title=f'Funkcja $f(x)$ i $S_1(x)$ jej szeregu Fouriera',
-                                    show=False)
-            ax = wykres.ax
-            plt.legend(loc='center right')
-            if okres_z_pi:
-                ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
-                ax.set_xticks(list(ax.get_xticks()),
-                              ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$", "$-\\frac{1}{2}\pi$",
-                               "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
-                               '$3\pi$']);
-            # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_1.png', dpi=300, bbox_inches="tight")
-            pdf.savefig(bbox_inches="tight")
-            wykres.close()
+                wykres = plot_piecewise(f, F_n(1),
+                                        xlim=(
+                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                        size=(10, 2.5),
+                                        nb_of_points=1000,
+                                        dots=True,
+                                        legend=True,
+                                        label=["$f(x)$", f"$S_1(x)$"],
+                                        ylabel='',
+                                        title=f'Funkcja $f(x)$ i $S_1(x)$ jej szeregu Fouriera',
+                                        show=False)
+                ax = wykres.ax
+                plt.legend(loc='center right')
+                if okres_z_pi:
+                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                    ax.set_xticks(list(ax.get_xticks()),
+                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$", "$-\\frac{1}{2}\pi$",
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   '$3\pi$']);
+                # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_1.png', dpi=300, bbox_inches="tight")
+                pdf.savefig(bbox_inches="tight")
+                wykres.close()
             #
-            for ile_wyrazow in range(2, 20, 1):
-                wykres = plot_piecewise(f, F_n(ile_wyrazow),
-                                        xlim=(
-                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
-                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
-                                        size=(10, 2.5),
-                                        nb_of_points=1000 * ile_wyrazow,
-                                        dots=True,
-                                        legend=True,
-                                        label=["$f(x)$", f"$S_{{{ile_wyrazow}}}(x)$"],
-                                        ylabel='',
-                                        title=f'Funkcja $f(x)$ i $S_{{{ile_wyrazow}}}(x)$  jej szeregu Fouriera',
-                                        show=False)
-                ax = wykres.ax
-                plt.legend(loc='center right')
-                if okres_z_pi:
-                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
-                    ax.set_xticks(list(ax.get_xticks()),
-                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
-                                   "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
-                                   '$3\pi$']);
-                # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
-                pdf.savefig(bbox_inches="tight")
-                wykres.close()
-            for ile_wyrazow in range(20, 110, 10):
-                wykres = plot_piecewise(f, F_n(ile_wyrazow),
-                                        xlim=(
-                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
-                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
-                                        size=(10, 2.5),
-                                        nb_of_points=1000 * ile_wyrazow,
-                                        dots=True,
-                                        legend=True,
-                                        label=["$f(x)$", f"$S_{{{ile_wyrazow}}}(x)$"],
-                                        ylabel='',
-                                        title=f'Funkcja $f(x)$ i $S_{{{ile_wyrazow}}}(x)$ jej szeregu Fouriera',
-                                        show=False)
-                ax = wykres.ax
-                plt.legend(loc='center right')
-                if okres_z_pi:
-                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
-                    ax.set_xticks(list(ax.get_xticks()),
-                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
-                                   "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
-                                   '$3\pi$']);
-               # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
-                pdf.savefig(bbox_inches="tight")
-                wykres.close()
-
-            for ile_wyrazow in range(200, 1001, 800):
-                wykres = plot_piecewise(f, F_n(ile_wyrazow),
-                                        xlim=(
-                                            (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
-                                                -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
-                                        size=(10, 2.5),
-                                        nb_of_points=1000 * ile_wyrazow,
-                                        dots=True,
-                                        legend=True,
-                                        label=["$f(x)$", f"$S_{{{ile_wyrazow}}}(x)$"],
-                                        ylabel='',
-                                        title=f'Funkcja $f(x)$ i $S_{{{ile_wyrazow}}}(x)$ jej szeregu Fouriera',
-                                        show=False)
-                ax = wykres.ax
-                plt.legend(loc='center right')
-                if okres_z_pi:
-                    ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
-                    ax.set_xticks(list(ax.get_xticks()),
-                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
-                                   "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
-                                   '$3\pi$']);
-               # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
-                pdf.savefig(bbox_inches="tight")
+            if tylko_koncowy is not True:
+                for ile_wyrazow in range(2, 20, 1):
+                    wykres = plot_piecewise(f, F_n(ile_wyrazow),
+                                            xlim=(
+                                                (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                    -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                            size=(10, 2.5),
+                                            nb_of_points=1000 * ile_wyrazow,
+                                            dots=True,
+                                            legend=True,
+                                            label=["$f(x)$", f"$S_{{{ile_wyrazow}}}(x)$"],
+                                            ylabel='',
+                                            title=f'Funkcja $f(x)$ i $S_{{{ile_wyrazow}}}(x)$  jej szeregu Fouriera',
+                                            show=False)
+                    ax = wykres.ax
+                    plt.legend(loc='center right')
+                    if okres_z_pi:
+                        ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                        ax.set_xticks(list(ax.get_xticks()),
+                                      ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                       "$-\\frac{1}{2}\pi$",
+                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                       '$3\pi$']);
+                    # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
+                    pdf.savefig(bbox_inches="tight")
+                    wykres.close()
+            if tylko_koncowy is not True:
+                for ile_wyrazow in range(20, 110, 10):
+                    wykres = plot_piecewise(f, F_n(ile_wyrazow),
+                                            xlim=(
+                                                (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                    -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                            size=(10, 2.5),
+                                            nb_of_points=1000 * ile_wyrazow,
+                                            dots=True,
+                                            legend=True,
+                                            label=["$f(x)$", f"$S_{{{ile_wyrazow}}}(x)$"],
+                                            ylabel='',
+                                            title=f'Funkcja $f(x)$ i $S_{{{ile_wyrazow}}}(x)$ jej szeregu Fouriera',
+                                            show=False)
+                    ax = wykres.ax
+                    plt.legend(loc='center right')
+                    if okres_z_pi:
+                        ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                        ax.set_xticks(list(ax.get_xticks()),
+                                      ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                       "$-\\frac{1}{2}\pi$",
+                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                       '$3\pi$']);
+                   # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
+                    pdf.savefig(bbox_inches="tight")
+                    wykres.close()
+            if tylko_koncowy is not True:
+                for ile_wyrazow in range(200, 1001, 800):
+                    wykres = plot_piecewise(f, F_n(ile_wyrazow),
+                                            xlim=(
+                                                (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
+                                                    -3 * sp.pi - 0.2, 3 * sp.pi + 0.2)),
+                                            size=(10, 2.5),
+                                            nb_of_points=1000 * ile_wyrazow,
+                                            dots=True,
+                                            legend=True,
+                                            label=["$f(x)$", f"$S_{{{ile_wyrazow}}}(x)$"],
+                                            ylabel='',
+                                            title=f'Funkcja $f(x)$ i $S_{{{ile_wyrazow}}}(x)$ jej szeregu Fouriera',
+                                            show=False)
+                    ax = wykres.ax
+                    plt.legend(loc='center right')
+                    if okres_z_pi:
+                        ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
+                        ax.set_xticks(list(ax.get_xticks()),
+                                      ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                       "$-\\frac{1}{2}\pi$",
+                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                       '$3\pi$']);
+                   # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
+                    pdf.savefig(bbox_inches="tight")
 
             srednia_T = sp.Rational(1, 2) * (sp.limit(f_left, x, -T, '+') + sp.limit(f_right, x, T, '-'))
             srednia_0 = sp.Rational(1, 2) * (sp.limit(f_left, x, 0, '-') + sp.limit(f_right, x, 0, '+'))
@@ -312,8 +320,10 @@ def szereg_Fouriera(typ_l: int = 1, typ_p: int = 1, bez_wykresu: bool = False, n
                                "$-\\frac{1}{2}\pi$",
                                "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
                                '$3\pi$']);
-            # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_inf.pdf', dpi=300, bbox_inches="tight")
+            if tylko_koncowy is True:
+                wykres.save(f'./pics/szereg_Fouriera_{nr_zadania}_inf.png', dpi=300, bbox_inches="tight")
             pdf.savefig(bbox_inches="tight")
+            wykres.close()
 
     if lewostronnie_0 and lewostronnie_T:
         funkcja = (f'\t\t\t{sp.latex(f_left)} \\textnormal{{ dla }}x\\in\\left[{sp.latex(-T)},0\\right)\\\\\n'
