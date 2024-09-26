@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## v0.2.4 (2024-09-26)
+
+### Documentation
+
+* docs: podnieś wersję dla mybinder ([`cf337d2`](https://github.com/DyonOylloug/generator_zadan/commit/cf337d27fef99f4f1930d64e4fd4ebff6bc37aeb))
+
+* docs: popraw wyświetlanie funkcji
+
+- dodaj wersję odpowiedzi &#34;tylko_koncowy&#34; zawierającą wykresy
+- zmień cases na matrix ([`4b58bf8`](https://github.com/DyonOylloug/generator_zadan/commit/4b58bf8cfc9c387c1a8e89fc8731c672d371c317))
+
+### Fix
+
+* fix: utwórz katalog jeśli nie istnieje, dołącz wykres funkcji ([`6529a2a`](https://github.com/DyonOylloug/generator_zadan/commit/6529a2af4a2c988a306c72e61a7907e46fa26305))
+
 ## v0.2.3 (2024-09-26)
 
 ### Documentation
