@@ -29,7 +29,7 @@ from .monotonicznosc import monotonicznosc
 from .monotonicznosc import styczna_normalna
 from .calki_nieoznaczone import calka_nieoznaczona
 from .calki_nieoznaczone import calka_wymierna
-from .calki_oznaczone import calka_oznaczona
+from .calki_oznaczone import pole_obszaru
 from .szeregi_Fouriera import szereg_Fouriera
 from .calki_podwojne import calka_podwojna
 from .generuj_zestaw import generuj_LaTeX

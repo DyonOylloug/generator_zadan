@@ -14,17 +14,17 @@ x = sp.Symbol('x', real=True)
 
 # Todo: Dołożyć rysunki przy polach
 
-def calka_oznaczona(typ: int = 1, gotowiec: bool = False):
+def pole_obszaru(typ: int = 1, gotowiec: bool = False):
     if gotowiec is True:
         if typ == 3:  # 2760/10000 różnych gotowych
-            if os.path.isfile(sciezka + '//gotowe//calka_oznaczona_typ_3.pickle'):
-                gotowe = pickle.load(open(sciezka + '//gotowe//calka_oznaczona_typ_3.pickle', 'rb'))
+            if os.path.isfile(sciezka + '//gotowe//pole_obszaru_typ_3.pickle'):
+                gotowe = pickle.load(open(sciezka + '//gotowe//pole_obszaru_typ_3.pickle', 'rb'))
                 return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
         if typ == 4:
-            if os.path.isfile(sciezka + '//gotowe//calka_oznaczona_typ_4.pickle'):  # 160/1000 różnych gotowych
-                gotowe = pickle.load(open(sciezka + '//gotowe//calka_oznaczona_typ_4.pickle', 'rb'))
+            if os.path.isfile(sciezka + '//gotowe//pole_obszaru_typ_4.pickle'):  # 160/1000 różnych gotowych
+                gotowe = pickle.load(open(sciezka + '//gotowe//pole_obszaru_typ_4.pickle', 'rb'))
                 return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
@@ -213,6 +213,6 @@ if __name__ == "__main__":
     start = time.time()
     gotowce = True
     os.chdir('..')  # by wczytywać z gotowca - inaczej problem ze ścieżkami!
-    polecenie, rozwiazanie = calka_oznaczona(typ=5, gotowiec=gotowce)
+    polecenie, rozwiazanie = pole_obszaru(typ=5, gotowiec=gotowce)
     print(polecenie, '\n', rozwiazanie)
     print(f'czas generowania: {round(time.time() - start, 3)}s')

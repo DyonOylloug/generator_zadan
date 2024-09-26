@@ -166,21 +166,21 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Pole obszaru}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [('generatory.calka_oznaczona(typ=1) ', licznik + i) for i in range(0, ile_zadan)])
+                                     [('generatory.pole_obszaru(typ=1) ', licznik + i) for i in range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [('generatory.calka_oznaczona(typ=2) ', licznik + i) for i in range(0, ile_zadan)])
+                                     [('generatory.pole_obszaru(typ=2) ', licznik + i) for i in range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [(f'generatory.calka_oznaczona(typ=3, gotowiec={gotowiec}) ', licznik + i) for i in
+                                     [(f'generatory.pole_obszaru(typ=3, gotowiec={gotowiec}) ', licznik + i) for i in
                                       range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [(f'generatory.calka_oznaczona(typ=4, gotowiec={gotowiec}) ', licznik + i) for i in
+                                     [(f'generatory.pole_obszaru(typ=4, gotowiec={gotowiec}) ', licznik + i) for i in
                                       range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [('generatory.calka_oznaczona(typ=5) ', licznik + i) for i in range(0, ile_zadan)])
+                                     [('generatory.pole_obszaru(typ=5) ', licznik + i) for i in range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
