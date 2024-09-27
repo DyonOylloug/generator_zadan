@@ -377,8 +377,8 @@ def szereg_Fouriera(
                 f' Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
                 f'$a_0={sp.latex(a0)},\\quad a_n={sp.latex(an)},\\quad b_n={sp.latex(bn)},$\\\\\n'
                 f'\t$S(x) = {sp.latex(F_n(5)) if an == 0 or bn == 0 else sp.latex(F_n(3))} + \\dots $\\\\\n'
-                f'\t\\includegraphics[width = 224pt]{{szereg_Fouriera_{nr_zadania}_funkcja}}\n'
-                f'\t\\includegraphics[width = 224pt]{{szereg_Fouriera_{nr_zadania}_inf}}\n')
+                f'\t\\includegraphics[width = 224pt]{{../pics/szereg_Fouriera_{nr_zadania}_funkcja}}\n'
+                f'\t\\includegraphics[width = 224pt]{{../pics/szereg_Fouriera_{nr_zadania}_inf}}\n')
     elif bez_wykresu is True:
         return (f'Rozwinąć w szereg Fouriera funkcję \n'
                 f'\t\\[\n'
