@@ -17,7 +17,6 @@ from spb import plot, plot_parametric
 x = sp.Symbol('x', real=True)
 y = sp.Symbol('y', real=True)
 
-
 # from sympy.integrals.intpoly import polytope_integrate, Polygon # do testów - coś źle liczy dla
 # A = [-3, -1]
 # B = [-1, 0]
@@ -25,6 +24,9 @@ y = sp.Symbol('y', real=True)
 # z = 3*x-3 * y
 
 def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
+    if not os.path.exists('pics'):
+        os.makedirs('pics')
+        print(" ! Tworzę katalog pics ", file=sys.stderr)
     ''' Następne linijki likwidują konflikt z innymi modułami
     Strasznie to głupie - powiązane z plt.rc('text', usetex=False)
     Chodzi o konfikt generowania wykresów używających TeX - matplotlib i problematycznych Sympy Plot'''
@@ -146,7 +148,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
             # if wynik_x == pol_int:
             #     print("SUKCES")
             # return (
-            #     f'Obliczyć ${zadanie}$ gdzie $D$ - trójkąt $ABC$  dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
+            #     f'Obliczyć $${zadanie}$$ gdzie $D$ - trójkąt $ABC$  dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
             #     '$' + calka_x + ' = ' + sp.latex(wynik_x) + '$')
         elif B[0] == C[0]:
             # print("drugi")
@@ -233,7 +235,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
             # if wynik_x == pol_int:
             #     print("SUKCES")
             # return (
-            #     f'Obliczyć ${zadanie}$ gdzie $D$ - trójkąt $ABC$ dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
+            #     f'Obliczyć $${zadanie}$$ gdzie $D$ - trójkąt $ABC$ dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
             #     '$' + calka_x + ' = ' + sp.latex(wynik_x) + '$')
         else:
             # print("trzeci")
@@ -430,7 +432,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
             # if wynik_y == pol_int:
             #     print("SUKCES")
             # return (
-            #     f'Obliczyć ${zadanie}$ gdzie $D$ - trójkąt $ABC$  dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
+            #     f'Obliczyć $${zadanie}$$ gdzie $D$ - trójkąt $ABC$  dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
             #     '$' + calka_y + ' = ' + sp.latex(wynik_y) + '$')
         elif B[0] == C[0]:
             # print("piąty")
@@ -516,7 +518,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
             # if wynik_y == pol_int:
             #     print("SUKCES")
             # return (
-            #     f'Obliczyć ${zadanie}$ gdzie $D$ - trójkąt $ABC$ dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
+            #     f'Obliczyć $${zadanie}$$ gdzie $D$ - trójkąt $ABC$ dla $A=({A[0]},{A[1]}), B=({B[0]},{B[1]}), C=({C[0]},{C[1]})$',
             #     '$' + calka_y + ' = ' + sp.latex(wynik_y) + '$')
         else:
             # print("szósty")
@@ -622,7 +624,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
         if wynik_y != wynik_x:
             print('\n \x1b[1;7;31m' + '!!!Różne wyniki względem osi!!!  -  Posortowałeś punkty ABC?' + '\x1b[0m \n ')
         return (
-            f'Obliczyć ${zadanie}$ gdzie $D$ - trójkąt $ABC$ dla $A=({A_s[0]},{A_s[1]}), B=({B_s[0]},{B_s[1]}), C=({C_s[0]},{C_s[1]})$',
+            f'Obliczyć $${zadanie}$$ gdzie $D$ - trójkąt $ABC$ dla $A=({A_s[0]},{A_s[1]}), B=({B_s[0]},{B_s[1]}), C=({C_s[0]},{C_s[1]})$',
             f'\\includegraphics[width=60mm]{{../pics/calka_podwojna{nr_zadania}x}}\n' +
             f'\t\\includegraphics[width=60mm]{{../pics/calka_podwojna{nr_zadania}y}}\\\\\n' +
             '\tWzględem $Ox:$ $' + calka_x + ' = \ldots = ' + sp.latex(wynik_x) + '$ \\\\\n' +
@@ -767,7 +769,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
                             f"\\int\\limits_{{{f.subs(x, min(roz))}}}^{{{f.subs(x, max(roz))}}}\\left(\\int\\limits_{{{sp.latex(g_i[0])}}}^{{{sp.latex(f_i[1])}}}\\left({sp.latex(z)}\\right)dx\\right)dy" +
                             f"\n\t=\ldots=\\int\\limits_{{{f.subs(x, min(roz))}}}^{{{f.subs(x, max(roz))}}}\\left({sp.latex(sp.integrate(z, (x, g_i[0], f_i[1])).expand())}\\right)dy")
                 return (
-                    f'Obliczyć ${zadanie}$ gdzie $D$ - obszar ograniczony krzywymi $y={sp.latex(f)}$, oraz $y={sp.latex(g)}$',
+                    f'Obliczyć $${zadanie}$$ gdzie $D$ - obszar ograniczony krzywymi $y={sp.latex(f)}$, oraz $y={sp.latex(g)}$',
                     f'\\includegraphics[width=45mm]{{../pics/calka_podwojna{nr_zadania}x}}\n' +
                     f'\t\\includegraphics[width=45mm]{{../pics/calka_podwojna{nr_zadania}y}}\\\\\n' +
                     '\tWzględem $Ox:$ $' + calka_x + ' = \ldots = ' + sp.latex(wynik_x) + '$ \\\\\n' +
@@ -776,7 +778,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
 
             else:
                 return (
-                    f'Obliczyć ${zadanie}$ gdzie $D$ - obszar ograniczony krzywymi $y={sp.latex(f)}$, oraz $y={sp.latex(g)}$',
+                    f'Obliczyć $${zadanie}$$ gdzie $D$ - obszar ograniczony krzywymi $y={sp.latex(f)}$, oraz $y={sp.latex(g)}$',
                     f'\\includegraphics[width=45mm]{{../pics/calka_podwojna{nr_zadania}x}}\n' +
                     f'\t\\includegraphics[width=45mm]{{../pics/calka_podwojna{nr_zadania}y}}\\\\\n' +
                     '\tWzględem $Ox:$ $' + calka_x + ' = \ldots = ' + sp.latex(wynik_x) + '$ \\\\')
@@ -920,7 +922,7 @@ def calka_podwojna(typ: int = 1, nr_zadania: int = 1):
 
             zadanie = f"\\iint\\limits_D\\left({sp.latex(z)}\\right)dx\\,dy"
             return (
-                f'Obliczyć ${zadanie}$ gdzie $D$ - obszar ograniczony krzywymi $x={sp.latex(f)}$, oraz $x={sp.latex(g)}$',
+                f'Obliczyć $${zadanie}$$ gdzie $D$ - obszar ograniczony krzywymi $x={sp.latex(f)}$, oraz $x={sp.latex(g)}$',
                 f'\\includegraphics[width=45mm]{{../pics/calka_podwojna{nr_zadania}x}}\n' +
                 f'\t\\includegraphics[width=45mm]{{../pics/calka_podwojna{nr_zadania}y}}\\\\\n' +
                 '\tWzględem $Oy:$ $' + calka_y + ' = \ldots = ' + sp.latex(wynik_y) + '$ \\\\')
