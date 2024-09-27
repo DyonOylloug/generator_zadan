@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## v0.2.5 (2024-09-27)
+
+### Documentation
+
+* docs: podbij wersję dla mybinder ([`6803ab8`](https://github.com/DyonOylloug/generator_zadan/commit/6803ab876b65df63035e70aa9117d2d5b7dec848))
+
+* docs: dostosuj zadania do zmienionego generatora ([`e7b6361`](https://github.com/DyonOylloug/generator_zadan/commit/e7b636199cd0b830325fefb41b2cd81ac36583fc))
+
+* docs: dodaj szereg Fouriera w generatorze zestawów
+
+Usuń niepotrzebne {i} w generatorze zestawów. ([`5e68916`](https://github.com/DyonOylloug/generator_zadan/commit/5e689160a2727d8811c40405835a5264cc83c189))
+
+### Fix
+
+* fix: popraw ścieżkę do obrazu w odpowiedzi
+
+Jest niespójność w ścieżkach. W analizie jest ustawione
+graphicspath{{../pics}} ([`e6a054a`](https://github.com/DyonOylloug/generator_zadan/commit/e6a054a66bbb9ff3217dec9798f98daddf83f254))
+
+### Refactor
+
+* refactor: wyświetlaj równanie w trybie display
+
+Popraw całkę podwójną w generatorze. ([`3f07aad`](https://github.com/DyonOylloug/generator_zadan/commit/3f07aad857645cfd70e84743b86e089e87fd165e))
+
 ## v0.2.4 (2024-09-26)
 
 ### Documentation
