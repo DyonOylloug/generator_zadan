@@ -127,6 +127,14 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
     licznik += 2 * ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Działania zespolone}\n', ])
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
+    wyniki[next(n)] = pool.map_async(
+        zadanie, [('generatory.dzialania_zespolone()', licznik + i)
+                  for i in range(0, ile_zadan)])
+    licznik += ile_zadan
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
+
     wyniki[next(n)] = pool.map_async(tekst, ['\n\t\\section{Macierze}\n', ])
 
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Wyznacznik z parametrem}\n', ])

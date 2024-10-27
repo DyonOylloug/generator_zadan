@@ -2,14 +2,16 @@ import os  # do tworzenia katalogów
 import random
 import sys  # do wysyłania komunikatów w czerwonym kolorze
 import time  # dla testów wydajności
+import warnings  # wyłącz ostrzeżenia przy generowaniu obrazów
 from fractions import Fraction
 
 import numpy as np
 import sympy as sp
 from sympy import I
-import warnings  # wyłącz ostrzeżenia przy generowaniu obrazów
+
 warnings.filterwarnings('ignore')
 random.seed()
+
 
 # Todo: Poprawić/uzupełnić docstringi
 
@@ -665,6 +667,100 @@ def obszar_zespolony(typ: int = 1, nr_zadania: int = 1):
             # f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{4cm}}{{!}}{{\\input{{../pics/obszar{nr_zadania}.pgf}}}}}}\n'
             f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{4cm}}{{!}}{{\\includegraphics{{../pics/obszar{nr_zadania}}}}}}}\n'
             f'\t\\end{{tabular}}\n')
+
+
+def dzialania_zespolone():
+    while True:
+        x_1 = random.choice([-2, -1, 1, 2, 3, 4])
+        y_1 = x_1 * random.choice(
+            [-1, 1, sp.sqrt(2), -sp.sqrt(2), 1 / sp.sqrt(3), -1 / sp.sqrt(3), -sp.sqrt(3), sp.sqrt(3)])
+        x_2 = random.choice([-2, -1, 1, 2, 3, 4])
+        while True:
+            y_2 = x_2 * random.choice(
+                [-1, 1, sp.sqrt(2), -sp.sqrt(2), 1 / sp.sqrt(3), -1 / sp.sqrt(3), -sp.sqrt(3), sp.sqrt(3)])
+            if y_2 / y_1 != x_2 / x_1:
+                break
+        x_3 = random.choice([-2, -1, 1, 2, 3, 4])
+        while True:
+            y_3 = x_3 * random.choice(
+                [-1, 1, sp.sqrt(2), -sp.sqrt(2), 1 / sp.sqrt(3), -1 / sp.sqrt(3), -sp.sqrt(3), sp.sqrt(3)])
+            if y_3 / y_1 != x_3 / x_1 and y_3 / y_2 != x_3 / x_2:
+                break
+        alg_1 = x_1 + y_1 * sp.I
+        alg_2 = x_2 + y_2 * sp.I
+        alg_3 = x_3 + y_3 * sp.I
+        r_1 = random.choice([2, 3, 4, 5])
+        r_2 = random.choice([2, 3, 4, 5])
+        r_3 = random.choice([2, 3, 4, 5])
+        r_4 = random.choice([2, 3, 4, 5])
+        r_5 = random.choice([2, 3, 4, 5])
+        r_6 = random.choice([2, 3, 4, 5])
+        arg_1 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice([2, 3, 4, 6])
+        while True:
+            arg_2 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
+                [2, 3, 4, 6])
+            if arg_2 != arg_1:
+                break
+        while True:
+            arg_3 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
+                [2, 3, 4, 6])
+            if arg_3 != arg_1 and arg_3 != arg_2:
+                break
+        arg_4 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice([2, 3, 4, 6])
+        while True:
+            arg_5 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
+                [2, 3, 4, 6])
+            if arg_5 != arg_4:
+                break
+        while True:
+            arg_6 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
+                [2, 3, 4, 6])
+            if arg_6 != arg_5 and arg_6 != arg_4:
+                break
+        tryg_1 = r_1 * (sp.cos(arg_1) + sp.I * sp.sin(arg_1))
+        tryg_2 = r_2 * (sp.cos(arg_2) + sp.I * sp.sin(arg_2))
+        tryg_3 = r_3 * (sp.cos(arg_3) + sp.I * sp.sin(arg_3))
+        wyk_1 = r_4 * sp.exp(sp.I * arg_4)
+        wyk_2 = r_5 * sp.exp(sp.I * arg_5)
+        wyk_3 = r_6 * sp.exp(sp.I * arg_6)
+        wynik = sp.expand_complex((alg_1 * alg_2 / alg_3 + tryg_1 * tryg_2 / tryg_3 - wyk_1 * wyk_2 / wyk_3))
+        # print(wynik)
+        # print(sp.arg(wynik))
+        if (sp.arg(wynik) in (
+                0, -5 * sp.pi / 6, -3 * sp.pi / 4, -2 * sp.pi / 3, -sp.pi / 2, -sp.pi / 3, -sp.pi / 2, -sp.I / 6,
+                5 * sp.pi / 6,
+                3 * sp.pi / 4, 2 * sp.pi / 3, sp.pi / 2, sp.pi / 3, sp.pi / 2, sp.I / 6)
+                and int(sp.Abs(wynik)) == sp.Abs(wynik)):
+            # if sp.re(wynik) != 0 and sp.im(wynik) != 0:
+            break
+    # print(sp.latex(sp.expand_complex(alg_1)))
+    # print(sp.latex(sp.expand_complex(alg_2)))
+    # print(sp.latex(sp.expand_complex(alg_3)))
+    # print(sp.latex(r_1) + '\\left(\\cos{' + sp.latex(arg_1) + '} + i \\, \\sin{' + sp.latex(arg_1) + '}\\right)')
+    # print(sp.latex(r_2) + '\\left(\\cos{' + sp.latex(arg_2) + '} + i \\, \\sin{' + sp.latex(arg_2) + '}\\right)')
+    # print(sp.latex(r_3) + '\\left(\\cos{' + sp.latex(arg_3) + '} + i \\, \\sin{' + sp.latex(arg_3) + '}\\right)')
+    # print(sp.latex(r_4) + '\\,e^{' + sp.latex(arg_4) + '\\, i}')
+    # print(sp.latex(r_5) + '\\,e^{' + sp.latex(arg_5) + '\\, i}')
+    # print(sp.latex(r_6) + '\\,e^{' + sp.latex(arg_6) + '\\, i}')
+    # print(sp.factor(wynik))
+    # print(wynik.simplify())
+    return (f'Obliczyć\n'
+            f'\t\\[\n'
+            f'\t\t\\frac{{\\left({sp.latex(sp.expand_complex(alg_1))}\\right)\\left({sp.latex(sp.expand_complex(alg_2))}\\right)}}{{{sp.latex(sp.expand_complex(alg_3))}}}'
+            f' + \\frac{{' +
+            sp.latex(r_1) + '\\left(\\cos\\left(' + sp.latex(arg_1) + '\\right) + i \\, \\sin\\left(' + sp.latex(
+        arg_1) + '\\right)\\right)' + '\\cdot ' +
+            sp.latex(r_2) + '\\left(\\cos\\left(' + sp.latex(arg_2) + '\\right) + i \\, \\sin\\left(' + sp.latex(
+        arg_2) + '\\right)\\right)}' +
+            '{' + sp.latex(r_3) + '\\left(\\cos\\left(' + sp.latex(arg_3) + '\\right) + i \\, \\sin\\left(' + sp.latex(
+        arg_3) + '\\right)\\right)} - ' +
+            '\\frac{' + sp.latex(r_4) + '\\,e^{' + sp.latex(arg_4) + '\\, i}' + '\\cdot ' +
+            sp.latex(r_5) + '\\,e^{' + sp.latex(arg_5) + '\\, i}' +
+            '}{' + sp.latex(r_6) + '\\,e^{' + sp.latex(arg_6) + '\\, i}}. \n'
+                                                                f'\t\\]\n'
+                                                                f'\tWynik zapisać w postaci algebraicznej, trygonometrycznej i wykładniczej.',
+            f'${sp.latex(wynik)}, \qquad {sp.latex(sp.Abs(wynik))} \\left(\\cos\\left({sp.latex(sp.arg(wynik))}\\right) + i\,\\sin\\left({sp.latex(sp.arg(wynik))}\\right)\\right),' +
+            f' \\qquad {sp.latex(sp.Abs(wynik))} e^{{{sp.latex(sp.arg(wynik))}\,i}}$ ')
 
 
 if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany jako program, a nie ładowany jako moduł

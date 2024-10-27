@@ -6,6 +6,7 @@ from .zespolone import rownanie_kwadratowe
 from .zespolone import pierwiastek_zespolony
 from .zespolone import rownanie_ze_sprzezeniem
 from .zespolone import obszar_zespolony
+from .zespolone import dzialania_zespolone
 from .uklady_rownan_liniowych import uklad_rownan_nieoznaczony
 from .uklady_rownan_liniowych import uklad_Cramera
 from .macierze import wyznacznik_parametr
