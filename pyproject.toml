@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "generator_zadan"
-version = "0.2.5"
+version = "0.2.6"
 description = "Generuje losowo roznego typu zadania"
 authors = ["Adam Bohonos"]
 license = "MIT"

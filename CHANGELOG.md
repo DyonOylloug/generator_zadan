@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.2.6 (2024-10-27)
+
+### Documentation
+
+* docs: podnieś wersję dla mybinder ([`10c0aaa`](https://github.com/DyonOylloug/generator_zadan/commit/10c0aaa6f0b5b0f26b5ab3ea69329393882c2127))
+
+* docs: dodaj dzialania_zespolone do generatora zestawów ([`8d67a55`](https://github.com/DyonOylloug/generator_zadan/commit/8d67a55511404d2dbae715c25f97f44b2c66d99e))
+
+* docs: usuń niepotrzebne wyświetlanie długości ([`8e14e06`](https://github.com/DyonOylloug/generator_zadan/commit/8e14e065f32abc8ef6e84d42426da7369920cae0))
+
+### Performance
+
+* perf: Dodaj dzialania_zespolone - dzialania w różnych postaciach ([`11c8d20`](https://github.com/DyonOylloug/generator_zadan/commit/11c8d20fa479bd4fb5ea815b712ea42e255a0fff))
+
 ## v0.2.5 (2024-09-27)
 
 ### Documentation
