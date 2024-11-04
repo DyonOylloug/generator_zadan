@@ -670,6 +670,22 @@ def obszar_zespolony(typ: int = 1, nr_zadania: int = 1):
 
 
 def dzialania_zespolone():
+    args = [-5 * sp.pi / 6,
+            -3 * sp.pi / 4,
+            -2 * sp.pi / 3,
+            -sp.pi / 2,
+            -sp.pi / 3,
+            -sp.pi / 4,
+            -sp.pi / 6,
+            0,
+            5 * sp.pi / 6,
+            3 * sp.pi / 4,
+            2 * sp.pi / 3,
+            sp.pi / 2,
+            sp.pi / 3,
+            sp.pi / 4,
+            sp.pi / 6,
+            sp.pi]
     while True:
         x_1 = random.choice([-2, -1, 1, 2, 3, 4])
         y_1 = x_1 * random.choice(
@@ -695,26 +711,22 @@ def dzialania_zespolone():
         r_4 = random.choice([2, 3, 4, 5])
         r_5 = random.choice([2, 3, 4, 5])
         r_6 = random.choice([2, 3, 4, 5])
-        arg_1 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice([2, 3, 4, 6])
+        arg_1 = random.choice(args)
         while True:
-            arg_2 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
-                [2, 3, 4, 6])
+            arg_2 = random.choice(args)
             if arg_2 != arg_1:
                 break
         while True:
-            arg_3 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
-                [2, 3, 4, 6])
+            arg_3 = random.choice(args)
             if arg_3 != arg_1 and arg_3 != arg_2:
                 break
-        arg_4 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice([2, 3, 4, 6])
+        arg_4 = random.choice(args)
         while True:
-            arg_5 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
-                [2, 3, 4, 6])
+            arg_5 = random.choice(args)
             if arg_5 != arg_4:
                 break
         while True:
-            arg_6 = random.choice([-1, 1]) * random.choice([i for i in range(1, 21)]) * sp.pi / random.choice(
-                [2, 3, 4, 6])
+            arg_6 = random.choice(args)
             if arg_6 != arg_5 and arg_6 != arg_4:
                 break
         tryg_1 = r_1 * (sp.cos(arg_1) + sp.I * sp.sin(arg_1))
@@ -726,11 +738,8 @@ def dzialania_zespolone():
         wynik = sp.expand_complex((alg_1 * alg_2 / alg_3 + tryg_1 * tryg_2 / tryg_3 - wyk_1 * wyk_2 / wyk_3))
         # print(wynik)
         # print(sp.arg(wynik))
-        if (sp.arg(wynik) in (
-                0, -5 * sp.pi / 6, -3 * sp.pi / 4, -2 * sp.pi / 3, -sp.pi / 2, -sp.pi / 3, -sp.pi / 2, -sp.I / 6,
-                5 * sp.pi / 6,
-                3 * sp.pi / 4, 2 * sp.pi / 3, sp.pi / 2, sp.pi / 3, sp.pi / 2, sp.I / 6)
-                and int(sp.Abs(wynik)) == sp.Abs(wynik)):
+        if (sp.arg(wynik) in args
+                and int(sp.Abs(wynik)*2) == sp.Abs(wynik)*2):
             # if sp.re(wynik) != 0 and sp.im(wynik) != 0:
             break
     # print(sp.latex(sp.expand_complex(alg_1)))
