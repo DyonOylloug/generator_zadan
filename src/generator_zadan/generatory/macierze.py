@@ -5,11 +5,16 @@ import sys  # do czerwonych komunikatów: print('jakis tekst', file=sys.stderr )
 import time  # dla testów wydajności
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 import sympy as sp
+from sympy.abc import x
+plt.rcParams.update({
+    "text.usetex": True,
+})
 
 sciezka = str(Path(__file__).parent)
-
+# print(sciezka)
 
 # Todo: dołożyć macierze zespolone jako osobne funkcje?
 
@@ -365,12 +370,66 @@ def rzad_macierzy():
             f'$R(A)= {M.rank()}$')
 
 
+def regresja_liniowa(nr_zadania: int = 1):
+    while True:
+        args = random.sample(range(-5, 6), 5)
+        vals = random.sample(range(-5, 6), 5)
+        A = sp.Matrix([args, [1 for i in range(5)]]).transpose()
+        B = sp.Matrix(vals)
+        # A, B
+        prosta = (A.transpose() @ A).inv() @ A.transpose() @ B
+        odchylenia = A @ prosta - B
+        err = odchylenia.transpose() @ odchylenia
+        if all([(i * 6).is_integer for i in prosta]) and err[0] < 10:
+            break
+    x_s = np.linspace(min(args) - 1 / 2, max(args) + 1 / 2, 100)
+    y_s = x_s * prosta[0] + prosta[1]
+    rownanie = prosta[0] * x + prosta[1]
+    plt.figure(figsize=(4, 4))
+    plt.xticks([i for i in range(min(args) - 1, max(args) + 2)])
+    plt.yticks([i for i in range(min(vals) - 1, max(vals) + 2)])
+    plt.scatter(A[:, 0], B, c='red')
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.title(
+        f"$\\textnormal{{Prosta: }} y={sp.latex(rownanie)}$" +
+        '\n' +
+        f"$\\textnormal{{Suma kwadratów reszt: }} {sp.latex(err[0])} $ ",
+        multialignment='center')
+
+    plt.grid(which='both', linestyle=':')
+    plt.plot(x_s, y_s)
+    plt.savefig(f'./pics/regresja{nr_zadania}.png', dpi=300)
+    plt.savefig(f'./pics/regresja{nr_zadania}.pdf')
+    plt.close()
+    przesuniecie = -4.9
+    return ('Wyznaczyć prostą regresji oraz sumę kwadratów reszt dla zadanych punktów ' + '\n' +
+            f'\t\[\n'
+            f'\t\t({args[0]},{vals[0]}),\  ({args[1]},{vals[1]}),\  ({args[2]},{vals[2]}),\ '
+            f' ({args[3]},{vals[3]}),\  ({args[4]},{vals[4]}).\n'
+            f'\t\]',
+            f'\t\\begin{{tabular}}{{p{{0.5\\textwidth}}p{{0.3\\textwidth}}}}\n'
+            f'\t\\[\n'
+            f'\t\t{sp.latex(A)}\n'
+            f'\t\t\\cdot \\left[\\begin{{matrix}} a \\\\ b \\end{{matrix}}\\right]\n'
+            f'\t\t= {sp.latex(B)}\n'
+            f'\t\t\\quad \\Biggm/ \\cdot \\left(\\left(A^T A \\right)^{{-1}} A^T \\right)_L\n'
+            f'\t\\]\n'
+            f'\t\\[\n'
+            f'\t\t \\left[\\begin{{matrix}} a \\\\ b \\end{{matrix}}\\right] = \n'
+            f'\t\t \\left[\\begin{{matrix}} {sp.latex(prosta[0])} \\\\ {sp.latex(prosta[1])} \\end{{matrix}}\\right]\n'
+            f'\t\\]\n'
+            f'\t&\n'
+            f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.2cm}}{{!}}{{\\includegraphics{{../pics/regresja{nr_zadania}}}}}}}\n'
+            f'\t\\end{{tabular}}\n')
+
+
 if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany jako program, a nie ładowany jako moduł
     gotowce = True
     os.chdir('..')  # by wczytywać z gotowca - inaczej problem ze ścieżkami!
     start_time = time.time()
-
-    polecenie, rozwiazanie = wyznacznik_parametr(wymiar=3, gotowiec=gotowce)
+    polecenie, rozwiazanie = regresja_liniowa(nr_zadania=1)
+    # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=3, gotowiec=gotowce)
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=random.choice(([2] * 1) + ([3] * 7) + ([4] * 0)))
     # polecenie, rozwiazanie = rownanie_macierzowe()
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=random.choice(([2] * 0) + ([3] * 0) + ([4] * 1)),

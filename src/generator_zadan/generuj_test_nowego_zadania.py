@@ -7,9 +7,18 @@ import textwrap
 from pathlib import Path  # do obsługi plików
 
 import babel.dates  # do ładnego generowania daty
+import matplotlib.pyplot as plt
+import numpy as np
+import sympy as sp
+from sympy.abc import x
 from tqdm import trange
 
 import generatory
+
+plt.rcParams.update({
+    "text.usetex": True,
+})
+
 
 kierunek = 'generuj'  # domyślnie zestaw_sekcje
 semestr = ''  # w stylu 'semestr 1'
@@ -110,15 +119,15 @@ plik.write(('% !TeX spellcheck = pl_PL-Polish\n'
             '    \\tableofcontents'
             ))
 
-ile_zadan = 2
+ile_zadan = 10
 nr_warstwy = 0  # do ukrywania odpowiedzi - w każdej funkcji musi być o jeden większy
 Fourier_bez_wykresu = True
 
-plik.write('\n\t\\section{Funkcje wielu zmiennych}\n')
-plik.write('\t\\subsection{Całka podwójna}\n')
+plik.write('\n\t\\section{Macierze}\n')
+plik.write('\t\\subsection{Regresja liniowa}\n')
 plik.write(r'    \begin{tcbitemize}[zadanie] ' + '\n')
-for _ in trange(ile_zadan, desc='Całka podwójna z wykresami'):
-    dodaj_zadanie(plik, generatory.calka_podwojna(typ=2, nr_zadania=nr_warstwy), nr_warstwy)
+for _ in trange(ile_zadan, desc='Regresja'):
+    dodaj_zadanie(plik, generatory.regresja_liniowa(nr_zadania=nr_warstwy), nr_warstwy)
     # dodaj_zadanie(plik, generatory.szereg_Fouriera(typ_l=random.randint(0,4), typ_p=random.randint(0,4), nr_zadania=nr_warstwy), nr_warstwy)
 # dodaj_zadanie(plik, generatory.styczna_normalna(typ=1), nr_warstwy)
 plik.write(r'    \end{tcbitemize}' + '\n')

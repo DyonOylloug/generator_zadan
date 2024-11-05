@@ -1,17 +1,19 @@
 # noinspection PyUnresolvedReferences
-import generatory
-
-import babel.dates  # do ładnego generowania daty
 import codecs  # dla kodowania utf-8
 import datetime  # do pobierania daty
 import multiprocessing
 import os
-from pathlib import Path  # do obsługi plików
+# noinspection PyUnresolvedReferences
+import random
 import sys  # do wysyłania komunikatów w czerwonym kolorze
 import textwrap
 import time
-# noinspection PyUnresolvedReferences
-import random
+from pathlib import Path  # do obsługi plików
+
+import babel.dates  # do ładnego generowania daty
+
+import generatory
+
 
 # Todo: zmienić arg na zadanie: str, licznik: int zamiast art[0] i arg[1]
 def zadanie(arg):  # Śmieszne to przekazywanie funkcji jako stringa. eval nie działa wewnątrz pool (zasięg zmiennych)
@@ -19,8 +21,8 @@ def zadanie(arg):  # Śmieszne to przekazywanie funkcji jako stringa. eval nie d
     # print('Początek', arg)
     kolor = (((arg[1] % 13) // 7) * 10 + ((arg[1] % 13) % 7))
     print(
-        ' |'*(kolor if kolor < 7 else kolor - 3),
-        f'\33[{31 + kolor }m{arg[1]} - Start:  '
+        ' |' * (kolor if kolor < 7 else kolor - 3),
+        f'\33[{31 + kolor}m{arg[1]} - Start:  '
         + f'{arg[0]}'.replace('generatory.', '') + '\033[0m')
     wynik = eval(
         arg[0])  # bez tego eval funkcja się kopiuje a nie uruchamia. I początek i koniec wyświetlają się razem.
@@ -33,7 +35,7 @@ def zadanie(arg):  # Śmieszne to przekazywanie funkcji jako stringa. eval nie d
         ' |' * (kolor if kolor < 7 else kolor - 3),
         f'\33[{31 + kolor}m{arg[1]} - Koniec: '
         + f'{arg[0]}'.replace('generatory.', '')
-        + '-'*(100-dlugosc_polecenia) + '--'*(12-(kolor if kolor < 7 else kolor - 3))
+        + '-' * (100 - dlugosc_polecenia) + '--' * (12 - (kolor if kolor < 7 else kolor - 3))
         + f': {(time.time() - start):.3f} sekund' + '\033[0m')
     return wynik
 
@@ -56,7 +58,6 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
                     ile_zadan: int = 10,
                     kolor_odpowiedzi: str = 'red',
                     gotowiec: bool = True):
-
     wyniki = list(range(ile_zadan * 100))  # tu jest duży zapas - dopracować - 50 oznacza ile mogłoby być typów zadań
     print('\33[31m' + f'Używamy {multiprocessing.cpu_count() - 1} wątków' + '\33[0m')
     n = iter(wyniki)
@@ -212,6 +213,14 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(
         zadanie, [(f'generatory.diagonalizacja_macierzy_z_wielokrotnym_wartosciami_wlasnymi(wymiar=3)', licznik + i)
+                  for i in range(ile_zadan)])
+    licznik += ile_zadan
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
+
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Regresja liniowa}\n', ])
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
+    wyniki[next(n)] = pool.map_async(
+        zadanie, [(f'generatory.regresja_liniowa(nr_zadania={licznik + i})', licznik + i)
                   for i in range(ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
@@ -427,7 +436,7 @@ if __name__ == '__main__':  # średni czas generowania z dnia 30.01.2024:  241s,
     for i in range(1, ile_petli + 1):
         print('Rozpoczynam pętlę nr: ', i)
         start_time = time.time()
-        generuj_algebra(nazwa_pliku='Algebra', ile_zadan=10, kolor_odpowiedzi='red', gotowiec = gotowce)
+        generuj_algebra(nazwa_pliku='Algebra', ile_zadan=10, kolor_odpowiedzi='red', gotowiec=gotowce)
         czas.append(time.time() - start_time)
     print(czas)
-    print('Średni czas generowania: ', sum(czas)/len(czas))
+    print('Średni czas generowania: ', sum(czas) / len(czas))
