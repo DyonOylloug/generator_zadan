@@ -147,7 +147,7 @@ def macierz_odwrotna_parametr(wymiar: int = 3, gotowiec: bool = False):
         if wymiar == 3:
             if os.path.isfile(
                     sciezka + '//gotowe//macierz_odwrotna_parametr_wymiar_3.pickle'):  # 10000/10000 różnych gotowych
-                gotowe = pickle.load(open(sciezka + '//gotowe//macierz_odwrotna_parametr_wymiar_4.pickle', 'rb'))
+                gotowe = pickle.load(open(sciezka + '//gotowe//macierz_odwrotna_parametr_wymiar_3.pickle', 'rb'))
                 return gotowe[random.randint(0, len(gotowe)) - 1]
             else:
                 print('Brak gotowca do tego typu', file=sys.stderr)
