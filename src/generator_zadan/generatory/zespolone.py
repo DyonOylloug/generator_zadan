@@ -1,9 +1,11 @@
 import os  # do tworzenia katalogów
+import pickle
 import random
 import sys  # do wysyłania komunikatów w czerwonym kolorze
 import time  # dla testów wydajności
 import warnings  # wyłącz ostrzeżenia przy generowaniu obrazów
 from fractions import Fraction
+from pathlib import Path
 
 import numpy as np
 import sympy as sp
@@ -11,6 +13,8 @@ from sympy import I
 
 warnings.filterwarnings('ignore')
 random.seed()
+
+sciezka = str(Path(__file__).parent)
 
 
 # Todo: Poprawić/uzupełnić docstringi
@@ -669,7 +673,15 @@ def obszar_zespolony(typ: int = 1, nr_zadania: int = 1):
             f'\t\\end{{tabular}}\n')
 
 
-def dzialania_zespolone():
+def dzialania_zespolone(gotowiec: bool = False):
+    print(sciezka)
+    if gotowiec is True:
+        if os.path.isfile(
+                sciezka + '//gotowe//dzialania_zespolone.pickle'):  # 1000/1000 różnych gotowych
+            gotowe = pickle.load(open(sciezka + '//gotowe//dzialania_zespolone.pickle', 'rb'))
+            return gotowe[random.randint(0, len(gotowe)) - 1]
+        else:
+            print('Brak gotowca do tego typu', file=sys.stderr)
     args = [-5 * sp.pi / 6,
             -3 * sp.pi / 4,
             -2 * sp.pi / 3,
@@ -739,7 +751,7 @@ def dzialania_zespolone():
         # print(wynik)
         # print(sp.arg(wynik))
         if (sp.arg(wynik) in args
-                and int(sp.Abs(wynik)*2) == sp.Abs(wynik)*2):
+                and int(sp.Abs(wynik) * 2) == sp.Abs(wynik) * 2):
             # if sp.re(wynik) != 0 and sp.im(wynik) != 0:
             break
     # print(sp.latex(sp.expand_complex(alg_1)))

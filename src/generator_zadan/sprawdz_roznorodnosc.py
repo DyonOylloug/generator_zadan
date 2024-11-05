@@ -18,9 +18,9 @@ zapisz_gotowca_jako = 'calka_nieoznaczona_typ_3.pickle'
 bo pod taką nazwą jest wczytywane w modułach. Jak będzie inna nazwa to moduł nie znajdzie pliku.
 """
 
-generuj = 'generatory.plaszczyzna_styczna()'
-zapisz_gotowca = False
-zapisz_gotowca_jako = 'plaszczyzna_styczna.pickle'
+generuj = 'generatory.dzialania_zespolone()'
+zapisz_gotowca = True
+zapisz_gotowca_jako = 'dzialania_zespolone.pickle'
 
 print('Testujemy: ', generuj)
 if zapisz_gotowca:
@@ -47,8 +47,7 @@ if zapisz_gotowca:
     if not os.path.exists('generatory/gotowe'):
         os.makedirs('generatory/gotowe')
         print(" ! Tworzę katalog generatory/gotowe ", file=sys.stderr)
-    plik = Path(
-        sciezka +  '//gotowe//' + zapisz_gotowca_jako)
+    plik = Path('generatory/gotowe/' + zapisz_gotowca_jako)
     zestaw = list(zestaw)
     # plik = 'test.pkl'
     with open(plik, "wb") as file:
