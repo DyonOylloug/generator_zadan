@@ -378,7 +378,7 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
         os.makedirs('pics')
         print(" ! Tworzę katalog pics ", file=sys.stderr)
     if stopien == 2:
-        kwadratowa = choice([True, False])
+        kwadratowa = random.choice([True, False])
     if stopien ==1:
         kwadratowa = False
     while True:
@@ -464,7 +464,7 @@ if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany
     gotowce = True
     os.chdir('..')  # by wczytywać z gotowca - inaczej problem ze ścieżkami!
     start_time = time.time()
-    polecenie, rozwiazanie = regresja(stopien=3, nr_zadania=1)
+    polecenie, rozwiazanie = regresja(stopien=2, nr_zadania=1)
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=3, gotowiec=gotowce)
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=random.choice(([2] * 1) + ([3] * 7) + ([4] * 0)))
     # polecenie, rozwiazanie = rownanie_macierzowe()
