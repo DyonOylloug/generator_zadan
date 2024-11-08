@@ -217,10 +217,14 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
-    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Regresja liniowa}\n', ])
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Regresja}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(
-        zadanie, [(f'generatory.regresja_liniowa(nr_zadania={licznik + i})', licznik + i)
+        zadanie, [(f'generatory.regresja(stopien=1, nr_zadania={licznik + i})', licznik + i)
+                  for i in range(ile_zadan)])
+    licznik += ile_zadan
+    wyniki[next(n)] = pool.map_async(
+        zadanie, [(f'generatory.regresja(stopien=2, nr_zadania={licznik + i})', licznik + i)
                   for i in range(ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])

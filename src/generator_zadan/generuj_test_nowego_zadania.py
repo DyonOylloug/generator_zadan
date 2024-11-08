@@ -119,15 +119,15 @@ plik.write(('% !TeX spellcheck = pl_PL-Polish\n'
             '    \\tableofcontents'
             ))
 
-ile_zadan = 10
+ile_zadan = 5
 nr_warstwy = 0  # do ukrywania odpowiedzi - w każdej funkcji musi być o jeden większy
 Fourier_bez_wykresu = True
 
-plik.write('\n\t\\section{Macierze}\n')
 plik.write('\t\\subsection{Regresja liniowa}\n')
 plik.write(r'    \begin{tcbitemize}[zadanie] ' + '\n')
 for _ in trange(ile_zadan, desc='Regresja'):
-    dodaj_zadanie(plik, generatory.regresja_liniowa(nr_zadania=nr_warstwy), nr_warstwy)
+    dodaj_zadanie(plik, generatory.regresja(stopien=1, nr_zadania=nr_warstwy), nr_warstwy)
+    dodaj_zadanie(plik, generatory.regresja(stopien=2, nr_zadania=nr_warstwy), nr_warstwy)
     # dodaj_zadanie(plik, generatory.szereg_Fouriera(typ_l=random.randint(0,4), typ_p=random.randint(0,4), nr_zadania=nr_warstwy), nr_warstwy)
 # dodaj_zadanie(plik, generatory.styczna_normalna(typ=1), nr_warstwy)
 plik.write(r'    \end{tcbitemize}' + '\n')

@@ -370,29 +370,39 @@ def rzad_macierzy():
             f'$R(A)= {M.rank()}$')
 
 
-def regresja_liniowa(nr_zadania: int = 1):
+def regresja(stopien: int = 1, nr_zadania: int = 1):
+    if not os.path.exists('pics'):
+        os.makedirs('pics')
+        print(" ! Tworzę katalog pics ", file=sys.stderr)
     while True:
         args = random.sample(range(-5, 6), 5)
         vals = random.sample(range(-5, 6), 5)
-        A = sp.Matrix([args, [1 for i in range(5)]]).transpose()
+        if stopien == 1:
+            A = sp.Matrix([args, [1 for i in range(5)]]).transpose()
+        if stopien == 2:
+            A = sp.Matrix([[i ** 2 for i in args], args, [1 for _ in range(5)]]).transpose()
         B = sp.Matrix(vals)
         # A, B
-        prosta = (A.transpose() @ A).inv() @ A.transpose() @ B
-        odchylenia = A @ prosta - B
+        reg = (A.transpose() @ A).inv() @ A.transpose() @ B
+        odchylenia = A @ reg - B
         err = odchylenia.transpose() @ odchylenia
-        if all([(i * 6).is_integer for i in prosta]) and err[0] < 10:
+        if all([(i * 6).is_integer for i in reg]) and err[0] < 10:
             break
     x_s = np.linspace(min(args) - 1 / 2, max(args) + 1 / 2, 100)
-    y_s = x_s * prosta[0] + prosta[1]
-    rownanie = prosta[0] * x + prosta[1]
+    if stopien == 1:
+        y_s = x_s * reg[0] + reg[1]
+        rownanie = reg[0] * x + reg[1]
+    if stopien == 2:
+        y_s = x_s ** 2 * reg[0] + x_s * reg[1] + reg[2]
+        rownanie = reg[0] * x**2  + reg[1]*x + reg[2]
     plt.figure(figsize=(4, 4))
     plt.xticks([i for i in range(min(args) - 1, max(args) + 2)])
-    plt.yticks([i for i in range(min(vals) - 1, max(vals) + 2)])
-    plt.scatter(A[:, 0], B, c='red')
+    plt.yticks([i for i in range(min(vals) - 4, max(vals) + 5)])
+    plt.scatter(args, vals, c='red')
     plt.xlabel("x")
     plt.ylabel("y")
     plt.title(
-        f"$\\textnormal{{Prosta: }} y={sp.latex(rownanie)}$" +
+        f'$\\textnormal{{{"Prosta" if stopien == 1 else "Trójmian kwadratowy"}: }} y={sp.latex(rownanie)}$' +
         '\n' +
         f"$\\textnormal{{Suma kwadratów reszt: }} {sp.latex(err[0])} $ ",
         multialignment='center')
@@ -402,22 +412,30 @@ def regresja_liniowa(nr_zadania: int = 1):
     plt.savefig(f'./pics/regresja{nr_zadania}.png', dpi=300)
     plt.savefig(f'./pics/regresja{nr_zadania}.pdf')
     plt.close()
-    przesuniecie = -4.9
-    return ('Wyznaczyć prostą regresji oraz sumę kwadratów reszt dla zadanych punktów ' + '\n' +
+    if stopien == 1:
+        tmp1 = 'a \\\\ b'
+        tmp2 = f'{sp.latex(reg[0])} \\\\ {sp.latex(reg[1])}'
+        przesuniecie = -4.9
+    if stopien == 2:
+        tmp1 = 'a \\\\ b \\\\ c'
+        tmp2 =  f'{sp.latex(reg[0])} \\\\ {sp.latex(reg[1])} \\\\ {sp.latex(reg[2])}'
+        przesuniecie = -5.2
+    return (f'Wyznaczyć {"prostą" if stopien == 1 else "trójmian kwadratowy"} regresji dla punktów \n'
             f'\t\[\n'
             f'\t\t({args[0]},{vals[0]}),\  ({args[1]},{vals[1]}),\  ({args[2]},{vals[2]}),\ '
             f' ({args[3]},{vals[3]}),\  ({args[4]},{vals[4]}).\n'
             f'\t\]',
             f'\t\\begin{{tabular}}{{p{{0.5\\textwidth}}p{{0.3\\textwidth}}}}\n'
+            f'\t\\vspace{"{-5pt}" if stopien == 2 else "{0pt}"}\n'
             f'\t\\[\n'
             f'\t\t{sp.latex(A)}\n'
-            f'\t\t\\cdot \\left[\\begin{{matrix}} a \\\\ b \\end{{matrix}}\\right]\n'
+            f'\t\t\\cdot \\left[\\begin{{matrix}} {tmp1} \\end{{matrix}}\\right]\n'
             f'\t\t= {sp.latex(B)}\n'
             f'\t\t\\quad \\Biggm/ \\cdot \\left(\\left(A^T A \\right)^{{-1}} A^T \\right)_L\n'
             f'\t\\]\n'
             f'\t\\[\n'
-            f'\t\t \\left[\\begin{{matrix}} a \\\\ b \\end{{matrix}}\\right] = \n'
-            f'\t\t \\left[\\begin{{matrix}} {sp.latex(prosta[0])} \\\\ {sp.latex(prosta[1])} \\end{{matrix}}\\right]\n'
+            f'\t\t \\left[\\begin{{matrix}} {tmp1} \\end{{matrix}}\\right] = \n'
+            f'\t\t \\left[\\begin{{matrix}} {tmp2} \\end{{matrix}}\\right]\n'
             f'\t\\]\n'
             f'\t&\n'
             f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.2cm}}{{!}}{{\\includegraphics{{../pics/regresja{nr_zadania}}}}}}}\n'
@@ -428,7 +446,7 @@ if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany
     gotowce = True
     os.chdir('..')  # by wczytywać z gotowca - inaczej problem ze ścieżkami!
     start_time = time.time()
-    polecenie, rozwiazanie = regresja_liniowa(nr_zadania=1)
+    polecenie, rozwiazanie = regresja(stopien=2, nr_zadania=1)
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=3, gotowiec=gotowce)
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=random.choice(([2] * 1) + ([3] * 7) + ([4] * 0)))
     # polecenie, rozwiazanie = rownanie_macierzowe()
