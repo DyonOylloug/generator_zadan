@@ -371,9 +371,15 @@ def rzad_macierzy():
 
 
 def regresja(stopien: int = 1, nr_zadania: int = 1):
+    if stopien not in {1 ,2}:
+        return 'Tylko stopień 1 lub 2', ''
     if not os.path.exists('pics'):
         os.makedirs('pics')
         print(" ! Tworzę katalog pics ", file=sys.stderr)
+    if stopien == 2:
+        kwadratowa = True
+    if stopien ==1:
+        kwadratowa = False
     while True:
         args = random.sample(range(-5, 6), 5)
         vals = random.sample(range(-5, 6), 5)
@@ -386,8 +392,12 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
         reg = (A.transpose() @ A).inv() @ A.transpose() @ B
         odchylenia = A @ reg - B
         err = odchylenia.transpose() @ odchylenia
-        if all([(i * 6).is_integer for i in reg]) and err[0] < 10:
-            break
+        if kwadratowa is True:
+            if reg[0] != 0 and all([(i * 6).is_integer for i in reg]) and err[0] < 10:
+                break
+        if kwadratowa is False:
+            if all([(i * 6).is_integer for i in reg]) and err[0] < 10 :
+                break
     x_s = np.linspace(min(args) - 1 / 2, max(args) + 1 / 2, 100)
     if stopien == 1:
         y_s = x_s * reg[0] + reg[1]
@@ -395,9 +405,16 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
     if stopien == 2:
         y_s = x_s ** 2 * reg[0] + x_s * reg[1] + reg[2]
         rownanie = reg[0] * x**2  + reg[1]*x + reg[2]
-    plt.figure(figsize=(4, 4))
+    plt.figure(figsize=(4.5, 4.5))
     plt.xticks([i for i in range(min(args) - 1, max(args) + 2)])
     plt.yticks([i for i in range(min(vals) - 4, max(vals) + 5)])
+    if stopien == 1:
+        wartosci = [i * reg[0] + reg[1] for i in args]
+    if stopien == 2:
+        wartosci = [i ** 2 * reg[0] + i * reg[1] + reg[2] for i in args]
+    plt.scatter(args, wartosci)
+    for i in range(len(args)):
+        plt.plot([args[i], args[i]], [wartosci[i], vals[i]], 'g:', linewidth=2)
     plt.scatter(args, vals, c='red')
     plt.xlabel("x")
     plt.ylabel("y")
@@ -409,7 +426,7 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
 
     plt.grid(which='both', linestyle=':')
     plt.plot(x_s, y_s)
-    plt.savefig(f'./pics/regresja{nr_zadania}.png', dpi=300)
+    plt.savefig(f'./pics/regresja{nr_zadania}.png')
     plt.savefig(f'./pics/regresja{nr_zadania}.pdf')
     plt.close()
     if stopien == 1:
@@ -446,7 +463,7 @@ if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany
     gotowce = True
     os.chdir('..')  # by wczytywać z gotowca - inaczej problem ze ścieżkami!
     start_time = time.time()
-    polecenie, rozwiazanie = regresja(stopien=2, nr_zadania=1)
+    polecenie, rozwiazanie = regresja(stopien=3, nr_zadania=1)
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=3, gotowiec=gotowce)
     # polecenie, rozwiazanie = wyznacznik_parametr(wymiar=random.choice(([2] * 1) + ([3] * 7) + ([4] * 0)))
     # polecenie, rozwiazanie = rownanie_macierzowe()
