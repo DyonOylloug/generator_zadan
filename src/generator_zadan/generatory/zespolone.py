@@ -674,7 +674,7 @@ def obszar_zespolony(typ: int = 1, nr_zadania: int = 1):
 
 
 def dzialania_zespolone(gotowiec: bool = False):
-    print(sciezka)
+    # print(sciezka)
     if gotowiec is True:
         if os.path.isfile(
                 sciezka + '//gotowe//dzialania_zespolone.pickle'):  # 1000/1000 różnych gotowych
