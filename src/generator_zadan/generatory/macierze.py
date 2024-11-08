@@ -8,6 +8,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import sympy as sp
+from docutils.parsers.rst.directives import choice
 from sympy.abc import x
 plt.rcParams.update({
     "text.usetex": True,
@@ -377,7 +378,7 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
         os.makedirs('pics')
         print(" ! Tworzę katalog pics ", file=sys.stderr)
     if stopien == 2:
-        kwadratowa = True
+        kwadratowa = choice([True, False])
     if stopien ==1:
         kwadratowa = False
     while True:
