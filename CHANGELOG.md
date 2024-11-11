@@ -1,5 +1,45 @@
 # CHANGELOG
 
+## v0.2.7 (2024-11-11)
+
+### Documentation
+
+* docs: od teraz tylko nowe typy zadań ([`266aa93`](https://github.com/DyonOylloug/generator_zadan/commit/266aa934aa2d781aaf9a8b6f8c7af3782cc36cc3))
+
+* docs: podnieś wersję dla mybinder ([`1b62dda`](https://github.com/DyonOylloug/generator_zadan/commit/1b62dda369b1984283f390fff797b8048bcef77d))
+
+* docs: dodaj regresję do generatora ([`e22bad5`](https://github.com/DyonOylloug/generator_zadan/commit/e22bad5193286fd60050281cea5ae82cb4829f00))
+
+* docs: popraw typ komórki na Markdown ([`784759c`](https://github.com/DyonOylloug/generator_zadan/commit/784759c18be91a1477908c1584336ee5881df74f))
+
+### Fix
+
+* fix: popraw nazwe pliku do gotowca ([`f794db6`](https://github.com/DyonOylloug/generator_zadan/commit/f794db643eca844314e801853d08b521bcba5467))
+
+### Performance
+
+* perf: trójmian może też być liniowy - poprawka ([`485a8d2`](https://github.com/DyonOylloug/generator_zadan/commit/485a8d2c6e892371a06a9dd0798a63099976a1fe))
+
+* perf: trójmian może też być linioway ([`7d0ac8d`](https://github.com/DyonOylloug/generator_zadan/commit/7d0ac8dc0e33677bd2e8050e275af9d421238fa1))
+
+* perf: dodaj linie do wykresów regresji ([`782f899`](https://github.com/DyonOylloug/generator_zadan/commit/782f899fdfd39ec0b87478c06eb7b488d054f336))
+
+* perf: Dodaj regresja_liniowa stopien=2 ([`53b506f`](https://github.com/DyonOylloug/generator_zadan/commit/53b506f77415b1a38c3298573733989043d74310))
+
+* perf: Dodaj regresja_liniowa ([`f2b43cb`](https://github.com/DyonOylloug/generator_zadan/commit/f2b43cb91f19fbf27f97d34666d11058a8810ee5))
+
+* perf: dodaj gotowce do działań zespolonych ([`db44bdf`](https://github.com/DyonOylloug/generator_zadan/commit/db44bdf8c3e8e338891d394e93d09479b29caddf))
+
+### Refactor
+
+* refactor: dodaj niepotrzebne pliki ([`8a45a26`](https://github.com/DyonOylloug/generator_zadan/commit/8a45a26fb0b988f3d2b776d0c086b6ee8b5447ad))
+
+* refactor: dzialania_zespolone losuj argumenty od -pi do pi ([`db0afe9`](https://github.com/DyonOylloug/generator_zadan/commit/db0afe9f3e0a78c73dfdba330f1dcaa935e46c81))
+
+### Style
+
+* style: usuń wyświetlanie ścieżki ([`bad314d`](https://github.com/DyonOylloug/generator_zadan/commit/bad314d086d5f4a40c7a339309560a4d6ec2ed5c))
+
 ## v0.2.6 (2024-10-27)
 
 ### Documentation
