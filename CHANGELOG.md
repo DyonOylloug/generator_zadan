@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.2.8 (2024-11-11)
+
+### Documentation
+
+* docs: podnieś wersję dla mybinder ([`7b49126`](https://github.com/DyonOylloug/generator_zadan/commit/7b49126bba58572cb9b73315174cc956cb520095))
+
+* docs: usuń pakiet pandas z requirements.txt ([`5a424e7`](https://github.com/DyonOylloug/generator_zadan/commit/5a424e75e9fce0af1a451135177c2b42166b6d6c))
+
+### Performance
+
+* perf: usuń docutils import ([`441dca3`](https://github.com/DyonOylloug/generator_zadan/commit/441dca389522ce03c7de2dc246f95402489c999f))
+
 ## v0.2.7 (2024-11-11)
 
 ### Documentation
