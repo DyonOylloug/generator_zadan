@@ -8,7 +8,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import sympy as sp
-from docutils.parsers.rst.directives import choice
+from random import choice
 from sympy.abc import x
 plt.rcParams.update({
     "text.usetex": True,
