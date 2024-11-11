@@ -8,7 +8,7 @@ Wszystkie funkcje generujące oparte są na losowo generowanych danych, by uzysk
 
 Zadania mają mieć __eleganckie__ parametry i wyniki mają być __przyjazne__ dla człowieka.
 
-Gotowych jest więcej typów. Prace dokumentacyjne trwają.
+Z biegiem czasu pewnie będzie więcej typów.
 
 
 ## Instalacja
