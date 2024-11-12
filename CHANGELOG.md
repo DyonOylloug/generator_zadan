@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v0.2.9 (2024-11-12)
+
+### Documentation
+
+* docs: podnieś wersję dla mybinder ([`e45a4b2`](https://github.com/DyonOylloug/generator_zadan/commit/e45a4b2a8bd43dd2d33bc352441ff6dddd1894d9))
+
+### Performance
+
+* perf: dodaj wykresy w pierwiastku zespolonym ([`21759ef`](https://github.com/DyonOylloug/generator_zadan/commit/21759ef50e30513caba249796ae356e19c9e43a7))
+
 ## v0.2.8 (2024-11-11)
 
 ### Documentation
