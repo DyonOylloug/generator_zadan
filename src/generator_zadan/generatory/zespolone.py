@@ -6,6 +6,7 @@ import time  # dla testów wydajności
 import warnings  # wyłącz ostrzeżenia przy generowaniu obrazów
 from fractions import Fraction
 from pathlib import Path
+import matplotlib.pyplot as plt
 
 import numpy as np
 import sympy as sp
@@ -107,7 +108,40 @@ def rownanie_kwadratowe(nr_warstwy: int = 0):  # na 2000 losowań było 194 ró�
 
 # Todo: dołożyć wyrażenie w stylu ((1+i*sqrt(3))/2)^10 które wygeneruje 1 lub -1 lub
 # Todo: 2 albo 3 do potęgi, która jest stopniem pierwiastka
-def pierwiastek_zespolony(stopien=3, nr_warstwy=0):  # generuje 152 różne zadania z 3 i 4 stopniem
+
+
+def pierwiastek_zespolony(stopien=3, nr_zadania=0):  # generuje 152 różne zadania z 3 i 4 stopniem
+
+    def plot_pierwiastek_zespolony(pierwiastki=None, nr_warstwy: int = 0):
+        if pierwiastki is None:
+            pierwiastki = []
+        if not os.path.exists('pics'):
+            os.makedirs('pics')
+            print(" ! Tworzę katalog pics ", file=sys.stderr)
+        fig, ax = plt.subplots(figsize=(4.5, 4.5))
+        re_data = [sp.re(i) for i in pierwiastki]
+        im_data = [sp.im(i) for i in pierwiastki]
+        ax.axis('equal')
+        ax.set_title('Rozkład pierwiastków')
+        ax.set_xlabel('x = Re(z)')
+        ax.set_ylabel('y = Im(z)')
+        ax.scatter(0, 0, s=50, c='blue')
+        ax.grid(linestyle=':')
+        for i in pierwiastki:
+            ax.plot([0, sp.re(i)], [0, sp.im(i)], color='green', linestyle=':')
+        ax.scatter(re_data, im_data, s=50, c='red')
+        for i in pierwiastki:
+            ax.text(sp.re(i), sp.im(i), f'${sp.latex(i)}$',
+                    horizontalalignment="left",
+                    verticalalignment="bottom",
+                    fontsize='14')
+        circle = plt.Circle((0, 0), sp.Abs(pierwiastki[0]), color='blue', fill=False, linestyle='-.')
+        ax.add_patch(circle)
+        fig.savefig(f'./pics/rozklad_pierwiastkow{nr_warstwy}.png')
+        fig.savefig(f'./pics/rozklad_pierwiastkow{nr_warstwy}.pdf')
+        plt.close()
+        return None
+
     if stopien == 3:
         liczba = random.choice([27 * I, -27 * I, 64 * I, -64 * I,
                                 Fraction(64, 27) * I ** 4, -Fraction(64, 27) * I ** 4, Fraction(64, 27) * I,
@@ -124,16 +158,29 @@ def pierwiastek_zespolony(stopien=3, nr_warstwy=0):  # generuje 152 różne zada
             if sp.im(iloraz) != 0 and sp.re(iloraz) != 0 and a != b and a != sp.im(iloraz):
                 break
         z = sp.symbols('z', complex=True)
-        rozwiazanie = sp.latex(sp.solve(z ** 3 - liczba, rational=True)).replace('[', '\{').replace(']', '\}')
+        roz = sp.solve(z ** 3 - liczba, rational=True)
+        plot_pierwiastek_zespolony(pierwiastki=roz, nr_warstwy=nr_zadania)
+        rozwiazanie = sp.latex(roz).replace('[', '\{').replace(']', '\}')
         strona = random.choice((0, 1))  # do wymieszania nawiasów pod pierwiastkiem
         pierwiastek = (f'\t\\[\n'
                        f'\t\t\\sqrt[\\leftroot{{2}}\\uproot{{-4}} \\displaystyle ^{{3}}]{{\\left('
                        f'{sp.latex(iloraz) if strona == 0 else sp.latex(a + b * I * rozne_pierwiastki)} \\right)'
                        f' \\left({sp.latex(a + b * I * rozne_pierwiastki) if strona == 0 else sp.latex(iloraz)} \\right)}}\n'
                        f'\t\\]')
+        przesuniecie = -3
         return ('Wyznaczyć wszystkie zadane pierwiastki zespolone i zaznaczyć je na płaszczyźnie zespolonej\n'
                 f'{pierwiastek}',
-                f'$\\sqrt[\\leftroot{{2}}\\uproot{{-4}} \\displaystyle ^{{3}}]{{{sp.latex(liczba)}}} = {rozwiazanie}.$')
+                f'\t\\begin{{tabular}}{{p{{0.5\\textwidth}}p{{0.3\\textwidth}}}}\n'
+                f'\t\\[\n'
+                f'\t\t\\sqrt[\\leftroot{{2}}\\uproot{{-4}} \\displaystyle ^{{3}}]{{{sp.latex(liczba)}}}=\n'
+                f'\t\\]\n'
+                f'\t\\[\n'
+                f'\t\t = {rozwiazanie}.\n'
+                f'\t\\]\n'
+                f'\t&\n'
+                f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.2cm}}{{!}}{{\\includegraphics{{../pics/rozklad_pierwiastkow{nr_zadania}}}}}}}\n'
+                f'\t\\end{{tabular}}\n'
+                )
     if stopien == 4:
         liczba = random.choice(
             [1 + sp.sqrt(3) * I, 1 - sp.sqrt(3) * I, -1 + sp.sqrt(3) * I, -1 - sp.sqrt(3) * I,
@@ -150,7 +197,9 @@ def pierwiastek_zespolony(stopien=3, nr_warstwy=0):  # generuje 152 różne zada
                 break
         # print(liczba)
         z = sp.symbols('z', complex=True)
-        rozwiazanie = sp.latex(sp.solve(z ** 4 - liczba)).replace('[', '\{').replace(']', '\}')
+        roz = sp.solve(z ** 4 - liczba, rational=True)
+        plot_pierwiastek_zespolony(pierwiastki=roz, nr_warstwy=nr_zadania)
+        rozwiazanie = sp.latex(roz).replace('[', '\{').replace(']', '\}')
         # print(sp.latex(rozwiazanie))
         strona = random.choice((0, 1))  # do wymieszania nawiasów pod pierwiastkiem
         pierwiastek = (f'\t\\[\n'
@@ -160,9 +209,20 @@ def pierwiastek_zespolony(stopien=3, nr_warstwy=0):  # generuje 152 różne zada
                        f'\t\\]')
         # pierwiastek = str('$$\\sqrt[\\leftroot{2}\\uproot{-4} \\displaystyle ^{4}]{\\left(' + sp.latex(
         #     iloraz) + '\\right) \\left(' + sp.latex(a + b * I * rozne_pierwiastki) + '\\right)}$$')
+        przesuniecie = -3
         return ('Wyznaczyć wszystkie zadane pierwiastki zespolone i zaznaczyć je na płaszczyźnie zespolonej\n'
                 f'{pierwiastek}',
-                f'$\\sqrt[\\leftroot{{2}}\\uproot{{-4}} \\displaystyle ^{{4}}]{{{sp.latex(liczba)}}} = {rozwiazanie}.$')
+                f'\t\\begin{{tabular}}{{p{{0.5\\textwidth}}p{{0.3\\textwidth}}}}\n'
+                f'\t\\[\n'
+                f'\t\t\\sqrt[\\leftroot{{2}}\\uproot{{-4}} \\displaystyle ^{{4}}]{{{sp.latex(liczba)}}}=\n'
+                f'\t\\]\n'
+                f'\t\\[\n'
+                f'\t\t = {rozwiazanie}.\n'
+                f'\t\\]\n'
+                f'\t&\n'
+                f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.2cm}}{{!}}{{\\includegraphics{{../pics/rozklad_pierwiastkow{nr_zadania}}}}}}}\n'
+                f'\t\\end{{tabular}}\n'
+                )
         # return str(
         #     r'        \item Wyznaczyć wszystkie zadane pierwiastki zespolone i zaznaczyć je na płaszczyźnie zespolonej.' + '\n' +
         #     '        ' + pierwiastek + '\n' +
@@ -793,6 +853,6 @@ if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany
     # polecenie, rozwiazanie = pierwiastek_zespolony(stopien=random.choice([3, 4]))
     # polecenie, rozwiazanie = rownanie_ze_sprzezeniem(calkowite=random.choice([0, 1]), kwadratowe=random.choice([0, 1]))
     for i in range(1):
-        polecenie, rozwiazanie = obszar_zespolony(typ=5, nr_zadania=i)
+        polecenie, rozwiazanie = pierwiastek_zespolony(stopien=random.choice([3, 4]), nr_warstwy=i)
         print(polecenie, '\n', rozwiazanie)
     print("Czas generowania --- %s seconds ---" % (time.time() - start_time))

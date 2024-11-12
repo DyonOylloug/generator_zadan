@@ -123,7 +123,7 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Pierwiastek zespolony}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(
-        zadanie, [('generatory.pierwiastek_zespolony(stopien=random.choice(([3] * 1 + [4] * 1)))', licznik + i)
+        zadanie, [(f'generatory.pierwiastek_zespolony(stopien=random.choice(([3] * 1 + [4] * 1)), nr_zadania={licznik + i})', licznik + i)
                   for i in range(0, 2 * ile_zadan)])
     licznik += 2 * ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
