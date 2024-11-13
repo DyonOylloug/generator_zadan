@@ -178,7 +178,7 @@ def pierwiastek_zespolony(stopien=3, nr_zadania=0):  # generuje 152 różne zada
                 f'\t\t = {rozwiazanie}.\n'
                 f'\t\\]\n'
                 f'\t&\n'
-                f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.2cm}}{{!}}{{\\includegraphics{{../pics/rozklad_pierwiastkow{nr_zadania}}}}}}}\n'
+                f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.1cm}}{{!}}{{\\includegraphics{{../pics/rozklad_pierwiastkow{nr_zadania}}}}}}}\n'
                 f'\t\\end{{tabular}}\n'
                 )
     if stopien == 4:
@@ -220,7 +220,7 @@ def pierwiastek_zespolony(stopien=3, nr_zadania=0):  # generuje 152 różne zada
                 f'\t\t = {rozwiazanie}.\n'
                 f'\t\\]\n'
                 f'\t&\n'
-                f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.2cm}}{{!}}{{\\includegraphics{{../pics/rozklad_pierwiastkow{nr_zadania}}}}}}}\n'
+                f'\t\t\\raisebox{{{przesuniecie}cm}}{{\\resizebox{{5.1cm}}{{!}}{{\\includegraphics{{../pics/rozklad_pierwiastkow{nr_zadania}}}}}}}\n'
                 f'\t\\end{{tabular}}\n'
                 )
         # return str(
