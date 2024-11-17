@@ -15,6 +15,7 @@ from .macierze import rownanie_macierzowe
 from .macierze import wartosci_wlasne
 from .macierze import diagonalizacja_macierzy
 from .macierze import rzad_macierzy
+from .macierze import wyznacznik
 from .macierze import diagonalizacja_macierzy_z_wielokrotnym_wartosciami_wlasnymi
 from .macierze import regresja
 from .geometria_analityczna import rownanie_prostej

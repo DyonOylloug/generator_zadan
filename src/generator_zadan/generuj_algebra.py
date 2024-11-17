@@ -138,6 +138,18 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
 
     wyniki[next(n)] = pool.map_async(tekst, ['\n\t\\section{Macierze}\n', ])
 
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Wyznacznik macierzy}\n', ])
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
+    wyniki[next(n)] = pool.map_async(
+        zadanie, [(f'generatory.wyznacznik(random.choice([2, 3]))', licznik + i)
+                  for i in range(ile_zadan // 2)])
+    licznik += ile_zadan // 2
+    wyniki[next(n)] = pool.map_async(
+        zadanie, [(f'generatory.wyznacznik(random.choice([4, 5, 6]))', licznik + i)
+                  for i in range(ile_zadan)])
+    licznik += ile_zadan
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
+
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Wyznacznik z parametrem}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(

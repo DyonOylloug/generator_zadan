@@ -10,11 +10,14 @@ import numpy as np
 import sympy as sp
 from random import choice
 from sympy.abc import x
+
 plt.rcParams.update({
     "text.usetex": True,
 })
 
 sciezka = str(Path(__file__).parent)
+
+
 # print(sciezka)
 
 # Todo: dołożyć macierze zespolone jako osobne funkcje?
@@ -371,15 +374,37 @@ def rzad_macierzy():
             f'$R(A)= {M.rank()}$')
 
 
+def wyznacznik(wymiar: int = 5):
+    zerowy = random.choice([False, False, True])
+    if wymiar not in {2, 3, 4, 5, 6}:
+        return 'Tylko stopień 2, 3, 4, 5 lub 6', ''
+    liczby = (-2, -1, 0, 1, 2, 3)
+    while True:
+        M = sp.Matrix(wymiar, wymiar, [random.choice(liczby) for _ in range(wymiar ** 2)])
+        wyznacznik = M.det()
+        if zerowy is True:
+            if abs(wyznacznik) == 0:
+                break
+        else:
+            if abs(wyznacznik) <= 20 and wyznacznik != 0:
+                break
+
+    return ('Obliczyć wyznacznik macierzy A\n'
+            f'\t\\[\n'
+            f'\t\t\\textnormal{{A=}} {sp.latex(M)}\n'
+            f'\t\\]',
+            f'$\\det(A)= {M.det()}$')
+
+
 def regresja(stopien: int = 1, nr_zadania: int = 1):
-    if stopien not in {1 ,2}:
+    if stopien not in {1, 2}:
         return 'Tylko stopień 1 lub 2', ''
     if not os.path.exists('pics'):
         os.makedirs('pics')
         print(" ! Tworzę katalog pics ", file=sys.stderr)
     if stopien == 2:
         kwadratowa = random.choice([True, False])
-    if stopien ==1:
+    if stopien == 1:
         kwadratowa = False
     while True:
         args = random.sample(range(-5, 6), 5)
@@ -397,7 +422,7 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
             if reg[0] != 0 and all([(i * 6).is_integer for i in reg]) and err[0] < 10:
                 break
         if kwadratowa is False:
-            if all([(i * 6).is_integer for i in reg]) and err[0] < 10 :
+            if all([(i * 6).is_integer for i in reg]) and err[0] < 10:
                 break
     x_s = np.linspace(min(args) - 1 / 2, max(args) + 1 / 2, 100)
     if stopien == 1:
@@ -405,7 +430,7 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
         rownanie = reg[0] * x + reg[1]
     if stopien == 2:
         y_s = x_s ** 2 * reg[0] + x_s * reg[1] + reg[2]
-        rownanie = reg[0] * x**2  + reg[1]*x + reg[2]
+        rownanie = reg[0] * x ** 2 + reg[1] * x + reg[2]
     plt.figure(figsize=(4.5, 4.5))
     plt.xticks([i for i in range(min(args) - 1, max(args) + 2)])
     plt.yticks([i for i in range(min(vals) - 4, max(vals) + 5)])
@@ -436,7 +461,7 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
         przesuniecie = -4.9
     if stopien == 2:
         tmp1 = 'a \\\\ b \\\\ c'
-        tmp2 =  f'{sp.latex(reg[0])} \\\\ {sp.latex(reg[1])} \\\\ {sp.latex(reg[2])}'
+        tmp2 = f'{sp.latex(reg[0])} \\\\ {sp.latex(reg[1])} \\\\ {sp.latex(reg[2])}'
         przesuniecie = -5.2
     return (f'Wyznaczyć {"prostą" if stopien == 1 else "trójmian kwadratowy"} regresji dla punktów \n'
             f'\t\[\n'
