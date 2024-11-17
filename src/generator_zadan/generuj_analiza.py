@@ -274,6 +274,7 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
                 '\\usepackage{ocgx}\n'
                 # '\\usepackage{pgf}\n'  # niepotrzebne gdy importujemy pdf-y
                 '\\usepackage{polski}\n\n'
+                '\\usepackage{bookmark}\n\n'
                 '\\usepackage{tcolorbox}\n'
                 '\\tcbuselibrary{most}\n'
                 '\\tcbuselibrary{skins}\n'
