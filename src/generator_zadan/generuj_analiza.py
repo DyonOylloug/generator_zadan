@@ -97,6 +97,13 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Asymptoty funkcji}\n', ])
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
+    wyniki[next(n)] = pool.map_async(zadanie,
+                                     [('generatory.asymptoty(typ=random.choice(range(1,11))) ', licznik + i) for i in range(0, ile_zadan)])
+    licznik += ile_zadan
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
+
     wyniki[next(n)] = pool.map_async(tekst, ['\n\t\\section{Styczna i normalna}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(zadanie, [('generatory.styczna_normalna(typ=1) ', licznik + i) for i in

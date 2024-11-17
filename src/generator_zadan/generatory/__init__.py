@@ -27,6 +27,7 @@ from .geometria_analityczna import pole_trojkata
 from .geometria_analityczna import plaszczyzna_styczna
 from .granice import granica_ciagu
 from .granice import granica_funkcji
+from .granice import asymptoty
 from .monotonicznosc import monotonicznosc
 from .monotonicznosc import styczna_normalna
 from .calki_nieoznaczone import calka_nieoznaczona
