@@ -93,7 +93,7 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Granice funkcji}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [('generatory.granica_funkcji(typ=0) ', licznik + i) for i in range(0, ile_zadan)])
+                                     [('generatory.granica_funkcji(typ=random.choice([i for i in range(11)])) ', licznik + i) for i in range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 

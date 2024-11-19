@@ -84,6 +84,7 @@ def granica_ciagu(typ: int = 0):
                 f'\t\\]\n',
                 f'${sp.latex(granica)}$')
 def granica_funkcji(typ: int = 0):
+    from sympy.abc import x
     if typ == 0:
         a, b, c = [random.choice((-2, -1, 1, 2, 3, 4)) for _ in range(3)]
         a = sp.Abs(a)
@@ -91,7 +92,107 @@ def granica_funkcji(typ: int = 0):
         return (f'Obliczyć granicę\n'
                 f'\t\\[\n'
                 f'\t\t\\lim\\limits_{{x \\rightarrow 0}}'
-                f' {sp.latex((a - sp.sqrt(a**2-b*x))/(c*x))} \n'
+                f' {sp.latex((a - sp.sqrt(a ** 2 - b * x)) / (c * x))} \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 1:
+        funkcja = random.choice([-1, 1]) * (sp.E ** x - sp.E ** (-x)) / random.choice([x, sp.sin(x)])
+        granica = sp.limit(funkcja, x, 0)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                f'\t\t\\lim\\limits_{{x \\rightarrow 0}}'
+                f' {sp.latex(funkcja)} \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 2:
+        funkcja = sp.ln(x) / sp.sqrt(x ** 2 - 1)
+        granica = sp.limit(funkcja, x, 1)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                '\t\t\\lim\\limits_{{x \\rightarrow 1^{+}}}'
+                f' {sp.latex(funkcja).replace("log", "ln")} \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 3:
+        funkcja = random.choice([-1, 1]) * (1 / x - 1 / sp.sin(x))
+        granica = sp.limit(funkcja, x, 0)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                '\t\t\\lim\\limits_{{x \\rightarrow 0}}'
+                f'\\left( {sp.latex(funkcja)} \\right) \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 4:
+        funkcja = random.choice([-1, 1]) * (1 / x ** 2 - 1 / (x * sp.sin(x)))
+        granica = sp.limit(funkcja, x, 0)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                '\t\t\\lim\\limits_{{x \\rightarrow 0}}'
+                f'\\left( {sp.latex(funkcja)} \\right) \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 5:
+        funkcja = random.choice([-1, 1]) * (1 / x ** 2 - 1 / (sp.sin(x)) ** 2)
+        granica = sp.limit(funkcja, x, 0)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                '\t\t\\lim\\limits_{{x \\rightarrow 0}}'
+                f'\\left( {sp.latex(funkcja)} \\right)\n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 6:
+        a, b, c, d = [random.choice([1, 2, 3, -1, -2, -3]) for _ in range(4)]
+        funkcja = (((x - c) * (x - b)).expand()) / (((x - c) * (x - d)).expand())
+        granica = sp.limit(funkcja, x, c)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                f'\t\t\\lim\\limits_{{x \\rightarrow {c}}}'
+                f' {sp.latex(funkcja)} \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 7:
+        funkcja = (1 - x) * sp.ln(1 - x)
+        granica = sp.limit(funkcja, x, 1, '-')
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                f'\t\t\\lim\\limits_{{x \\rightarrow 1^-}}'
+                f'\\left( {sp.latex(funkcja).replace("log", "ln")} \\right) \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 8:
+        funkcja = (x) ** (1 / (1 - x))
+        granica = sp.limit(funkcja, x, 1)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                f'\t\t\\lim\\limits_{{x \\rightarrow 1}}'
+                f' {sp.latex(funkcja)} \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 9:
+        funkcja = (x) ** (1 / (x))
+        granica = sp.limit(funkcja, x, sp.oo)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                f'\t\t\\lim\\limits_{{x \\rightarrow \\infty}}'
+                f'\\left( {sp.latex(funkcja)} \\right)\n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 10:
+        funkcja = (x + sp.exp(random.choice([-3, -2, -1, 1, 2, 3, 4, 5]) * x)) ** (1 / (x))
+        granica = sp.limit(funkcja, x, 0)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                f'\t\t\\lim\\limits_{{x \\rightarrow 0}}'
+                f'\\left( {sp.latex(funkcja)} \\right) \n'
+                f'\t\\]\n',
+                f'${sp.latex(granica)}$')
+    if typ == 11:
+        funkcja = (x * sp.ln(x)) / (x - 1)
+        granica = sp.limit(funkcja, x, 1)
+        return (f'Obliczyć granicę\n'
+                f'\t\\[\n'
+                f'\t\t\\lim\\limits_{{x \\rightarrow 1}}'
+                f' {sp.latex(funkcja).replace("log", "ln")} \n'
                 f'\t\\]\n',
                 f'${sp.latex(granica)}$')
 
