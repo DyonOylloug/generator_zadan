@@ -375,8 +375,8 @@ def asymptoty(typ: int = 1):
                 f'$D_f\\colon \\mathbb{{R}} \\setminus {sp.latex({0})}.$' + '\\\\' +
                 f'{("Asymptota pionowa lewostronna w $x_0=" + str(sp.latex(0)) + ".$ " + chr(92) + chr(92)) if not sp.limit(funkcja, x, 0,"-").is_real else ""}' +
                 f'{("Asymptota pionowa prawostronna w $x_0=" + str(sp.latex(0)) + ".$ " + chr(92) + chr(92)) if not sp.limit(funkcja, x, 0).is_real else ""}' +
-                f'{("Asymptota ukośna w plus minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 != 0 else ""}' +
-                f'{("Asymptota pozioma w plus minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 == 0 else ""}'
+                f'{("Asymptota ukośna w plus i minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 != 0 else ""}' +
+                f'{("Asymptota pozioma w plus i minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 == 0 else ""}'
                 )
     if typ == 9:
         a = random.choice([-1, 1, 2])
@@ -393,8 +393,8 @@ def asymptoty(typ: int = 1):
                 f'$D_f\\colon \\mathbb{{R}} \\setminus {sp.latex({0})}.$' + '\\\\' +
                 f'{("Asymptota pionowa lewostronna w $x_0=" + str(sp.latex(0)) + ".$ " + chr(92) + chr(92)) if not sp.limit(funkcja, x, 0,"-").is_real else ""}' +
                 f'{("Asymptota pionowa prawostronna w $x_0=" + str(sp.latex(0)) + ".$ " + chr(92) + chr(92)) if not sp.limit(funkcja, x, 0).is_real else ""}' +
-                f'{("Asymptota ukośna w plus minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 != 0 else ""}' +
-                f'{("Asymptota pozioma w plus minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 == 0 else ""}'
+                f'{("Asymptota ukośna w plus i minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 != 0 else ""}' +
+                f'{("Asymptota pozioma w plus i minus nieskończoności o równaniu $y=" + str(sp.latex(a_2 * x + b_2)) + ".$ ") if a_2.is_real and b_2.is_real and a_2 == 0 else ""}'
                 )
     if typ == 10:
         a = random.choice([-1, 1, 2])

@@ -473,7 +473,7 @@ def regresja(stopien: int = 1, nr_zadania: int = 1):
             f'\t\\[\n'
             f'\t\t{sp.latex(A)}\n'
             f'\t\t\\cdot \\left[\\begin{{matrix}} {tmp1} \\end{{matrix}}\\right]\n'
-            f'\t\t= {sp.latex(B)}\n'
+            f'\t\t\\simeq {sp.latex(B)}\n'
             f'\t\t\\quad \\Biggm/ \\cdot \\left(\\left(A^T A \\right)^{{-1}} A^T \\right)_L\n'
             f'\t\\]\n'
             f'\t\\[\n'
