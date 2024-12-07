@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## v0.2.10 (2024-12-07)
+
+### Documentation
+
+* docs: podnieś wersję dla mybinder ([`82bd0e0`](https://github.com/DyonOylloug/generator_zadan/commit/82bd0e00e87b4d24e6717cf4d1610e1da1ceb995))
+
+* docs: dodaj wyznacznik ([`313030e`](https://github.com/DyonOylloug/generator_zadan/commit/313030eac29ae38ac4e59b6da4584c8f5bd743c6))
+
+* docs: dodaj asymptoty ([`d89b17a`](https://github.com/DyonOylloug/generator_zadan/commit/d89b17adce762d2548619ab709e2b545a03d26da))
+
+* docs: uzupełnij generator ([`142c19e`](https://github.com/DyonOylloug/generator_zadan/commit/142c19e0d38ccbaac8abf7d5c50c9c3f1d5f5e5e))
+
+### Performance
+
+* perf: więcej typów granic funkcji ([`93a4670`](https://github.com/DyonOylloug/generator_zadan/commit/93a46707dad246df40677f6808d3359aee51413a))
+
+* perf: dodaj wyznacznik bez paramtrów ([`f6f6eb4`](https://github.com/DyonOylloug/generator_zadan/commit/f6f6eb45a6b9bd3ae54ff7ffb536adbc168aca4e))
+
+* perf: dodaj asymptoty ([`3176eca`](https://github.com/DyonOylloug/generator_zadan/commit/3176eca52ab7aa9bd72971692f706e435ccee6c8))
+
+### Refactor
+
+* refactor: dodaj pochodną iloczynu do stycznej ([`0cdeabf`](https://github.com/DyonOylloug/generator_zadan/commit/0cdeabf796f23c2ee6b77ee965482dd357ebf421))
+
+* refactor: popraw odpowiedź i zmień znak równości ([`aa17704`](https://github.com/DyonOylloug/generator_zadan/commit/aa17704d00baa7306806f188db12c3451113fe82))
+
+* refactor: dodaj package bookmark - problem ze spisem tresci ([`9f7ee80`](https://github.com/DyonOylloug/generator_zadan/commit/9f7ee8017aeda4e699734c97450213f321a3d51b))
+
+* refactor: zmiejsz wykres zespolonego pierwiastka ([`a54216a`](https://github.com/DyonOylloug/generator_zadan/commit/a54216a99912f1fe949238e781299aac48e8bbac))
+
 ## v0.2.9 (2024-11-12)
 
 ### Documentation
