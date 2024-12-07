@@ -47,11 +47,16 @@ def styczna_normalna(typ: int = 1):
         potega = random.choice((0, 1))  # by w do drugim był mianownik
         x_0 = random.choice((-2, -1, 2, 3))  # by nie wychodziło za często sqrt(1)
         wykladnicza = random.choice((0, 1))
+        iloraz = random.choice((True,False))
         while True:
             x = sp.Symbol('x', real=True)
             a, c, d, e = [random.choice((-2, -1, 1, 2, 3, 4)) for _ in range(4)]
             b = random.choice((-2, -1, 0, 1, 2, 3, 4))
-            f = (sp.sqrt(a * x ** 2 + b * x + c) if wykladnicza == 0 else sp.E ** (a * x ** 2 + b * x + c)) / (
+            if iloraz is True:
+                f = (sp.sqrt(a * x ** 2 + b * x + c) if wykladnicza == 0 else sp.E ** (a * x ** 2 + b * x + c)) / (
+                            d * x + e) ** (potega)
+            else:
+                f = (sp.sqrt(a * x ** 2 + b * x + c) if wykladnicza == 0 else sp.E ** (a * x ** 2 + b * x + c)) * (
                         d * x + e) ** (potega)
             # print(a,b,c,d)
             f_prim = f.diff(x)
