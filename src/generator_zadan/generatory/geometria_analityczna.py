@@ -297,15 +297,18 @@ def katy_w_trojkacie(prosty: bool = True, calkowite: bool = True):
             if (((abs(alpha - sp.pi / 2) < 10 ** (-10)
                   or abs(alpha - sp.pi / 3) < 10 ** (-10)
                   or abs(alpha - sp.pi / 4) < 10 ** (-10)
-                  or abs(alpha - sp.pi / 6) < 10 ** (-10))
+                  or abs(alpha - sp.pi / 6) < 10 ** (-10)
+                  or abs(alpha - 2 * sp.pi / 3) < 10 ** (-10))
                  and (abs(beta - sp.pi / 2) < 10 ** (-10)
                       or abs(beta - sp.pi / 3) < 10 ** (-10)
                       or abs(beta - sp.pi / 4) < 10 ** (-10)
-                      or abs(beta - sp.pi / 6) < 10 ** (-10))
+                      or abs(beta - sp.pi / 6) < 10 ** (-10)
+                      or abs(beta - 2 * sp.pi / 3) < 10 ** (-10))
                  and (abs(gamma - sp.pi / 2) < 10 ** (-10)
                       or abs(gamma - sp.pi / 3) < 10 ** (-10)
                       or abs(gamma - sp.pi / 4) < 10 ** (-10)
-                      or abs(gamma - sp.pi / 6) < 10 ** (-10)))):
+                      or abs(gamma - sp.pi / 6) < 10 ** (-10)
+                      or abs(gamma - 2 * sp.pi / 3) < 10 ** (-10)))):
                 break
 
     # print(A_x, A_y, A_z, B_x, B_y, B_z, C_x, C_y, C_z)
