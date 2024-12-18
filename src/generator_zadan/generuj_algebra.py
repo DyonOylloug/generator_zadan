@@ -290,11 +290,16 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
         zadanie, [(f'generatory.katy_w_trojkacie(prosty=True, calkowite=False)', licznik + i)
                   for i in range(0, ile_zadan)])
     licznik += ile_zadan
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
+
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Iloczyn wektorowy}\n', ])
+    wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(
-        zadanie, [(f'generatory.katy_w_trojkacie(prosty=False, calkowite=False)', licznik + i)
+        zadanie, [(f'generatory.iloczyn_wektorowy(ladne=random.choice([False, True]))', licznik + i)
                   for i in range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
+
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Pole trójkąta i wysokości}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(
@@ -302,6 +307,7 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
                   for i in range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
+
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Równanie prostej}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(

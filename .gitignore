@@ -146,6 +146,7 @@ dmypy.json
 
 # rozne testy
 rozne_testy.ipynb
+docs/test_nowego_zadania.ipynb
 
 # wygenerowane obiekty
 src/generator_zadan/pics/*

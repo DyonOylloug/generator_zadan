@@ -26,6 +26,7 @@ from .geometria_analityczna import punkt_symetryczny_do_prostej
 from .geometria_analityczna import katy_w_trojkacie
 from .geometria_analityczna import pole_trojkata
 from .geometria_analityczna import plaszczyzna_styczna
+from .geometria_analityczna import iloczyn_wektorowy
 from .granice import granica_ciagu
 from .granice import granica_funkcji
 from .granice import asymptoty

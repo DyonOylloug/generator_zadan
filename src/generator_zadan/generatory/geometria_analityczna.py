@@ -408,6 +408,43 @@ def plaszczyzna_styczna():
         f'$z = {sp.latex(z_x * (x - P[0]) + z_y * (y - P[1]) + z.subs({x: P[0], y: P[1]}))}$')
 
 
+def iloczyn_wektorowy(ladne: bool = False):
+    def dlugosc(u):
+        return sp.sqrt(sum([i ** 2 for i in u]))
+
+    def wektorowy(u, v):
+        return [u[1] * v[2] - u[2] * v[1], -(u[0] * v[2] - u[2] * v[0]), u[0] * v[1] - u[1] * v[0]]
+
+    def skalarny(u, v):
+        return sum([u[i] * v[i] for i in range(3)])
+
+    def kat(u, v, stopnie: bool = False):
+        if not stopnie:
+            return sp.acos(skalarny(u, v) / (dlugosc(u) * dlugosc(v))).evalf()
+        else:
+            return (sp.acos(skalarny(u, v) / (dlugosc(u) * dlugosc(v))) * 180 / sp.pi).evalf()
+
+    if ladne is True:
+        while True:
+            u = [random.choice([i for i in [-4, -3, -2, -1, 1, 2, 3, 4, 5]]) for _ in range(3)]
+            v = [random.choice([i for i in [-4, -3, -2, -1, 1, 2, 3, 4, 5]]) for _ in range(3)]
+            if kat(u, v, stopnie=True) - round(kat(u, v, stopnie=True)) == 0:
+                break
+    else:
+        u = [random.choice([i for i in [-4, -3, -2, -1, 1, 2, 3, 4, 5]]) for _ in range(3)]
+        v = [random.choice([i for i in [-4, -3, -2, -1, 1, 2, 3, 4, 5]]) for _ in range(3)]
+    return (f'Niech dane będą wektory $\\vec{{u}}={u}$ i $\\vec{{v}}={v}.$\\par\n'
+            f'\t\\hspace{{.5cm}} \\textbf{{(a)}} Obliczyć ich iloczyn wektorowy i jego długość.\\par\n'
+            f'\t\\hspace{{.5cm}} \\textbf{{(b)}} Sprawdzić, czy wyznaczony iloczyn jest prostopadły do zadanych wektorów.\\par\n'
+            f'\t\\hspace{{.5cm}} \\textbf{{(c)}} Wyznaczyć kąt między zadanymi wektorami.\\par\n'
+            f'\t\\hspace{{.5cm}} \\textbf{{(d)}} Używając kąta między wektorami obliczyć długość iloczynu wektorowego i porównać z (a).',
+            f'$\\textbf{{(a)}}\\ \\vec{{u}}\\times\\vec{{v}}={wektorowy(u, v)}, |\\vec{{u}}\\times\\vec{{v}}|={sp.latex(dlugosc(wektorowy(u, v)))},'
+            f' \\quad \\textbf{{(b)}} \\ \\vec{{u}}\\circ (\\vec{{u}}\\times \\vec{{v}}) = {skalarny(u, wektorowy(u, v))}, \\vec{{v}}\\circ (\\vec{{u}}\\times \\vec{{v}}) = {skalarny(u, wektorowy(u, v))},\\newline'
+            f' \\quad \\textbf{{(c)}} \\ \\angle (\\vec{{u}},\\vec{{v}})=\\arccos{{\\frac{{{sp.latex(skalarny(u, v))}}}{{{sp.latex(dlugosc(u))}\\cdot {sp.latex(dlugosc(v))}}} }}=       {sp.latex(kat(u, v, stopnie=True))}^{{\\circ}} ,\\newline'
+            f' \\quad \\textbf{{(d)}} \\ |\\vec{{u}}\\times\\vec{{v}}|={sp.latex(dlugosc(u))}\\cdot{sp.latex(dlugosc(v))}\\cdot\\sin{{{sp.latex(kat(u, v, stopnie=True))}^{{\\circ}}}}={sp.latex((dlugosc(u) * dlugosc(v) * round(sp.sin(kat(u, v)), 12)).evalf())},\\newline'
+            f' \\quad \\textbf{{(d\')}}\\ |\\vec{{u}}\\times\\vec{{v}}|={sp.latex(dlugosc(u))}\\cdot{sp.latex(dlugosc(v))}\\cdot \\sqrt{{1-{sp.latex((skalarny(u, v) / (dlugosc(u) * dlugosc(v))) ** 2)}}}={sp.latex((dlugosc(u) * dlugosc(v) * sp.sqrt(1 - (skalarny(u, v) / (dlugosc(u) * dlugosc(v))) ** 2)))} $')
+
+
 if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany jako program, a nie ładowany jako moduł
     os.chdir('..')  # by wczytywać z gotowca - inaczej problem ze ścieżkami!
     start_time = time.time()
