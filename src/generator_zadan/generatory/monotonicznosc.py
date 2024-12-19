@@ -134,6 +134,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                     f'\t\\[\n'
                     f'\t\tf(x)={sp.latex(f)} \n'
                     f'\t\\]\n',
+                    f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(sp.solve(d*x+e)[0])}\\right\\}}$' + '\\newline\n'
                     f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                     # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                     f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -156,6 +157,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                     f'\t\\[\n'
                     f'\t\tf(x)={sp.latex(f)} \n'
                     f'\t\\]\n',
+                    f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(sp.solve(d*x+e)[0])}\\right\\}}$' + '\\newline\n'
                     f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                     # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                     f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -211,6 +213,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                         f'\t\\[\n'
                         f'\t\tf(x)={sp.latex(f)} \n'
                         f'\t\\]\n',
+                        f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(asymptoty)}\\right\\}}$'.replace('\\left[','').replace('\\right]','') + '\\newline\n'
                         f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                         # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                         f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -231,6 +234,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                         f'\t\\[\n'
                         f'\t\tf(x)={sp.latex(f)} \n'
                         f'\t\\]\n',
+                        f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(asymptoty)}\\right\\}}$'.replace('\\left[','').replace('\\right]','') + '\\newline\n'
                         f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                         # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                         f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -254,6 +258,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                             f'\t\\[\n'
                             f'\t\tf(x)={sp.latex(f)} \n'
                             f'\t\\]\n',
+                            f'$D_f\\colon \\mathbb{{R}}$' + '\\newline\n'
                             f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                             # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                             f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -275,6 +280,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                             f'\t\\[\n'
                             f'\t\tf(x)={sp.latex(f)} \n'
                             f'\t\\]\n',
+                            f'$D_f\\colon \\mathbb{{R}}$' + '\\newline\n'
                             f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                             # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                             f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -298,6 +304,8 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                             f'\t\\[\n'
                             f'\t\tf(x)={sp.latex(f)} \n'
                             f'\t\\]\n',
+                            f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(asymptoty)}\\right\\}}$'.replace(
+                                '\\left[', '').replace('\\right]', '') + '\\newline\n'
                             f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                             # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                             f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -322,6 +330,8 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                             f'\t\\[\n'
                             f'\t\tf(x)={sp.latex(f)} \n'
                             f'\t\\]\n',
+                            f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(asymptoty)}\\right\\}}$'.replace(
+                                '\\left[', '').replace('\\right]', '') + '\\newline\n'
                             f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                             # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                             f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -415,6 +425,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                     f'\t\\[\n'
                     f'\t\tf(x)={sp.latex(f)} \n'
                     f'\t\\]\n',
+                    f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(sp.solve(e * x + g)[0])}\\right\\}}$' + '\\newline\n'
                     f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                     # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                     f'$f\'(x) > 0 \\textnormal{{ dla: }}'
@@ -473,6 +484,7 @@ def monotonicznosc(typ: int = 1, gotowiec: bool = False):
                     f'\t\\[\n'
                     f'\t\tf(x)={sp.latex(f)} \n'
                     f'\t\\]\n',
+                    f'$D_f\\colon \\mathbb{{R}}\\setminus \\left\\{{{sp.latex(sp.solve(e * x + g)[0])}\\right\\}}$' + '\\newline\n'
                     f'$f\'(x)={sp.latex(sp.factor(f_prim))}$\\newline\n'
                     # f'$f\'\'(x)={sp.latex(sp.factor(f_bis))}$\\newline\n'
                     f'$f\'(x) > 0 \\textnormal{{ dla: }}'
