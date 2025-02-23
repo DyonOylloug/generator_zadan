@@ -7,6 +7,7 @@ import time
 Strasznie to głupie - powiązane z plt.rc('text', usetex=False)
 Chodzi o konfikt generowania wykresów używających TeX - matplotlib i problematycznych Sympy Plot'''
 import matplotlib.pyplot as plt
+
 ''' Poprzednie linijki likwidują konflikt z innymi modułami 
 Strasznie to głupie - powiązane z plt.rc('text', usetex=False)
 Chodzi o konfikt generowania wykresów używających TeX - matplotlib i problematycznych Sympy Plot'''
@@ -14,8 +15,6 @@ import numpy as np
 import sympy as sp
 from matplotlib.backends.backend_pdf import PdfPages
 from spb import plot_piecewise
-
-
 
 
 def szereg_Fouriera(
@@ -106,12 +105,11 @@ def szereg_Fouriera(
                                                                                        T) * sp.integrate(
             f * sp.sin(n * sp.pi * x / T), (x, -T, T)).simplify())
 
-
-
     def F_n(ile_wyrazow: int):
         return a0 / 2 + sum(
             [an.subs(n, i) * sp.cos(i * sp.pi * x / T) + bn.subs(n, i) * sp.sin(i * sp.pi * x / T) for i in
              range(1, ile_wyrazow + 1)])
+
     if bez_wykresu is not True or tylko_koncowy is True:
         if not os.path.exists('pics'):
             os.makedirs('pics')
@@ -138,10 +136,12 @@ def szereg_Fouriera(
                     ax.set_xticks(list(ax.get_xticks()),
                                   ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
                                    "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                   '$\\frac{5}{2}\pi$',
                                    '$3\pi$']);
                 pdf.savefig(bbox_inches="tight")
                 wykres.close()
+                plt.close('all')
                 wykres = plot_piecewise(f,
                                         xlim=(
                                             (max(-10, -4.4 * T), min(4.4 * T, 10)) if okres_z_pi is False else (
@@ -162,7 +162,8 @@ def szereg_Fouriera(
                     ax.set_xticks(list(ax.get_xticks()),
                                   ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
                                    "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                   '$\\frac{5}{2}\pi$',
                                    '$3\pi$']);
                 # wykres.save(f'./pics/szereg_Fouriera_{nr_zadania}_funkcja.pdf', dpi=300, bbox_inches="tight")
                 pdf.savefig(bbox_inches="tight")
@@ -188,11 +189,13 @@ def szereg_Fouriera(
                     ax.set_xticks(list(ax.get_xticks()),
                                   ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
                                    "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                   '$\\frac{5}{2}\pi$',
                                    '$3\pi$']);
                 # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_0.png', dpi=300, bbox_inches="tight")
                 pdf.savefig(bbox_inches="tight")
                 wykres.close()
+                plt.close('all')
 
                 wykres = plot_piecewise(f, F_n(1),
                                         xlim=(
@@ -211,12 +214,15 @@ def szereg_Fouriera(
                 if okres_z_pi:
                     ax.set_xticks([0.5 * i * np.pi for i in range(-6, 7)])
                     ax.set_xticks(list(ax.get_xticks()),
-                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$", "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                  ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
+                                   "$-\\frac{1}{2}\pi$",
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                   '$\\frac{5}{2}\pi$',
                                    '$3\pi$']);
                 # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_1.png', dpi=300, bbox_inches="tight")
                 pdf.savefig(bbox_inches="tight")
                 wykres.close()
+                plt.close('all')
             #
             if tylko_koncowy is not True:
                 for ile_wyrazow in range(2, 20, 1):
@@ -239,11 +245,13 @@ def szereg_Fouriera(
                         ax.set_xticks(list(ax.get_xticks()),
                                       ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
                                        "$-\\frac{1}{2}\pi$",
-                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                       '$\\frac{5}{2}\pi$',
                                        '$3\pi$']);
                     # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
                     pdf.savefig(bbox_inches="tight")
                     wykres.close()
+                    plt.close('all')
             if tylko_koncowy is not True:
                 for ile_wyrazow in range(20, 110, 10):
                     wykres = plot_piecewise(f, F_n(ile_wyrazow),
@@ -265,11 +273,13 @@ def szereg_Fouriera(
                         ax.set_xticks(list(ax.get_xticks()),
                                       ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
                                        "$-\\frac{1}{2}\pi$",
-                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                       '$\\frac{5}{2}\pi$',
                                        '$3\pi$']);
-                   # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
+                    # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
                     pdf.savefig(bbox_inches="tight")
                     wykres.close()
+                    plt.close('all')
             if tylko_koncowy is not True:
                 for ile_wyrazow in range(200, 1001, 800):
                     wykres = plot_piecewise(f, F_n(ile_wyrazow),
@@ -291,9 +301,10 @@ def szereg_Fouriera(
                         ax.set_xticks(list(ax.get_xticks()),
                                       ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
                                        "$-\\frac{1}{2}\pi$",
-                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                       "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                       '$\\frac{5}{2}\pi$',
                                        '$3\pi$']);
-                   # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
+                    # wykres.save(f'./pics/Szereg_Fouriera_{nr_zadania}_{ile_wyrazow}.png', dpi=300, bbox_inches="tight")
                     pdf.savefig(bbox_inches="tight")
             if tylko_koncowy is True:
                 wykres = plot_piecewise(f,
@@ -316,15 +327,18 @@ def szereg_Fouriera(
                     ax.set_xticks(list(ax.get_xticks()),
                                   ["$-3\pi$", "$-\\frac{5}{2}\pi$", "$-2\pi$", "$-\\frac{3}{2}\pi$", "$-\pi$",
                                    "$-\\frac{1}{2}\pi$",
-                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$', '$\\frac{5}{2}\pi$',
+                                   "$0$", "$\\frac{1}{2}\pi$", "$\pi$", '$\\frac{3}{2}\pi$', '$2\pi$',
+                                   '$\\frac{5}{2}\pi$',
                                    '$3\pi$']);
                 wykres.save(f'./pics/szereg_Fouriera_{nr_zadania}_funkcja.png', dpi=300, bbox_inches="tight")
                 wykres.close()
+                plt.close('all')
 
             srednia_T = sp.Rational(1, 2) * (sp.limit(f_left, x, -T, '+') + sp.limit(f_right, x, T, '-'))
             srednia_0 = sp.Rational(1, 2) * (sp.limit(f_left, x, 0, '-') + sp.limit(f_right, x, 0, '+'))
             funkcja = [[(f_left.subs(x, x - 2 * i * T), x < (2 * i) * T), (srednia_0, sp.Eq(x, (2 * i) * T)),
-                        (f_right.subs(x, x - 2 * i * T), x < (2 * i + 1) * T), (srednia_T, sp.Eq(x, (2 * i + 1) * T))] for
+                        (f_right.subs(x, x - 2 * i * T), x < (2 * i + 1) * T), (srednia_T, sp.Eq(x, (2 * i + 1) * T))]
+                       for
                        i in range(-9, 10, 1)]
             f = sp.Piecewise(*sum(funkcja, []))
             wykres = plot_piecewise(f, {"color": "C1"},
@@ -352,6 +366,7 @@ def szereg_Fouriera(
                 wykres.save(f'./pics/szereg_Fouriera_{nr_zadania}_inf.png', dpi=300, bbox_inches="tight")
             pdf.savefig(bbox_inches="tight")
             wykres.close()
+            plt.close('all')
 
     if lewostronnie_0 and lewostronnie_T:
         funkcja = (f'\t\t\t{sp.latex(f_left)} & \\textnormal{{ dla }} & x\\in\\left[{sp.latex(-T)},0\\right)\\\\\n'
@@ -373,7 +388,7 @@ def szereg_Fouriera(
                 funkcja +
                 f'\t\t\\end{{matrix}}\\right.\n'
                 f'\t\\]\n'
-                f'o okresie zasadniczym $2T={sp.latex(2*T)}.$'
+                f'o okresie zasadniczym $2T={sp.latex(2 * T)}.$'
                 f' Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
                 f'$a_0={sp.latex(a0)},\\quad a_n={sp.latex(an)},\\quad b_n={sp.latex(bn)},$\\\\\n'
                 f'\t$S(x) = {sp.latex(F_n(5)) if an == 0 or bn == 0 else sp.latex(F_n(3))} + \\dots $\\\\\n'
@@ -386,7 +401,7 @@ def szereg_Fouriera(
                 funkcja +
                 f'\t\t\\end{{matrix}}\\right.\n'
                 f'\t\\]\n'
-                f'o okresie zasadniczym $2T={sp.latex(2*T)}.$\n'
+                f'o okresie zasadniczym $2T={sp.latex(2 * T)}.$\n'
                 f'Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
                 f'$a_0={sp.latex(a0)},\\quad a_n={sp.latex(an)},\\quad b_n={sp.latex(bn)},$\\\\\n'
                 f'\t$S(x) = {sp.latex(F_n(5)) if an == 0 or bn == 0 else sp.latex(F_n(3))} + \\dots $')
@@ -397,13 +412,12 @@ def szereg_Fouriera(
                 funkcja +
                 f'\t\t\\end{{matrix}}\\right.\n'
                 f'\t\\]\n'
-                f'o okresie zasadniczym $2T={sp.latex(2*T)}.$'
+                f'o okresie zasadniczym $2T={sp.latex(2 * T)}.$'
                 f' Naszkicować wykres funkcji, do której zbieżny jest uzyskany szereg.',
                 f'$a_0={sp.latex(a0)},\\quad a_n={sp.latex(an)},\\quad b_n={sp.latex(bn)},$\\\\\n'
                 f'\t$S(x) = {sp.latex(F_n(5)) if an == 0 or bn == 0 else sp.latex(F_n(3))} + \\dots $\\\\\n'
                 f'\t\\animategraphics[height=5.3cm,controls=true]{{0.5}}\n'
                 f'\t {{szereg_Fouriera_{nr_zadania}}}{{0}}{{100}}')
-
 
 
 if __name__ == "__main__":  # to się uruchamia tylko, gdy plik jest uruchamiany jako program, a nie ładowany jako moduł
