@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "generator_zadan"
-version = "0.2.10"
+version = "0.2.11"
 description = "Generuje losowo roznego typu zadania"
 authors = ["Adam Bohonos"]
 license = "MIT"
@@ -18,7 +18,7 @@ exclude = [
 
 
 [tool.poetry.dependencies]
-python = "==3.11"
+python = "3.11.*"
 babel = "^2.16.0"
 jupyter = "^1.0.0"
 matplotlib = "<=3.7"

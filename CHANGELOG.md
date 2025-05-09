@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## v0.2.11 (2025-05-09)
+
+### Documentation
+
+* docs: małe poprawki ([`a745004`](https://github.com/DyonOylloug/generator_zadan/commit/a745004eaaaa5fc14717d6d4f3a1dfa448cc15d3))
+
+* docs: podbij wersje dla mybinder ([`cca781f`](https://github.com/DyonOylloug/generator_zadan/commit/cca781f4c822baa2eff92a79d4115f3cd8ba03ac))
+
+* docs: ustaw wersję python==3.11 - dla nowszych nie działa ([`8dd67c8`](https://github.com/DyonOylloug/generator_zadan/commit/8dd67c8b8b444cf23947f7c4a3a4333931d8735e))
+
+* docs: popraw wyświetlanie odpowiedzi po dodaniu dziedziny ([`278a7fa`](https://github.com/DyonOylloug/generator_zadan/commit/278a7fa345bf67813a565e6e7e6a97dd246b3baf))
+
+* docs: dodaj tag hide-input ([`9fe44f3`](https://github.com/DyonOylloug/generator_zadan/commit/9fe44f382d3fb576159a9e12b5d6321ee6a5173d))
+
+### Performance
+
+* perf: zamykaj wykresy - oszczędzaj pamięć - Fourier ([`fbeecb0`](https://github.com/DyonOylloug/generator_zadan/commit/fbeecb03439e29cea12ae6b741f6ecb3a674d168))
+
+* perf: dodaj dziedzinę w monotoniczności ([`2a6572c`](https://github.com/DyonOylloug/generator_zadan/commit/2a6572cc0513687f5fa05b083b0f0777a114cd51))
+
+* perf: popraw odpowiedź w monotoniczności ([`0754c7a`](https://github.com/DyonOylloug/generator_zadan/commit/0754c7abab409709b89ffe2923c1b71bfe02fc73))
+
+* perf: dodaj iloczyn_wektorowy ([`222f6fb`](https://github.com/DyonOylloug/generator_zadan/commit/222f6fb9061a8520bcab9992d40645cd5075bb3a))
+
+* perf: dodaj 120 stopni jako możliwą odpowiedź całkowitą ([`e7a21c9`](https://github.com/DyonOylloug/generator_zadan/commit/e7a21c9effc1276c557dc42454e60224f7fe366a))
+
 ## v0.2.10 (2024-12-07)
 
 ### Documentation
