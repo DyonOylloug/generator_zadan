@@ -13,6 +13,8 @@ Z biegiem czasu pewnie będzie więcej typów.
 
 ## Instalacja
 
+__`Wymagana wersja python==3.11`__
+
 ```
 pip install generator_zadan
 ```
