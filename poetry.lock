@@ -1027,6 +1027,16 @@ test = ["jaraco.test (>=5.4)", "pytest (>=6,!=8.1.*)", "zipp (>=3.17)"]
 type = ["pytest-mypy"]
 
 [[package]]
+name = "inputimeout"
+version = "1.0.4"
+description = "Multi platform standard input with timeout"
+optional = false
+python-versions = ">=3.4"
+files = [
+    {file = "inputimeout-1.0.4-py3-none-any.whl", hash = "sha256:f4e23d27753cfc25268eefc8d52a3edc46280ad831d226617c51882423475a43"},
+]
+
+[[package]]
 name = "ipykernel"
 version = "6.29.5"
 description = "IPython Kernel for Jupyter"
@@ -3980,4 +3990,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.*"
-content-hash = "6eb3835abedbef3233608c7a0ceca6c23b8a425403b9e67c566a2db605656773"
+content-hash = "db9e68d2f30ecf3242521faec6dfe9fde2d589e9185a658f595c81dade9d2ce0"

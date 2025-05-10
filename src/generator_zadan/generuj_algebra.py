@@ -2,6 +2,7 @@
 import codecs  # dla kodowania utf-8
 import datetime  # do pobierania daty
 import multiprocessing
+from inputimeout import inputimeout
 import os
 # noinspection PyUnresolvedReferences
 import random
@@ -59,11 +60,11 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
                     kolor_odpowiedzi: str = 'red',
                     gotowiec: bool = True):
     wyniki = list(range(ile_zadan * 100))  # tu jest duży zapas - dopracować - 50 oznacza ile mogłoby być typów zadań
-    print('\33[31m' + f'Używamy {multiprocessing.cpu_count() - 1} wątków' + '\33[0m')
+    # print('\33[31m' + f'Używamy {multiprocessing.cpu_count() - 1} wątków' + '\33[0m')
     n = iter(wyniki)
     licznik = 1
 
-    pool = multiprocessing.Pool(multiprocessing.cpu_count() - 1)
+    pool = multiprocessing.Pool(nr_of_threads)
     wyniki[next(n)] = pool.map_async(tekst, ['\n\t\\section{Liczby zespolone}\n', ])
 
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Równanie liniowe}\n', ])
@@ -123,7 +124,9 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Pierwiastek zespolony}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(
-        zadanie, [(f'generatory.pierwiastek_zespolony(stopien=random.choice(([3] * 1 + [4] * 1)), nr_zadania={licznik + i})', licznik + i)
+        zadanie, [(
+                  f'generatory.pierwiastek_zespolony(stopien=random.choice(([3] * 1 + [4] * 1)), nr_zadania={licznik + i})',
+                  licznik + i)
                   for i in range(0, 2 * ile_zadan)])
     licznik += 2 * ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
@@ -451,6 +454,29 @@ def generuj_algebra(nazwa_pliku: str = 'Algebra',
 
 
 if __name__ == '__main__':  # średni czas generowania z dnia 30.01.2024:  241s, z gotowcami 140s.
+    try:
+
+        # Take timed input using inputimeout() function
+        nr_of_threads = int(inputimeout(prompt=f'\33[32m' + f'Procesor jest {multiprocessing.cpu_count()} wątkowy'
+                                                            f' - Ile użyć wątków?\n'
+                                                            f'Masz 10 sekund na decyzję.\n'
+                                                            f'Domyslnie będzie {max(multiprocessing.cpu_count() // 2, 1)}.\n'
+                                               + '\33[0m', timeout=10))
+        if not 1 <= nr_of_threads <= multiprocessing.cpu_count():
+            nr_of_threads = max(multiprocessing.cpu_count() // 2, 1)
+            print('(Domyślnie) ', end='')
+
+    # Catch the timeout error
+    except Exception:
+
+        # Declare the timeout statement
+        nr_of_threads = max(multiprocessing.cpu_count() // 2, 1)
+        print('(Domyślnie) ', end='')
+
+    # Print the statement on timeoutprint(time_over)
+
+    print('Użyjemy:', nr_of_threads)
+
     czas = list()
     ile_petli = 1  # to tylko do testowania średniego czasu generowania
     gotowce = True

@@ -2,6 +2,7 @@
 import codecs  # dla kodowania utf-8
 import datetime  # do pobierania daty
 import multiprocessing
+from inputimeout import inputimeout
 import os
 # noinspection PyUnresolvedReferences
 import random
@@ -66,11 +67,11 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
     # poniżej max(100,...) bo dla ile_zadan=1 brakuje miejsca
     # nie może być ile_zadan=1 bo gryzie sie z wpisaywaniem do pliku
     wyniki = list(range(ile_zadan * 50))  # tu jest duży zapas - dopracować - 50 oznacza ile mogłoby być typów zadań
-    print('\33[31m' + f'Używamy {multiprocessing.cpu_count() - 1} wątków' + '\33[0m')
+    # print('\33[31m' + f'Używamy {multiprocessing.cpu_count() - 1} wątków' + '\33[0m')
     n = iter(wyniki)
     licznik = 1
 
-    pool = multiprocessing.Pool(multiprocessing.cpu_count() - 1)
+    pool = multiprocessing.Pool(nr_of_threads)
     wyniki[next(n)] = pool.map_async(tekst, ['\n\t\\section{Granice}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Granice ciągów}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
@@ -93,14 +94,16 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Granice funkcji}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [('generatory.granica_funkcji(typ=random.choice([i for i in range(11)])) ', licznik + i) for i in range(0, ile_zadan)])
+                                     [('generatory.granica_funkcji(typ=random.choice([i for i in range(11)])) ',
+                                       licznik + i) for i in range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Asymptoty funkcji}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
     wyniki[next(n)] = pool.map_async(zadanie,
-                                     [('generatory.asymptoty(typ=random.choice(range(1,11))) ', licznik + i) for i in range(0, ile_zadan)])
+                                     [('generatory.asymptoty(typ=random.choice(range(1,11))) ', licznik + i) for i in
+                                      range(0, ile_zadan)])
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
@@ -191,8 +194,6 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
     licznik += ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
-
-
     wyniki[next(n)] = pool.map_async(tekst, ['\n\t\\section{Szeregi Fouriera}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Szeregi Fouriera}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
@@ -200,8 +201,8 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
                                      [(f'generatory.szereg_Fouriera(typ_l=0, typ_p=0,'
                                        f' bez_wykresu={Fourier_bez_wykresu},'
                                        f' nr_zadania={licznik + i})',
-                                       licznik + i) for i in range(0, ile_zadan//2)])
-    licznik += ile_zadan//2
+                                       licznik + i) for i in range(0, ile_zadan // 2)])
+    licznik += ile_zadan // 2
     wyniki[next(n)] = pool.map_async(zadanie,
                                      [(f'generatory.szereg_Fouriera(typ_l=random.randint(0,1),'
                                        f' typ_p=random.randint(0,1),'
@@ -230,18 +231,22 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
 
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Całki podwójne po obszarze trójkątnym}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
-    wyniki[next(n)] = pool.map_async(zadanie, [(f'generatory.calka_podwojna(typ=1, nr_zadania={licznik + i})', licznik + i) for i in
-                                               range(0, 2 * ile_zadan)])
+    wyniki[next(n)] = pool.map_async(zadanie,
+                                     [(f'generatory.calka_podwojna(typ=1, nr_zadania={licznik + i})', licznik + i) for i
+                                      in
+                                      range(0, 2 * ile_zadan)])
     licznik += 2 * ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
 
-    wyniki[next(n)] = pool.map_async(tekst, ['\t\\subsection{Całki podwójne po obszarze ograniczonym wykresami krzywych}\n', ])
+    wyniki[next(n)] = pool.map_async(tekst,
+                                     ['\t\\subsection{Całki podwójne po obszarze ograniczonym wykresami krzywych}\n', ])
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\begin{tcbitemize}[zadanie]\n', ])
-    wyniki[next(n)] = pool.map_async(zadanie, [(f'generatory.calka_podwojna(typ=2, nr_zadania={licznik + i})', licznik + i) for i in
-                                               range(0, 2 * ile_zadan)])
+    wyniki[next(n)] = pool.map_async(zadanie,
+                                     [(f'generatory.calka_podwojna(typ=2, nr_zadania={licznik + i})', licznik + i) for i
+                                      in
+                                      range(0, 2 * ile_zadan)])
     licznik += 2 * ile_zadan
     wyniki[next(n)] = pool.map_async(tekst, ['\t\\end{tcbitemize}\n', ])
-
 
     print(f'Zadań wyszło: {licznik - 1}')
     pool.close()
@@ -354,6 +359,29 @@ def generuj_analiza(nazwa_pliku: str = 'Analiza',
 
 
 if __name__ == '__main__':  # średni czas generowania z dnia 30.01.2024:  139.43769199848174
+    try:
+
+        # Take timed input using inputimeout() function
+        nr_of_threads = int(inputimeout(prompt=f'\33[32m' + f'Procesor jest {multiprocessing.cpu_count()} wątkowy'
+                                                            f' - Ile użyć wątków?\n'
+                                                            f'Masz 10 sekund na decyzję.\n'
+                                                            f'Domyslnie będzie {max(multiprocessing.cpu_count() // 2, 1)}.\n'
+                                               + '\33[0m', timeout=10))
+        if not 1 <= nr_of_threads <= multiprocessing.cpu_count():
+            nr_of_threads = max(multiprocessing.cpu_count() // 2, 1)
+            print('(Domyślnie) ', end='')
+
+    # Catch the timeout error
+    except Exception:
+
+        # Declare the timeout statement
+        nr_of_threads = max(multiprocessing.cpu_count() // 2, 1)
+        print('(Domyślnie) ', end='')
+
+    # Print the statement on timeoutprint(time_over)
+
+    print('Użyjemy:', nr_of_threads)
+
     czas = list()
     ile_petli = 1  # to tylko do testowania średniego czasu generowania
     gotowce = True
@@ -364,7 +392,7 @@ if __name__ == '__main__':  # średni czas generowania z dnia 30.01.2024:  139.4
         generuj_analiza(nazwa_pliku='Analiza',
                         ile_zadan=20,  # nie może byc ile_zadan=1, bo gryzie zie z wpisywaniem tekstu i zadań do pliku
                         kolor_odpowiedzi='red',
-                        Fourier_bez_wykresu=False,  # True, gdy chcesz przyspieszyć generowanie - np. do testów!!!
+                        Fourier_bez_wykresu=True,  # True, gdy chcesz przyspieszyć generowanie - np. do testów!!!
                         gotowiec=gotowce)
         czas.append(time.time() - start_time)
     print(czas)
